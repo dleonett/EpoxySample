@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Spacing for margin and padding -->
+    <dimen name="spacing_xxxxs">2dp</dimen>
+    <dimen name="spacing_xxxs">4dp</dimen>
+    <dimen name="spacing_xxs">8dp</dimen>
+    <dimen name="spacing_xs">12dp</dimen>
+    <dimen name="spacing_sm">16dp</dimen>
+    <dimen name="spacing_md">24dp</dimen>
+    <dimen name="spacing_lg">32dp</dimen>
+    <dimen name="spacing_xlg">40dp</dimen>
+    <dimen name="spacing_xxlg">48dp</dimen>
+    <dimen name="spacing_xxxlg">56dp</dimen>
+    <dimen name="spacing_xxxxlg">64dp</dimen>
+
+    <!-- Button sizes -->
+    <dimen name="button_size_xs">24dp</dimen>
+    <dimen name="button_size_sm">32dp</dimen>
+    <dimen name="button_size_md">40dp</dimen>
+    <dimen name="button_size_lg">48dp</dimen>
+    <dimen name="button_size_xlg">56dp</dimen>
+    <dimen name="button_size_xxlg">64dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="font_size_10">10sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_22">22sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_28">28sp</dimen>
+    <dimen name="font_size_32">32sp</dimen>
+    <dimen name="font_size_40">40sp</dimen>
+    <dimen name="font_size_44">44sp</dimen>
+    <dimen name="font_size_48">48sp</dimen>
+
+</resources>
