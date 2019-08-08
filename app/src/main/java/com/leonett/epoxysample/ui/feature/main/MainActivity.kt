@@ -36,10 +36,10 @@ class MainActivity : BaseActivity(),
     }
 
     private fun populateRecyclerView() {
-        mainController.setData("Made for you", GenericItem.generateItemsList())
+        mainController.setData(getString(R.string.header_text), GenericItem.generateItemsList())
     }
 
     override fun onItemClickListener(item: GenericItem) {
-        showToast(item.title ?: "No title")
+        showToast(item.title ?: "")
     }
 }

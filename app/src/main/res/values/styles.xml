@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Text -->
+    <style name="Text" parent="TextAppearance.AppCompat" />
+
+    <style name="Text.Header">
+        <item name="android:textSize">@dimen/font_size_24</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.PostTitle">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="Text.PostSubtitle">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+</resources>

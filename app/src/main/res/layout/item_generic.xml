@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_xxs"
+        android:textAppearance="@style/Text.PostTitle"
         app:layout_constraintTop_toBottomOf="@id/imgPicture"
         tools:text="Title" />
 
@@ -26,6 +27,7 @@
         android:id="@+id/txtSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/Text.PostSubtitle"
         app:layout_constraintTop_toBottomOf="@id/txtTitle"
         tools:text="Subtitle" />
 

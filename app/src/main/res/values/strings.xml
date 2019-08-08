@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EpoxySample</string>
-    <string name="footer_text">• • •</string>
+    <string name="header_text">My feed</string>
+    <string name="footer_text">You\'re up to date</string>
 </resources>
