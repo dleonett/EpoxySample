@@ -6,7 +6,6 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.leonett.epoxysample.R
 
-
 @EpoxyModelClass(layout = R.layout.item_footer)
 abstract class FooterModel : EpoxyModelWithHolder<FooterHolder>() {
 

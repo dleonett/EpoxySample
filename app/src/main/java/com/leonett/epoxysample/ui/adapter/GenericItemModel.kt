@@ -13,7 +13,6 @@ import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.GenericItem
 import com.leonett.epoxysample.util.setRoundCorners
 
-
 @EpoxyModelClass(layout = R.layout.item_generic)
 abstract class GenericItemModel : EpoxyModelWithHolder<GenericItemHolder>() {
 
