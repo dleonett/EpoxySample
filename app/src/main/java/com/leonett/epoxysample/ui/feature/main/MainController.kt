@@ -21,9 +21,9 @@ class MainController : Typed2EpoxyController<String, List<GenericItem>>() {
             genericItem {
                 id(it.id)
                 item(it)
-                itemClickListener(View.OnClickListener { _: View? ->
+                itemClickListener { _: View? ->
                     onInteractionListener?.onItemClickListener(it)
-                })
+                }
             }
         }
 
