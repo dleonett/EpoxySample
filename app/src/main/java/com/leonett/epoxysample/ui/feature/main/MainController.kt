@@ -1,26 +1,33 @@
 package com.leonett.epoxysample.ui.feature.main
 
 import android.view.View
-import com.airbnb.epoxy.Typed2EpoxyController
-import com.leonett.epoxysample.data.GenericItem
+import com.airbnb.epoxy.Typed3EpoxyController
+import com.leonett.epoxysample.data.Post
+import com.leonett.epoxysample.data.Story
 import com.leonett.epoxysample.ui.adapter.footer
-import com.leonett.epoxysample.ui.adapter.genericItem
 import com.leonett.epoxysample.ui.adapter.header
+import com.leonett.epoxysample.ui.adapter.post
+import com.leonett.epoxysample.ui.adapter.stories
 
-class MainController : Typed2EpoxyController<String, List<GenericItem>>() {
+class MainController : Typed3EpoxyController<String, List<Story>, List<Post>>() {
 
     private var onInteractionListener: OnInteractionListener? = null
 
-    override fun buildModels(title: String, items: List<GenericItem>) {
+    override fun buildModels(title: String, stories: List<Story>, posts: List<Post>) {
         header {
             id(HEADER_ID)
             title(title)
         }
 
-        items.forEach {
-            genericItem {
+        stories {
+            id(STORIES_ID)
+            stories(stories)
+        }
+
+        posts.forEach {
+            post {
                 id(it.id)
-                item(it)
+                post(it)
                 itemClickListener { _: View? ->
                     onInteractionListener?.onItemClickListener(it)
                 }
@@ -37,11 +44,12 @@ class MainController : Typed2EpoxyController<String, List<GenericItem>>() {
     }
 
     interface OnInteractionListener {
-        fun onItemClickListener(item: GenericItem)
+        fun onItemClickListener(item: Post)
     }
 
     companion object {
         private const val HEADER_ID = "HEADER_ID"
+        private const val STORIES_ID = "STORIES_ID"
         private const val FOOTER_ID = "FOOTER_ID"
     }
 }

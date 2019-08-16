@@ -3,7 +3,8 @@ package com.leonett.epoxysample.ui.feature.main
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.epoxy.EpoxyItemSpacingDecorator
 import com.leonett.epoxysample.R
-import com.leonett.epoxysample.data.GenericItem
+import com.leonett.epoxysample.data.Post
+import com.leonett.epoxysample.data.Story
 import com.leonett.epoxysample.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -36,10 +37,10 @@ class MainActivity : BaseActivity(),
     }
 
     private fun populateRecyclerView() {
-        mainController.setData(getString(R.string.header_text), GenericItem.generateItemsList())
+        mainController.setData(getString(R.string.header_text), Story.generateList(), Post.generateList())
     }
 
-    override fun onItemClickListener(item: GenericItem) {
+    override fun onItemClickListener(item: Post) {
         showToast(item.title ?: "")
     }
 }
