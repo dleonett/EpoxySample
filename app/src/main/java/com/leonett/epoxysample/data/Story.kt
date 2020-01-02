@@ -2,7 +2,7 @@ package com.leonett.epoxysample.data
 
 data class Story(var id: Int, var imgUrl: String?, var username: String?) {
     companion object {
-        fun generateList(): List<Story> {
+        fun generateDummyList(): List<Story> {
             val items = ArrayList<Story>()
 
             items.add(Story(1, "https://i.pravatar.cc/150?img=7", "awhilesuccessful"))

@@ -9,13 +9,25 @@ import com.leonett.epoxysample.data.Story
 import com.leonett.epoxysample.ui.feature.main.StoriesController
 
 @EpoxyModelClass(layout = R.layout.item_stories)
-abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>() {
+abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>(),
+    StoriesController.OnInteractionListener {
 
     @EpoxyAttribute
     var stories: List<Story>? = null
+    @EpoxyAttribute
+    var onInteractionListener: OnInteractionListener? = null
 
     override fun bind(holder: StoriesHolder) {
+        holder.storiesController.setOnInteractionListener(this)
         holder.storiesController.setData(stories)
+    }
+
+    override fun onStoryClick(story: Story) {
+        onInteractionListener?.onStoryClick(story)
+    }
+
+    interface OnInteractionListener {
+        fun onStoryClick(story: Story)
     }
 }
 

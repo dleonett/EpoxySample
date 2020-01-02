@@ -1,19 +1,22 @@
 package com.leonett.epoxysample.ui.feature.main
 
 import android.view.View
-import com.airbnb.epoxy.Typed3EpoxyController
+import com.airbnb.epoxy.Typed4EpoxyController
 import com.leonett.epoxysample.data.Post
 import com.leonett.epoxysample.data.Story
-import com.leonett.epoxysample.ui.adapter.footer
-import com.leonett.epoxysample.ui.adapter.header
-import com.leonett.epoxysample.ui.adapter.post
-import com.leonett.epoxysample.ui.adapter.stories
+import com.leonett.epoxysample.ui.adapter.*
 
-class MainController : Typed3EpoxyController<String, List<Story>, List<Post>>() {
+class MainController : Typed4EpoxyController<String, List<Story>, List<Post>, Boolean>(),
+    StoriesModel.OnInteractionListener {
 
     private var onInteractionListener: OnInteractionListener? = null
 
-    override fun buildModels(title: String, stories: List<Story>, posts: List<Post>) {
+    override fun buildModels(
+        title: String,
+        stories: List<Story>,
+        posts: List<Post>,
+        loadMore: Boolean
+    ) {
         header {
             id(HEADER_ID)
             title(title)
@@ -22,6 +25,7 @@ class MainController : Typed3EpoxyController<String, List<Story>, List<Post>>() 
         stories {
             id(STORIES_ID)
             stories(stories)
+            onInteractionListener(this@MainController)
         }
 
         posts.forEach {
@@ -29,13 +33,22 @@ class MainController : Typed3EpoxyController<String, List<Story>, List<Post>>() 
                 id(it.id)
                 post(it)
                 itemClickListener { _: View? ->
-                    onInteractionListener?.onItemClickListener(it)
+                    onInteractionListener?.onPostClick(it)
                 }
             }
         }
 
-        footer {
-            id(FOOTER_ID)
+        if (loadMore) {
+            loadMore {
+                id(LOAD_MORE_ID)
+                itemClickListener { _: View? ->
+                    onInteractionListener?.onLoadMoreClick()
+                }
+            }
+        } else {
+            footer {
+                id(FOOTER_ID)
+            }
         }
     }
 
@@ -43,13 +56,20 @@ class MainController : Typed3EpoxyController<String, List<Story>, List<Post>>() 
         this.onInteractionListener = onInteractionListener
     }
 
+    override fun onStoryClick(story: Story) {
+        onInteractionListener?.onStoryClick(story)
+    }
+
     interface OnInteractionListener {
-        fun onItemClickListener(item: Post)
+        fun onStoryClick(story: Story)
+        fun onPostClick(post: Post)
+        fun onLoadMoreClick()
     }
 
     companion object {
         private const val HEADER_ID = "HEADER_ID"
         private const val STORIES_ID = "STORIES_ID"
         private const val FOOTER_ID = "FOOTER_ID"
+        private const val LOAD_MORE_ID = "LOAD_MORE_ID"
     }
 }

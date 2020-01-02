@@ -15,17 +15,17 @@ class StoriesController : TypedEpoxyController<List<Story>>() {
                 id(it.id)
                 story(it)
                 itemClickListener { _: View? ->
-                    onInteractionListener?.onItemClickListener(it)
+                    onInteractionListener?.onStoryClick(it)
                 }
             }
         }
     }
 
-    fun setOnItemClickListener(onInteractionListener: OnInteractionListener) {
+    fun setOnInteractionListener(onInteractionListener: OnInteractionListener) {
         this.onInteractionListener = onInteractionListener
     }
 
     interface OnInteractionListener {
-        fun onItemClickListener(item: Story)
+        fun onStoryClick(story: Story)
     }
 }
