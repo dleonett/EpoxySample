@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.*
 import com.leonett.epoxysample.R
-import com.leonett.epoxysample.data.Story
+import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.ui.feature.main.StoriesController
 
 @EpoxyModelClass(layout = R.layout.item_stories)

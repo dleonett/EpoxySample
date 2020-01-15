@@ -4,23 +4,31 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.epoxy.EpoxyItemSpacingDecorator
+import com.leonett.epoxysample.App
 import com.leonett.epoxysample.R
-import com.leonett.epoxysample.data.Post
-import com.leonett.epoxysample.data.Story
+import com.leonett.epoxysample.data.model.Post
+import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseActivity(),
     MainController.OnInteractionListener {
 
-    private lateinit var mainController: MainController
+    @Inject
+    lateinit var mainViewModelFactory: MainViewModelFactory
+
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var mainController: MainController
 
     override val contentViewId: Int
         get() = R.layout.activity_main
 
     override fun initVars() {
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        (applicationContext as App).appComponent.inject(this)
+
+        mainViewModel = ViewModelProviders.of(this, mainViewModelFactory)
+            .get(MainViewModel::class.java)
     }
 
     override fun initViews() {

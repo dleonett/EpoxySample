@@ -1,4 +1,4 @@
-package com.leonett.epoxysample.data
+package com.leonett.epoxysample.data.model
 
 data class Post(
     var id: Int,

@@ -2,8 +2,8 @@ package com.leonett.epoxysample.ui.feature.main
 
 import android.view.View
 import com.airbnb.epoxy.Typed4EpoxyController
-import com.leonett.epoxysample.data.Post
-import com.leonett.epoxysample.data.Story
+import com.leonett.epoxysample.data.model.Post
+import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.ui.adapter.*
 
 class MainController : Typed4EpoxyController<String, List<Story>, List<Post>, Boolean>(),

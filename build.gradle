@@ -27,6 +27,8 @@ allprojects {
 
 ext {
     epoxy_version = '3.9.0'
+    dagger_version = '2.25.4'
+    glide_version = '4.11.0'
 }
 
 task clean(type: Delete) {

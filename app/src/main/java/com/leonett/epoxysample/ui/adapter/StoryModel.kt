@@ -10,7 +10,7 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonett.epoxysample.R
-import com.leonett.epoxysample.data.Story
+import com.leonett.epoxysample.data.model.Story
 
 @EpoxyModelClass(layout = R.layout.item_story)
 abstract class StoryModel : EpoxyModelWithHolder<StoryHolder>() {
