@@ -1,10 +1,20 @@
 package com.leonett.epoxysample
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
+import com.leonett.epoxysample.di.ApplicationComponent
+import com.leonett.epoxysample.di.ApplicationModule
 import com.leonett.epoxysample.di.DaggerApplicationComponent
 
-class App : Application() {
+class App : MultiDexApplication() {
 
-    val appComponent = DaggerApplicationComponent.create()
+    lateinit var appComponent: ApplicationComponent
+
+    override fun onCreate() {
+        super.onCreate()
+
+        appComponent = DaggerApplicationComponent.builder()
+            .applicationModule(ApplicationModule())
+            .build()
+    }
 
 }

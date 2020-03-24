@@ -1,11 +1,19 @@
 package com.leonett.epoxysample.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Post(
+    @SerializedName("id")
     var id: Int,
+    @SerializedName("imgUrl")
     var imgUrl: String?,
+    @SerializedName("title")
     var title: String?,
+    @SerializedName("subtitle")
     var subtitle: String?,
+    @SerializedName("avatarUrl")
     var avatarUrl: String?,
+    @SerializedName("username")
     var username: String?
 ) {
     companion object {

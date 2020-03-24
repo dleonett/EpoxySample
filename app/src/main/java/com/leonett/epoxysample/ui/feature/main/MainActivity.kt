@@ -1,5 +1,6 @@
 package com.leonett.epoxysample.ui.feature.main
 
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -67,6 +68,7 @@ class MainActivity : BaseActivity(),
                     )
                 }
                 is MainScreenState.Error -> {
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
             }
         }
