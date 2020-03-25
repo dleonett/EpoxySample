@@ -25,6 +25,8 @@ class MainViewModel @Inject constructor(private val postsRepository: PostsReposi
                 screenStateMutableLiveData.value =
                     MainScreenState.Loading(HomeData(0, ArrayList(posts), ArrayList(stories)), false)
 
+                delay(1_000)
+
                 posts.addAll(postsRepository.fetchPosts())
                 stories.addAll(postsRepository.getStoriesList())
 
