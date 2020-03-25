@@ -58,16 +58,14 @@ class MainActivity : BaseActivity(),
         state?.let {
             when (it) {
                 is MainScreenState.Loading -> {
+                    mainController.setData(it.homeData, it.loadMore, true)
                 }
                 is MainScreenState.Success -> {
-                    mainController.setData(
-                        getString(it.titleResId),
-                        it.stories,
-                        it.posts,
-                        it.loadMore
-                    )
+                    mainController.setData(it.homeData, it.loadMore, false)
                 }
                 is MainScreenState.Error -> {
+                    mainController.setData(it.homeData, it.loadMore, false)
+
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 }
             }
