@@ -23,12 +23,13 @@ class MainViewModel @Inject constructor(private val postsRepository: PostsReposi
         viewModelScope.launch {
             try {
                 screenStateMutableLiveData.value =
-                    MainScreenState.Loading(HomeData(0, ArrayList(posts), ArrayList(stories)), false)
+                    MainScreenState.Loading(
+                        HomeData(0, ArrayList(posts), ArrayList(stories)),
+                        false
+                    )
 
-                delay(1_000)
-
+                stories.addAll(postsRepository.fetchStories())
                 posts.addAll(postsRepository.fetchPosts())
-                stories.addAll(postsRepository.getStoriesList())
 
                 screenStateMutableLiveData.value =
                     MainScreenState.Success(HomeData(0, ArrayList(posts), ArrayList(stories)), true)

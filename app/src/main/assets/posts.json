@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "imgUrl": "https://picsum.photos/id/1011/1000/1000",
+    "title": "Let's take a ride 🛶🛶🛶",
+    "subtitle": "23 comments",
+    "avatarUrl": "https://i.pravatar.cc/150?img=9",
+    "username": "snickerscarrion"
+  },
+  {
+    "id": 2,
+    "imgUrl": "https://picsum.photos/id/1012/1000/1000",
+    "title": "My best friend 🐶",
+    "subtitle": "16 comments",
+    "avatarUrl": "https://i.pravatar.cc/150?img=14",
+    "username": "rnacaddie"
+  },
+  {
+    "id": 3,
+    "imgUrl": "https://picsum.photos/id/1013/1000/1000",
+    "title": "Annie's wedding... Lovely!",
+    "subtitle": "4 comments",
+    "avatarUrl": "https://i.pravatar.cc/150?img=10",
+    "username": "ditchmontie"
+  },
+  {
+    "id": 4,
+    "imgUrl": "https://picsum.photos/id/1014/1000/1000",
+    "title": "It's not about what you see but what you feel",
+    "subtitle": "9 comments",
+    "avatarUrl": "https://i.pravatar.cc/150?img=17",
+    "username": "nosegrab"
+  },
+  {
+    "id": 5,
+    "imgUrl": "https://picsum.photos/id/1015/1000/1000",
+    "title": "River!!",
+    "subtitle": "0 comments",
+    "avatarUrl": "https://i.pravatar.cc/150?img=11",
+    "username": "elfcoffee"
+  },
+  {
+    "id": 6,
+    "imgUrl": "https://picsum.photos/id/1016/1000/1000",
+    "title": "🔥🔥",
+    "subtitle": "11 comments",
+    "avatarUrl": "https://i.pravatar.cc/150?img=11",
+    "username": "elfcoffee"
+  },
+  {
+    "id": 7,
+    "imgUrl": "https://picsum.photos/id/1018/1000/1000",
+    "title": "A very peaceful place!",
+    "subtitle": "7 comments",
+    "avatarUrl": "https://i.pravatar.cc/150?img=7",
+    "username": "awhilesuccessful"
+  }
+]

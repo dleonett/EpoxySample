@@ -11,16 +11,12 @@ class PostsRepository @Inject constructor(
     private val postsRemoteSource: PostsRemoteSource
 ) {
 
-    fun getPostsList(): List<Post> {
-        return postsLocalSource.getPostsList()
-    }
-
     fun getMorePostsList(): List<Post> {
         return postsLocalSource.getMorePostsList()
     }
 
-    fun getStoriesList(): List<Story> {
-        return postsLocalSource.getStoriesList()
+    suspend fun fetchStories(): List<Story> {
+        return postsRemoteSource.fetchStories()
     }
 
     suspend fun fetchPosts(): List<Post> {
