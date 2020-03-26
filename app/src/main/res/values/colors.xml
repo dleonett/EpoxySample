@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@color/white</color>
     <color name="colorPrimaryDark">@color/gray</color>
-    <color name="colorAccent">@color/pink</color>
+    <color name="colorAccent">@color/orange</color>
 
     <color name="black">#000000</color>
     <color name="black_30_percent">#4D000000</color>
@@ -19,5 +19,5 @@
     <color name="white_30_percent">#4DFFFFFF</color>
     <color name="white_70_percent">#B3FFFFFF</color>
     <color name="white_90_percent">#E6FFFFFF</color>
-    <color name="pink">#D81B60</color>
+    <color name="orange">#EF6C00</color>
 </resources>
