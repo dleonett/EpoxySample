@@ -34,7 +34,11 @@ class MainController : Typed3EpoxyController<HomeData, Boolean, Boolean>(),
             }
         }
 
-        if (!isLoading) {
+        if (isLoading) {
+            loader {
+                id(LOADER_ID)
+            }
+        } else {
             if (loadMore) {
                 loadMore {
                     id(LOAD_MORE_ID)
@@ -46,10 +50,6 @@ class MainController : Typed3EpoxyController<HomeData, Boolean, Boolean>(),
                 footer {
                     id(FOOTER_ID)
                 }
-            }
-        } else {
-            loader {
-                id(LOADER_ID)
             }
         }
     }
