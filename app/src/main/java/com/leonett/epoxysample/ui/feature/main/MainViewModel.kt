@@ -44,6 +44,7 @@ class MainViewModel @Inject constructor(private val postsRepository: PostsReposi
     private fun fetchPostsFromRemote() {
         viewModelScope.launch {
             try {
+                // Ignore fetch result here given we are already observing changes in database
                 postsRepository.fetchRemoteStories()
                 postsRepository.fetchRemotePosts()
             } catch (error: Throwable) {
