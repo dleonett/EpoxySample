@@ -39,7 +39,7 @@ class MainViewModel @Inject constructor(private val postsRepository: PostsReposi
                     0,
                     postsStoriesWrapper
                 ),
-                postsStoriesWrapper?.posts.size < 11
+                postsStoriesWrapper.posts.size < 11
             )
     }
 
