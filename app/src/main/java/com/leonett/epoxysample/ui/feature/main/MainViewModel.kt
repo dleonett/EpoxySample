@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leonett.epoxysample.data.PostsRepository
-import com.leonett.epoxysample.ui.viewobject.MainScreenData
 import com.leonett.epoxysample.data.model.PostsStoriesWrapper
+import com.leonett.epoxysample.ui.viewobject.MainScreenData
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,31 +25,20 @@ class MainViewModel @Inject constructor(private val postsRepository: PostsReposi
 
     private fun showLoadingStatus() {
         screenStateMutableLiveData.value =
-            MainScreenState.Loading(
-                MainScreenData(
-                    0,
-                    postsStoriesWrapper
-                ), false)
+            MainScreenState.Loading(MainScreenData(0, postsStoriesWrapper), false)
     }
 
     private fun showSuccessStatus() {
         screenStateMutableLiveData.value =
             MainScreenState.Success(
-                MainScreenData(
-                    0,
-                    postsStoriesWrapper
-                ),
+                MainScreenData(0, postsStoriesWrapper),
                 postsStoriesWrapper.posts.size < 11
             )
     }
 
     private fun showErrorStatus(message: String?) {
         screenStateMutableLiveData.value =
-            MainScreenState.Error(
-                MainScreenData(
-                    0,
-                    postsStoriesWrapper
-                ), message, false)
+            MainScreenState.Error(MainScreenData(0, postsStoriesWrapper), message, false)
     }
 
     private fun fetchPostsFromRemote() {

@@ -20,10 +20,6 @@ class PostsRepository @Inject constructor(
         return stories
     }
 
-    fun getStoriesObservable(): Flow<List<Story>> {
-        return postsLocalSource.getStoriesObservable()
-    }
-
     suspend fun fetchRemotePosts(): List<Post> {
         val posts = postsRemoteSource.fetchPosts()
         postsLocalSource.insertPosts(posts)
@@ -34,10 +30,6 @@ class PostsRepository @Inject constructor(
         val posts = postsRemoteSource.fetchMorePosts()
         postsLocalSource.insertPosts(posts)
         return posts
-    }
-
-    fun getPostsObservable(): Flow<List<Post>> {
-        return postsLocalSource.getPostsObservable()
     }
 
     fun getPostAndStoriesObservable(): Flow<PostsStoriesWrapper> {
