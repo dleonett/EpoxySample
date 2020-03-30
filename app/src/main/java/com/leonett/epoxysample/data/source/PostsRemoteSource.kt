@@ -11,6 +11,8 @@ class PostsRemoteSource @Inject constructor(private val postsApiService: PostsAp
 
     suspend fun fetchPosts() = postsApiService.fetchPosts()
 
+    suspend fun fetchMorePosts() = postsApiService.fetchMorePosts()
+
 }
 
 interface PostsApiService {
@@ -20,5 +22,8 @@ interface PostsApiService {
 
     @GET("v2/5e7aa8803000000878930d2c")
     suspend fun fetchPosts(): List<Post>
+
+    @GET("v2/5e815952300000bd386f96f0")
+    suspend fun fetchMorePosts(): List<Post>
 
 }

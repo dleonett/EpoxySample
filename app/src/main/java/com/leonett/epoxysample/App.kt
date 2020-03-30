@@ -13,7 +13,7 @@ class App : MultiDexApplication() {
         super.onCreate()
 
         appComponent = DaggerApplicationComponent.builder()
-            .applicationModule(ApplicationModule())
+            .applicationModule(ApplicationModule(applicationContext))
             .build()
     }
 

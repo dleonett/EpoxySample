@@ -5,37 +5,69 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leonett.epoxysample.data.PostsRepository
-import com.leonett.epoxysample.data.model.HomeData
-import com.leonett.epoxysample.data.model.Post
-import com.leonett.epoxysample.data.model.Story
-import kotlinx.coroutines.delay
+import com.leonett.epoxysample.ui.viewobject.MainScreenData
+import com.leonett.epoxysample.data.model.PostsStoriesWrapper
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val postsRepository: PostsRepository) :
     ViewModel() {
 
-    private var posts = ArrayList<Post>()
-    private var stories = ArrayList<Story>()
+    private var postsStoriesWrapper: PostsStoriesWrapper = PostsStoriesWrapper()
     private var screenStateMutableLiveData: MutableLiveData<MainScreenState> = MutableLiveData()
 
     init {
+        fetchPostsFromRemote()
+
+        observePostsAndStories()
+    }
+
+    private fun showLoadingStatus() {
+        screenStateMutableLiveData.value =
+            MainScreenState.Loading(
+                MainScreenData(
+                    0,
+                    postsStoriesWrapper
+                ), false)
+    }
+
+    private fun showSuccessStatus() {
+        screenStateMutableLiveData.value =
+            MainScreenState.Success(
+                MainScreenData(
+                    0,
+                    postsStoriesWrapper
+                ),
+                postsStoriesWrapper?.posts.size < 11
+            )
+    }
+
+    private fun showErrorStatus(message: String?) {
+        screenStateMutableLiveData.value =
+            MainScreenState.Error(
+                MainScreenData(
+                    0,
+                    postsStoriesWrapper
+                ), message, false)
+    }
+
+    private fun fetchPostsFromRemote() {
         viewModelScope.launch {
             try {
-                screenStateMutableLiveData.value =
-                    MainScreenState.Loading(
-                        HomeData(0, ArrayList(posts), ArrayList(stories)),
-                        false
-                    )
-
-                stories.addAll(postsRepository.fetchStories())
-                posts.addAll(postsRepository.fetchPosts())
-
-                screenStateMutableLiveData.value =
-                    MainScreenState.Success(HomeData(0, ArrayList(posts), ArrayList(stories)), true)
+                postsRepository.fetchRemoteStories()
+                postsRepository.fetchRemotePosts()
             } catch (error: Throwable) {
-                screenStateMutableLiveData.value =
-                    MainScreenState.Error(HomeData(0, ArrayList(posts), ArrayList(stories)), false)
+                showErrorStatus(error.message)
+            }
+        }
+    }
+
+    private fun observePostsAndStories() {
+        viewModelScope.launch {
+            postsRepository.getPostAndStoriesObservable().collect { result ->
+                postsStoriesWrapper = result
+                showSuccessStatus()
             }
         }
     }
@@ -46,16 +78,11 @@ class MainViewModel @Inject constructor(private val postsRepository: PostsReposi
 
     fun loadMorePosts() {
         viewModelScope.launch {
-            screenStateMutableLiveData.value =
-                MainScreenState.Loading(HomeData(0, ArrayList(posts), ArrayList(stories)), false)
-
-            // TODO: Replace and request more posts from remote
-            delay(3_000)
-
-            posts.addAll(postsRepository.getMorePostsList())
-
-            screenStateMutableLiveData.value =
-                MainScreenState.Success(HomeData(0, ArrayList(posts), ArrayList(stories)), false)
+            try {
+                postsRepository.fetchMoreRemotePosts()
+            } catch (error: Throwable) {
+                showErrorStatus(error.message)
+            }
         }
     }
 
