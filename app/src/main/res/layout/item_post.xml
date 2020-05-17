@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingStart="@dimen/spacing_sm"
-    android:paddingEnd="@dimen/spacing_sm"
-    android:paddingBottom="@dimen/spacing_xxs">
+    android:paddingBottom="@dimen/spacing_sm">
 
     <ImageView
         android:id="@+id/imgPicture"
@@ -20,7 +18,9 @@
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
         android:layout_marginTop="@dimen/spacing_xxs"
+        android:layout_marginEnd="@dimen/spacing_sm"
         android:textAppearance="@style/Text.PostTitle"
         app:layout_constraintTop_toBottomOf="@id/imgPicture"
         tools:text="Title" />
@@ -29,6 +29,8 @@
         android:id="@+id/txtSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginEnd="@dimen/spacing_sm"
         android:textAppearance="@style/Text.PostSubtitle"
         app:layout_constraintTop_toBottomOf="@id/txtTitle"
         tools:text="Subtitle" />

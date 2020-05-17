@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
-import com.leonett.epoxysample.util.setRoundCorners
 
 @EpoxyModelClass(layout = R.layout.item_post)
 abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
@@ -30,7 +29,6 @@ abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
         holder.txtTitle.text = post?.title
         holder.txtSubtitle.text = post?.subtitle
         holder.container.setOnClickListener(itemClickListener)
-        holder.imgPicture.setRoundCorners(R.dimen.spacing_xxxs)
     }
 }
 

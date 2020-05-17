@@ -64,10 +64,7 @@ class MainController : Typed3EpoxyController<MainScreenData, Boolean, Boolean>()
     }
 
     override fun isStickyHeader(position: Int) =
-        // This is a workaround to prevent app from crashing due to Sticky Header feature needs
-        // first item to be sticky. Please remove when possible!
-        position == 0 ||
-                adapter.getModelAtPosition(position) is PostHeaderModel
+        adapter.getModelAtPosition(position) is PostHeaderModel
 
     fun setOnItemClickListener(onInteractionListener: OnInteractionListener) {
         this.onInteractionListener = onInteractionListener

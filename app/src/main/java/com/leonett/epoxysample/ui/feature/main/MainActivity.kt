@@ -2,15 +2,13 @@ package com.leonett.epoxysample.ui.feature.main
 
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.epoxy.EpoxyItemSpacingDecorator
-import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
+import androidx.lifecycle.ViewModelProvider
 import com.leonett.epoxysample.App
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.ui.base.BaseActivity
+import com.leonett.epoxysample.ui.base.StickyHeaderLinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -29,7 +27,7 @@ class MainActivity : BaseActivity(),
     override fun initVars() {
         (applicationContext as App).appComponent.inject(this)
 
-        mainViewModel = ViewModelProviders.of(this, mainViewModelFactory)
+        mainViewModel = ViewModelProvider(this, mainViewModelFactory)
             .get(MainViewModel::class.java)
     }
 
@@ -45,7 +43,6 @@ class MainActivity : BaseActivity(),
         rvMain.apply {
             layoutManager = StickyHeaderLinearLayoutManager(context)
             setController(mainController)
-            //addItemDecoration(EpoxyItemSpacingDecorator(resources.getDimension(R.dimen.spacing_sm).toInt()))
         }
     }
 
