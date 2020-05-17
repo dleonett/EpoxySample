@@ -8,8 +8,6 @@
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/rvMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="@dimen/spacing_md"
-        android:paddingBottom="@dimen/spacing_sm" />
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

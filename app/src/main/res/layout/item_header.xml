@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:paddingStart="@dimen/spacing_sm"
+    android:paddingTop="@dimen/spacing_sm"
     android:paddingEnd="@dimen/spacing_sm">
 
     <TextView

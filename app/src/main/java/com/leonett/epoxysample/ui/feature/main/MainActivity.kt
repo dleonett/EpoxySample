@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.epoxy.EpoxyItemSpacingDecorator
+import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
 import com.leonett.epoxysample.App
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
@@ -42,9 +43,9 @@ class MainActivity : BaseActivity(),
         mainController.setOnItemClickListener(this)
 
         rvMain.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = StickyHeaderLinearLayoutManager(context)
             setController(mainController)
-            addItemDecoration(EpoxyItemSpacingDecorator(resources.getDimension(R.dimen.spacing_sm).toInt()))
+            //addItemDecoration(EpoxyItemSpacingDecorator(resources.getDimension(R.dimen.spacing_sm).toInt()))
         }
     }
 
