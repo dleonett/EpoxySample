@@ -3,12 +3,12 @@ package com.leonett.epoxysample.ui.feature.main
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
 import com.leonett.epoxysample.App
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.ui.base.BaseActivity
-import com.leonett.epoxysample.ui.base.StickyHeaderLinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
