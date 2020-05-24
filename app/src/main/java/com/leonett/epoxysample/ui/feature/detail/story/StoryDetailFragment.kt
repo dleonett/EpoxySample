@@ -23,7 +23,9 @@ class StoryDetailFragment : BaseFragment() {
             storyId = it.getString(STORY_ID_ARGUMENT)
         }
 
-        showToast(storyId ?: "N/A")
+        storyId?.let {
+            showToast("ID: $it")
+        }
     }
 
     override fun initViews(view: View) {
