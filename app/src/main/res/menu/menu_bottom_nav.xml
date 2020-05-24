@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/feedFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
         android:id="@+id/explore_nav_graph"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_search"
         android:title="Explore" />
     <item
         android:id="@+id/inbox_nav_graph"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_inbox"
         android:title="Inbox" />
     <item
         android:id="@+id/settings_nav_graph"
-        android:icon="@mipmap/ic_launcher"
-        android:title="Settings" />
+        android:icon="@drawable/ic_account"
+        android:title="Account" />
 </menu>
