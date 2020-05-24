@@ -1,4 +1,4 @@
-package com.leonett.epoxysample.ui.feature.main
+package com.leonett.epoxysample.ui.feature.feed
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,16 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leonett.epoxysample.data.PostsRepository
 import com.leonett.epoxysample.data.model.PostsStoriesWrapper
-import com.leonett.epoxysample.ui.viewobject.MainScreenData
+import com.leonett.epoxysample.ui.viewobject.FeedScreenData
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val postsRepository: PostsRepository) :
+class FeedViewModel @Inject constructor(private val postsRepository: PostsRepository) :
     ViewModel() {
 
     private var postsStoriesWrapper: PostsStoriesWrapper = PostsStoriesWrapper()
-    private var screenStateMutableLiveData: MutableLiveData<MainScreenState> = MutableLiveData()
+    private var screenStateMutableLiveData: MutableLiveData<FeedScreenState> = MutableLiveData()
 
     init {
         fetchPostsFromRemote()
@@ -25,20 +25,20 @@ class MainViewModel @Inject constructor(private val postsRepository: PostsReposi
 
     private fun showLoadingStatus() {
         screenStateMutableLiveData.value =
-            MainScreenState.Loading(MainScreenData(0, postsStoriesWrapper), false)
+            FeedScreenState.Loading(FeedScreenData(0, postsStoriesWrapper), false)
     }
 
     private fun showSuccessStatus() {
         screenStateMutableLiveData.value =
-            MainScreenState.Success(
-                MainScreenData(0, postsStoriesWrapper),
+            FeedScreenState.Success(
+                FeedScreenData(0, postsStoriesWrapper),
                 postsStoriesWrapper.posts.size < 11
             )
     }
 
     private fun showErrorStatus(message: String?) {
         screenStateMutableLiveData.value =
-            MainScreenState.Error(MainScreenData(0, postsStoriesWrapper), message, false)
+            FeedScreenState.Error(FeedScreenData(0, postsStoriesWrapper), message, false)
     }
 
     private fun fetchPostsFromRemote() {
@@ -62,7 +62,7 @@ class MainViewModel @Inject constructor(private val postsRepository: PostsReposi
         }
     }
 
-    fun getScreenStateLiveData(): LiveData<MainScreenState> {
+    fun getScreenStateLiveData(): LiveData<FeedScreenState> {
         return screenStateMutableLiveData
     }
 

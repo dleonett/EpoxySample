@@ -3,4 +3,7 @@
     <string name="header_text">My feed</string>
     <string name="footer_text">You\'re up to date</string>
     <string name="load_more_text">Load more</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

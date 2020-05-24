@@ -1,16 +1,16 @@
-package com.leonett.epoxysample.ui.feature.main
+package com.leonett.epoxysample.ui.feature.feed
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.leonett.epoxysample.data.PostsRepository
 import javax.inject.Inject
 
-class MainViewModelFactory @Inject constructor(private val postsRepository: PostsRepository) :
+class FeedViewModelFactory @Inject constructor(private val postsRepository: PostsRepository) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            MainViewModel(postsRepository) as T
+        return if (modelClass.isAssignableFrom(FeedViewModel::class.java)) {
+            FeedViewModel(postsRepository) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")
         }

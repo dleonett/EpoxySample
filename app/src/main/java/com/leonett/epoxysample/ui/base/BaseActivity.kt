@@ -68,7 +68,6 @@ abstract class BaseActivity : AppCompatActivity() {
         return if (intent.extras != null) {
             intent.extras!!.get(key)
         } else null
-
     }
 
     protected fun getArgument(intent: Intent, key: String): Any? {

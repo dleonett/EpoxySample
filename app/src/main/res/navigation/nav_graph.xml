@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.leonett.epoxysample.ui.feature.feed.FeedFragment"
+        android:label="Feed Fragment"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/actionPostDetail"
+            app:destination="@id/postDetailFragment" />
+        <action
+            android:id="@+id/actionStoryDetailActivity"
+            app:destination="@id/storyDetailActivity" />
+        <deepLink app:uri="epoxysample://home/feed" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.leonett.epoxysample.ui.feature.detail.post.PostDetailFragment"
+        android:label="Post Detail Fragment"
+        tools:layout="@layout/fragment_post_detail">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+        <deepLink app:uri="epoxysample://home/post/{id}" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/explore_nav_graph"
+        app:startDestination="@id/exploreFragment">
+
+        <fragment
+            android:id="@+id/exploreFragment"
+            android:name="com.leonett.epoxysample.ui.feature.explore.ExploreFragment"
+            android:label="Explore Fragment"
+            tools:layout="@layout/fragment_explore">
+            <deepLink app:uri="epoxysample://home/explore" />
+        </fragment>
+
+    </navigation>
+
+    <navigation
+        android:id="@+id/inbox_nav_graph"
+        app:startDestination="@id/inboxFragment">
+
+        <fragment
+            android:id="@+id/inboxFragment"
+            android:name="com.leonett.epoxysample.ui.feature.inbox.InboxFragment"
+            android:label="Inbox Fragment"
+            tools:layout="@layout/fragment_inbox">
+            <action
+                android:id="@+id/actionChat"
+                app:destination="@id/chatFragment" />
+            <deepLink app:uri="epoxysample://home/inbox" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/chatFragment"
+            android:name="com.leonett.epoxysample.ui.feature.inbox.ChatFragment"
+            android:label="Chat Fragment"
+            tools:layout="@layout/fragment_chat">
+            <deepLink app:uri="epoxysample://home/inbox/chat" />
+        </fragment>
+
+    </navigation>
+
+    <navigation
+        android:id="@+id/settings_nav_graph"
+        app:startDestination="@id/settingsFragment">
+
+        <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.leonett.epoxysample.ui.feature.settings.SettingsFragment"
+            android:label="Settings Fragment"
+            tools:layout="@layout/fragment_settings">
+            <action
+                android:id="@+id/actionAbout"
+                app:destination="@id/aboutFragment" />
+            <deepLink app:uri="epoxysample://home/settings" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/aboutFragment"
+            android:name="com.leonett.epoxysample.ui.feature.settings.AboutFragment"
+            android:label="About Fragment"
+            tools:layout="@layout/fragment_about">
+            <deepLink app:uri="epoxysample://home/settings/about" />
+        </fragment>
+
+    </navigation>
+
+    <activity
+        android:id="@+id/storyDetailActivity"
+        android:name="com.leonett.epoxysample.ui.feature.detail.story.StoryDetailActivity"
+        android:label="StoryDetailActivity">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="story"
+            app:argType="com.leonett.epoxysample.data.model.Story"
+            app:nullable="true" />
+        <deepLink app:uri="epoxysample://home/story/{id}" />
+    </activity>
+
+</navigation>

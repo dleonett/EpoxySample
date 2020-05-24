@@ -1,19 +1,19 @@
-package com.leonett.epoxysample.ui.feature.main
+package com.leonett.epoxysample.ui.feature.feed
 
 import android.view.View
 import com.airbnb.epoxy.Typed3EpoxyController
 import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.ui.adapter.*
-import com.leonett.epoxysample.ui.viewobject.MainScreenData
+import com.leonett.epoxysample.ui.viewobject.FeedScreenData
 
-class MainController : Typed3EpoxyController<MainScreenData, Boolean, Boolean>(),
+class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>(),
     StoriesModel.OnInteractionListener {
 
     private var onInteractionListener: OnInteractionListener? = null
 
     override fun buildModels(
-        mainScreenData: MainScreenData,
+        feedScreenData: FeedScreenData,
         loadMore: Boolean,
         isLoading: Boolean
     ) {
@@ -24,11 +24,11 @@ class MainController : Typed3EpoxyController<MainScreenData, Boolean, Boolean>()
 
         stories {
             id(STORIES_ID)
-            stories(mainScreenData.postsStoriesWrapper.stories)
-            onInteractionListener(this@MainController)
+            stories(feedScreenData.postsStoriesWrapper.stories)
+            onInteractionListener(this@FeedController)
         }
 
-        mainScreenData.postsStoriesWrapper.posts.forEach {
+        feedScreenData.postsStoriesWrapper.posts.forEach {
             postHeader {
                 id(POST_HEADER_ID + it.id)
                 post(it)

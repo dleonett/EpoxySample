@@ -1,4 +1,4 @@
-package com.leonett.epoxysample.ui.feature.main
+package com.leonett.epoxysample.ui.feature.feed
 
 import android.view.View
 import com.airbnb.epoxy.TypedEpoxyController

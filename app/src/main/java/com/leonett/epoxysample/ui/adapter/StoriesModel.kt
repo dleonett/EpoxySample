@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.*
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Story
-import com.leonett.epoxysample.ui.feature.main.StoriesController
+import com.leonett.epoxysample.ui.feature.feed.StoriesController
 
 @EpoxyModelClass(layout = R.layout.item_stories)
 abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>(),
@@ -45,7 +45,8 @@ class StoriesHolder : EpoxyHolder() {
     }
 
     private fun setupRecyclerView() {
-        storiesController = StoriesController()
+        storiesController =
+            StoriesController()
 
         rvStories.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
