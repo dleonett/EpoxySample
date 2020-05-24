@@ -37,8 +37,8 @@ class StoryDetailFragment : BaseFragment() {
     }
 
     companion object {
-        private const val STORY_ARGUMENT = "story"
-        private const val STORY_ID_ARGUMENT = "id"
+        const val STORY_ARGUMENT = "story"
+        const val STORY_ID_ARGUMENT = "id"
 
         fun createArguments(story: Story): Bundle {
             val bundle = Bundle()
