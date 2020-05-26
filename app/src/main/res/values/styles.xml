@@ -27,7 +27,7 @@
     </style>
 
     <style name="Text.Profile.ScreenTitle" parent="TextAppearance.AppCompat">
-        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
     </style>
 
     <style name="Text.Profile.Description" parent="TextAppearance.AppCompat">

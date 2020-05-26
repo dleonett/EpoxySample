@@ -37,8 +37,10 @@
             style="@style/Text.Profile.ScreenTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xxs"
+            android:layout_marginEnd="@dimen/spacing_xxs"
             android:layout_weight="1"
-            tools:text="{{username}}" />
+            tools:text="{{title}}" />
 
         <View
             android:layout_width="@dimen/top_bar_size"

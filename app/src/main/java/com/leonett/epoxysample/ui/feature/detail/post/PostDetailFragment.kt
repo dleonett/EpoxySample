@@ -2,6 +2,7 @@ package com.leonett.epoxysample.ui.feature.detail.post
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
@@ -32,6 +33,11 @@ class PostDetailFragment : BaseFragment() {
         rvMain.apply {
             layoutManager = LinearLayoutManager(context)
             setController(rvController)
+        }
+
+        topBarTitle.text = getString(R.string.post_detail_screen_title)
+        btnNavigationUp.setOnClickListener {
+            findNavController().navigateUp()
         }
 
         rvController.setData(post)
