@@ -2,6 +2,7 @@ package com.leonett.epoxysample.ui.feature.feed
 
 import android.view.View
 import com.airbnb.epoxy.Typed3EpoxyController
+import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.ui.adapter.*
@@ -32,6 +33,9 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
             postHeader {
                 id(POST_HEADER_ID + it.id)
                 post(it)
+                itemClickListener { _: View? ->
+                    onInteractionListener?.onPostAvatarClick(it)
+                }
             }
 
             post {
@@ -58,6 +62,7 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
             } else {
                 footer {
                     id(FOOTER_ID)
+                    titleResId(R.string.footer_text)
                 }
             }
         }
@@ -77,6 +82,7 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
     interface OnInteractionListener {
         fun onStoryClick(story: Story)
         fun onPostClick(post: Post)
+        fun onPostAvatarClick(post: Post)
         fun onLoadMoreClick()
     }
 

@@ -14,6 +14,9 @@
             android:id="@+id/actionPostDetail"
             app:destination="@id/postDetailFragment" />
         <action
+            android:id="@+id/actionProfile"
+            app:destination="@id/profileFragment" />
+        <action
             android:id="@+id/actionStoryDetailActivity"
             app:destination="@id/storyDetailActivity" />
         <deepLink app:uri="epoxysample://home/feed" />
@@ -29,6 +32,18 @@
             app:argType="string"
             app:nullable="true" />
         <deepLink app:uri="epoxysample://home/post/{id}" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.leonett.epoxysample.ui.feature.profile.ProfileFragment"
+        android:label="Profile Fragment"
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+        <deepLink app:uri="epoxysample://home/profile/{id}" />
     </fragment>
 
     <navigation

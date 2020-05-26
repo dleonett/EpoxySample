@@ -2,6 +2,8 @@
     <string name="app_name">EpoxySample</string>
     <string name="header_text">My feed</string>
     <string name="footer_text">You\'re up to date</string>
+    <string name="profile_user_not_found_text">User not found</string>
+    <string name="profile_no_posts_text">No posts yet</string>
     <string name="load_more_text">Load more</string>
 
     <!-- TODO: Remove or change this placeholder text -->

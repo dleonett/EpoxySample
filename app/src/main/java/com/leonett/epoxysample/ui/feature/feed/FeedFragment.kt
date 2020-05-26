@@ -10,9 +10,11 @@ import com.leonett.epoxysample.App
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.Story
+import com.leonett.epoxysample.data.model.User
 import com.leonett.epoxysample.ui.base.BaseFragment
 import com.leonett.epoxysample.ui.feature.detail.post.PostDetailFragment
 import com.leonett.epoxysample.ui.feature.detail.story.StoryDetailFragment
+import com.leonett.epoxysample.ui.feature.profile.ProfileFragment
 import kotlinx.android.synthetic.main.fragment_feed.*
 import javax.inject.Inject
 
@@ -82,6 +84,19 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
         findNavController().navigate(
             R.id.actionPostDetail,
             PostDetailFragment.createArguments(post)
+        )
+    }
+
+    override fun onPostAvatarClick(post: Post) {
+        findNavController().navigate(
+            R.id.actionProfile,
+            ProfileFragment.createArguments(
+                User(
+                    post.username ?: "",
+                    "Welcome to my profile.\nHave fun!",
+                    post.avatarUrl ?: ""
+                )
+            )
         )
     }
 

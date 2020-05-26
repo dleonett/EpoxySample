@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.*
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Story
-import com.leonett.epoxysample.ui.feature.feed.StoriesController
 
 @EpoxyModelClass(layout = R.layout.item_stories)
 abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>(),

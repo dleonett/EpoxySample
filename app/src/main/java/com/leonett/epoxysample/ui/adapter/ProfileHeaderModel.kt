@@ -10,35 +10,40 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonett.epoxysample.R
-import com.leonett.epoxysample.data.model.Post
+import com.leonett.epoxysample.data.model.User
 
-@EpoxyModelClass(layout = R.layout.item_post_header)
-abstract class PostHeaderModel : EpoxyModelWithHolder<PostHeaderHolder>() {
+@EpoxyModelClass(layout = R.layout.item_profile_header)
+abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() {
 
     @EpoxyAttribute
-    var post: Post? = null
+    var user: User? = null
     @EpoxyAttribute
     var itemClickListener: View.OnClickListener? = null
 
-    override fun bind(holder: PostHeaderHolder) {
+    override fun bind(holder: ProfileHeaderHolder) {
         Glide.with(holder.imgAvatar.context)
-            .load(post?.avatarUrl)
+            .load(user?.avatarUrl)
             .apply(RequestOptions().circleCrop())
             .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
             .into(holder.imgAvatar)
 
-        holder.txtUsername.text = post?.username
-        holder.imgAvatar.setOnClickListener(itemClickListener)
+        holder.txtTitle.text = user?.name
+        holder.txtDescription.text = user?.description
+        holder.container.setOnClickListener(itemClickListener)
     }
 }
 
-class PostHeaderHolder : EpoxyHolder() {
+class ProfileHeaderHolder : EpoxyHolder() {
 
     lateinit var imgAvatar: ImageView
-    lateinit var txtUsername: TextView
+    lateinit var txtTitle: TextView
+    lateinit var txtDescription: TextView
+    lateinit var container: View
 
     override fun bindView(itemView: View) {
         imgAvatar = itemView.findViewById(R.id.imgAvatar)
-        txtUsername = itemView.findViewById(R.id.txtUsername)
+        txtTitle = itemView.findViewById(R.id.txtTitle)
+        txtDescription = itemView.findViewById(R.id.txtDescription)
+        container = itemView
     }
 }

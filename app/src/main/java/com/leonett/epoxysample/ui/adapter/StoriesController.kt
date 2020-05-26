@@ -1,9 +1,8 @@
-package com.leonett.epoxysample.ui.feature.feed
+package com.leonett.epoxysample.ui.adapter
 
 import android.view.View
 import com.airbnb.epoxy.TypedEpoxyController
 import com.leonett.epoxysample.data.model.Story
-import com.leonett.epoxysample.ui.adapter.story
 
 class StoriesController : TypedEpoxyController<List<Story>>() {
 

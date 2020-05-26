@@ -21,6 +21,15 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <style name="Text.Profile.Name" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Profile.Description" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
     <style name="Text.StoryUsername">
         <item name="android:textSize">@dimen/font_size_12</item>
     </style>
