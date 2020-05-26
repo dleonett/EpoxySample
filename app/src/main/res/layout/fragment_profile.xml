@@ -16,20 +16,21 @@
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/top_bar_size"
         android:background="@color/white"
-        android:elevation="2dp"
+        android:elevation="@dimen/top_bar_elevation"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btnNavigationUp"
             style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/top_bar_size"
+            android:layout_height="@dimen/top_bar_size"
             android:padding="@dimen/spacing_xs"
-            android:src="@drawable/ic_arrow_back" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_arrow_left" />
 
         <TextView
             android:id="@+id/topBarTitle"
@@ -40,8 +41,8 @@
             tools:text="{{username}}" />
 
         <View
-            android:layout_width="48dp"
-            android:layout_height="48dp" />
+            android:layout_width="@dimen/top_bar_size"
+            android:layout_height="@dimen/top_bar_size" />
 
     </LinearLayout>
 
