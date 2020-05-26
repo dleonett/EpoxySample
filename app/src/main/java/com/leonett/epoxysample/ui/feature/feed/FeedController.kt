@@ -41,9 +41,6 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
             post {
                 id(it.id)
                 post(it)
-                itemClickListener { _: View? ->
-                    onInteractionListener?.onPostClick(it)
-                }
             }
         }
 
@@ -81,7 +78,6 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
 
     interface OnInteractionListener {
         fun onStoryClick(story: Story)
-        fun onPostClick(post: Post)
         fun onPostAvatarClick(post: Post)
         fun onLoadMoreClick()
     }

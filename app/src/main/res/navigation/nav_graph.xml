@@ -11,39 +11,12 @@
         android:label="Feed Fragment"
         tools:layout="@layout/fragment_feed">
         <action
-            android:id="@+id/actionPostDetail"
-            app:destination="@id/postDetailFragment" />
-        <action
             android:id="@+id/actionProfile"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profile_nav_graph" />
         <action
             android:id="@+id/actionStoryDetailActivity"
             app:destination="@id/storyDetailActivity" />
         <deepLink app:uri="epoxysample://home/feed" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/postDetailFragment"
-        android:name="com.leonett.epoxysample.ui.feature.detail.post.PostDetailFragment"
-        android:label="Post Detail Fragment"
-        tools:layout="@layout/fragment_post_detail">
-        <argument
-            android:name="id"
-            app:argType="string"
-            app:nullable="true" />
-        <deepLink app:uri="epoxysample://home/post/{id}" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.leonett.epoxysample.ui.feature.profile.ProfileFragment"
-        android:label="Profile Fragment"
-        tools:layout="@layout/fragment_profile">
-        <argument
-            android:name="id"
-            app:argType="string"
-            app:nullable="true" />
-        <deepLink app:uri="epoxysample://home/profile/{id}" />
     </fragment>
 
     <navigation
@@ -124,5 +97,42 @@
             app:nullable="true" />
         <deepLink app:uri="epoxysample://home/story/{id}" />
     </activity>
+
+    <navigation
+        android:id="@+id/profile_nav_graph"
+        app:startDestination="@id/profileFragment">
+
+        <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.leonett.epoxysample.ui.feature.profile.ProfileFragment"
+            android:label="Profile Fragment"
+            tools:layout="@layout/fragment_profile">
+            <action
+                android:id="@+id/actionPostDetail"
+                app:destination="@id/postDetailFragment" />
+            <argument
+                android:name="userId"
+                app:argType="string"
+                app:nullable="true" />
+            <deepLink app:uri="epoxysample://home/profile/{userId}" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/postDetailFragment"
+            android:name="com.leonett.epoxysample.ui.feature.detail.post.PostDetailFragment"
+            android:label="Post Detail Fragment"
+            tools:layout="@layout/fragment_post_detail">
+            <argument
+                android:name="userId"
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="postId"
+                app:argType="string"
+                app:nullable="true" />
+            <deepLink app:uri="epoxysample://home/profile/{userId}/post/{postId}" />
+        </fragment>
+
+    </navigation>
 
 </navigation>

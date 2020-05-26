@@ -39,7 +39,7 @@ class PostDetailFragment : BaseFragment() {
 
     companion object {
         private const val POST_ARGUMENT = "post"
-        private const val POST_ID_ARGUMENT = "id"
+        private const val POST_ID_ARGUMENT = "postId"
 
         fun createArguments(post: Post): Bundle {
             val bundle = Bundle()

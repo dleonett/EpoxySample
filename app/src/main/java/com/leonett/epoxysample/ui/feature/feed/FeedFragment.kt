@@ -12,7 +12,6 @@ import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.data.model.User
 import com.leonett.epoxysample.ui.base.BaseFragment
-import com.leonett.epoxysample.ui.feature.detail.post.PostDetailFragment
 import com.leonett.epoxysample.ui.feature.detail.story.StoryDetailFragment
 import com.leonett.epoxysample.ui.feature.profile.ProfileFragment
 import kotlinx.android.synthetic.main.fragment_feed.*
@@ -78,13 +77,6 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
                 }
             }
         }
-    }
-
-    override fun onPostClick(post: Post) {
-        findNavController().navigate(
-            R.id.actionPostDetail,
-            PostDetailFragment.createArguments(post)
-        )
     }
 
     override fun onPostAvatarClick(post: Post) {
