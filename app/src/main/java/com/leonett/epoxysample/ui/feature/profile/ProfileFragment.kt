@@ -9,7 +9,8 @@ import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.User
 import com.leonett.epoxysample.ui.base.BaseFragment
 import com.leonett.epoxysample.ui.feature.detail.post.PostDetailFragment
-import kotlinx.android.synthetic.main.fragment_post_detail.*
+import kotlinx.android.synthetic.main.fragment_post_detail.rvMain
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener {
 
@@ -39,6 +40,10 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
         }
 
         profileController.setData(user, mockPostsList())
+        topBarTitle.text = user?.username
+        btnNavigationUp.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun mockPostsList(): List<Post> {

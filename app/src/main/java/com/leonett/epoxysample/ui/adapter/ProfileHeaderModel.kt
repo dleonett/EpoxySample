@@ -27,7 +27,7 @@ abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() 
             .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
             .into(holder.imgAvatar)
 
-        holder.txtTitle.text = user?.name
+        holder.txtTitle.text = user?.displayName
         holder.txtDescription.text = user?.description
         holder.container.setOnClickListener(itemClickListener)
     }

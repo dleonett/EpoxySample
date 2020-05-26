@@ -85,6 +85,7 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
             ProfileFragment.createArguments(
                 User(
                     post.username ?: "",
+                    "Richard Smith",
                     "Welcome to my profile.\nHave fun!",
                     post.avatarUrl ?: ""
                 )

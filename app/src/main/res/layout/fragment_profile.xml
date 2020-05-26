@@ -1,12 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/rvMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:descendantFocusability="beforeDescendants" />
+        android:layout_height="0dp"
+        android:descendantFocusability="beforeDescendants"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar" />
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnNavigationUp"
+            style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="@dimen/spacing_xs"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/topBarTitle"
+            style="@style/Text.Profile.ScreenTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="{{username}}" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

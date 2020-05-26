@@ -26,6 +26,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Text.Profile.ScreenTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
     <style name="Text.Profile.Description" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/font_size_14</item>
     </style>
