@@ -10,7 +10,6 @@ import com.leonett.epoxysample.App
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.Story
-import com.leonett.epoxysample.data.model.User
 import com.leonett.epoxysample.ui.base.BaseFragment
 import com.leonett.epoxysample.ui.feature.detail.story.StoryDetailFragment
 import com.leonett.epoxysample.ui.feature.profile.ProfileFragment
@@ -82,14 +81,7 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     override fun onPostAvatarClick(post: Post) {
         findNavController().navigate(
             R.id.actionProfile,
-            ProfileFragment.createArguments(
-                User(
-                    post.username ?: "",
-                    "Richard Smith",
-                    "Welcome to my profile.\nHave fun!",
-                    post.avatarUrl ?: ""
-                )
-            )
+            ProfileFragment.createArguments(post.userId)
         )
     }
 

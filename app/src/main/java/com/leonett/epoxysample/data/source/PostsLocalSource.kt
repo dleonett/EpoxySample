@@ -3,6 +3,7 @@ package com.leonett.epoxysample.data.source
 import androidx.room.*
 import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.Story
+import com.leonett.epoxysample.data.model.User
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -20,6 +21,10 @@ class PostsLocalSource @Inject constructor(private val db: AppDatabase) {
         return db.postsDao().getAllAsObservable()
     }
 
+    fun getPostsByUserObservable(userId: Int): Flow<List<Post>> {
+        return db.postsDao().getPostsByUserObservable(userId)
+    }
+
     suspend fun insertStories(stories: List<Story>) {
         db.storiesDao().insertAll(stories)
     }
@@ -32,18 +37,30 @@ class PostsLocalSource @Inject constructor(private val db: AppDatabase) {
         return db.storiesDao().getAllAsObservable()
     }
 
+    suspend fun insertUsers(users: List<User>) {
+        db.usersDao().insertAll(users)
+    }
+
+    fun getUserObservable(userId: Int): Flow<User> {
+        return db.usersDao().getUserObservable(userId)
+    }
+
 }
 
-@Database(entities = [Post::class, Story::class], version = 1)
+@Database(entities = [Post::class, Story::class, User::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun postsDao(): PostsDao
     abstract fun storiesDao(): StoriesDao
+    abstract fun usersDao(): UsersDao
 }
 
 @Dao
 interface PostsDao {
     @Query("SELECT * FROM Post")
     suspend fun getAll(): List<Post>
+
+    @Query("SELECT * FROM Post WHERE userId = :userId")
+    fun getPostsByUserObservable(userId: Int): Flow<List<Post>>
 
     @Query("SELECT * FROM Post")
     fun getAllAsObservable(): Flow<List<Post>>
@@ -53,6 +70,18 @@ interface PostsDao {
 
     @Delete
     suspend fun delete(post: Post)
+}
+
+@Dao
+interface UsersDao {
+    @Query("SELECT * FROM User WHERE id = :userId")
+    fun getUserObservable(userId: Int): Flow<User>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAll(users: List<User>)
+
+    @Delete
+    suspend fun delete(user: User)
 }
 
 @Dao

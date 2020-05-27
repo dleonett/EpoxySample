@@ -2,32 +2,43 @@ package com.leonett.epoxysample.ui.feature.profile
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.leonett.epoxysample.App
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
-import com.leonett.epoxysample.data.model.User
+import com.leonett.epoxysample.data.model.UserPostsWrapper
 import com.leonett.epoxysample.ui.base.BaseFragment
 import com.leonett.epoxysample.ui.feature.detail.post.PostDetailFragment
 import kotlinx.android.synthetic.main.fragment_post_detail.rvMain
 import kotlinx.android.synthetic.main.fragment_profile.*
+import javax.inject.Inject
 
 class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener {
 
+    @Inject
+    lateinit var feedViewModelFactory: ProfileViewModelFactory
+
+    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileController: ProfileController
-    private var user: User? = null
-    private var userId: String? = null
+    private var userId: Int? = null
 
     override val layoutId: Int
         get() = R.layout.fragment_profile
 
     override fun initVars() {
+        (requireContext().applicationContext as App).appComponent.inject(this)
+
+        profileViewModel = ViewModelProvider(this, feedViewModelFactory)
+            .get(ProfileViewModel::class.java)
+
         arguments?.let {
-            user = it.getSerializable(USER_ARGUMENT) as User?
-            userId = it.getString(USER_ID_ARGUMENT)
+            userId = it.getInt(USER_ID_ARGUMENT)
         }
 
-        showToast(userId ?: "N/A")
+        profileViewModel.setArguments(userId ?: 0)
     }
 
     override fun initViews(view: View) {
@@ -39,15 +50,28 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
             setController(profileController)
         }
 
-        profileController.setData(user, mockPostsList())
-        topBarTitle.text = user?.username
         btnNavigationUp.setOnClickListener {
             findNavController().navigateUp()
         }
     }
 
-    private fun mockPostsList(): List<Post> {
-        return Post.generateDummyList()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        observeViewModels()
+    }
+
+    private fun observeViewModels() {
+        profileViewModel.getUserPostsLiveData().observe(viewLifecycleOwner, Observer {
+            handleScreenState(it)
+        })
+    }
+
+    private fun handleScreenState(result: UserPostsWrapper?) {
+        result?.let {
+            topBarTitle.text = it.user.username
+            profileController.setData(it.user, it.posts)
+        }
     }
 
     override fun onPostClick(post: Post) {
@@ -58,12 +82,11 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
     }
 
     companion object {
-        private const val USER_ARGUMENT = "user"
-
         private const val USER_ID_ARGUMENT = "userId"
-        fun createArguments(user: User): Bundle {
+
+        fun createArguments(userId: Int): Bundle {
             val bundle = Bundle()
-            bundle.putSerializable(USER_ARGUMENT, user)
+            bundle.putInt(USER_ID_ARGUMENT, userId)
 
             return bundle
         }

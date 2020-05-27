@@ -18,9 +18,11 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
     private var screenStateMutableLiveData: MutableLiveData<FeedScreenState> = MutableLiveData()
 
     init {
-        fetchPostsFromRemote()
-
         observePostsAndStories()
+
+        viewModelScope.launch {
+            postsRepository.populateData()
+        }
     }
 
     private fun showLoadingStatus() {

@@ -112,8 +112,8 @@
                 app:destination="@id/postDetailFragment" />
             <argument
                 android:name="userId"
-                app:argType="string"
-                app:nullable="true" />
+                app:argType="integer"
+                android:defaultValue="0" />
             <deepLink app:uri="epoxysample://home/profile/{userId}" />
         </fragment>
 
@@ -124,8 +124,8 @@
             tools:layout="@layout/fragment_post_detail">
             <argument
                 android:name="userId"
-                app:argType="string"
-                app:nullable="true" />
+                app:argType="integer"
+                android:defaultValue="0" />
             <argument
                 android:name="postId"
                 app:argType="string"

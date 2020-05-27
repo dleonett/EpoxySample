@@ -19,7 +19,8 @@ data class Post(
     @SerializedName("avatarUrl")
     var avatarUrl: String?,
     @SerializedName("username")
-    var username: String?
+    var username: String?,
+    var userId: Int
 ) : Serializable {
 
     companion object {
@@ -33,7 +34,8 @@ data class Post(
                     "Let\'s take a ride 🛶🛶🛶",
                     "23 comments",
                     "https://i.pravatar.cc/150?img=9",
-                    "snickerscarrion"
+                    "snickerscarrion",
+                    3
                 )
             )
             items.add(
@@ -43,7 +45,8 @@ data class Post(
                     "My best friend 🐶",
                     "16 comments",
                     "https://i.pravatar.cc/150?img=14",
-                    "rnacaddie"
+                    "rnacaddie",
+                    8
                 )
             )
             items.add(
@@ -53,7 +56,8 @@ data class Post(
                     "Annie\'s wedding... Lovely!",
                     "4 comments",
                     "https://i.pravatar.cc/150?img=10",
-                    "ditchmontie"
+                    "ditchmontie",
+                    4
                 )
             )
             items.add(
@@ -63,7 +67,8 @@ data class Post(
                     "It\'s not about what you see but what you feel",
                     "9 comments",
                     "https://i.pravatar.cc/150?img=17",
-                    "nosegrab"
+                    "nosegrab",
+                    11
                 )
             )
             items.add(
@@ -73,7 +78,8 @@ data class Post(
                     "River!!",
                     "0 comments",
                     "https://i.pravatar.cc/150?img=11",
-                    "elfcoffee"
+                    "elfcoffee",
+                    5
                 )
             )
             items.add(
@@ -83,7 +89,8 @@ data class Post(
                     "🔥🔥",
                     "11 comments",
                     "https://i.pravatar.cc/150?img=11",
-                    "elfcoffee"
+                    "elfcoffee",
+                    5
                 )
             )
             items.add(
@@ -93,7 +100,8 @@ data class Post(
                     "A very peaceful place!",
                     "7 comments",
                     "https://i.pravatar.cc/150?img=7",
-                    "awhilesuccessful"
+                    "awhilesuccessful",
+                    1
                 )
             )
             items.add(
@@ -103,7 +111,8 @@ data class Post(
                     "Those little bears!",
                     "9 comments",
                     "https://i.pravatar.cc/150?img=10",
-                    "ditchmontie"
+                    "ditchmontie",
+                    4
                 )
             )
             items.add(
@@ -113,7 +122,8 @@ data class Post(
                     "Lost in the fog",
                     "0 comments",
                     "https://i.pravatar.cc/150?img=9",
-                    "snickerscarrion"
+                    "snickerscarrion",
+                    3
                 )
             )
             items.add(
@@ -123,7 +133,8 @@ data class Post(
                     "🚂🚂🚂",
                     "11 comments",
                     "https://i.pravatar.cc/150?img=9",
-                    "snickerscarrion"
+                    "snickerscarrion",
+                    3
                 )
             )
             items.add(
@@ -133,7 +144,8 @@ data class Post(
                     "Shooting portraits, let\'s do this",
                     "7 comments",
                     "https://i.pravatar.cc/150?img=17",
-                    "nosegrab"
+                    "nosegrab",
+                    11
                 )
             )
 

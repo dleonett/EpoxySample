@@ -3,6 +3,7 @@ package com.leonett.epoxysample.data
 import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.PostsStoriesWrapper
 import com.leonett.epoxysample.data.model.Story
+import com.leonett.epoxysample.data.model.User
 import com.leonett.epoxysample.data.source.PostsLocalSource
 import com.leonett.epoxysample.data.source.PostsRemoteSource
 import kotlinx.coroutines.flow.Flow
@@ -37,6 +38,20 @@ class PostsRepository @Inject constructor(
             .combine(postsLocalSource.getStoriesObservable()) { posts, stories ->
                 PostsStoriesWrapper(posts, stories)
             }
+    }
+
+    fun getUserObservable(userId: Int): Flow<User> {
+        return postsLocalSource.getUserObservable(userId)
+    }
+
+    fun getPostsByUserObservable(userId: Int): Flow<List<Post>> {
+        return postsLocalSource.getPostsByUserObservable(userId)
+    }
+
+    suspend fun populateData() {
+        postsLocalSource.insertPosts(Post.generateDummyList())
+        postsLocalSource.insertStories(Story.generateDummyList())
+        postsLocalSource.insertUsers(User.generateDummyList())
     }
 
 }
