@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.airbnb.epoxy.stickyheader.StickyHeaderLinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonett.epoxysample.App
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
@@ -49,7 +49,7 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
         feedController.setOnItemClickListener(this)
 
         rvMain.apply {
-            layoutManager = StickyHeaderLinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context)
             setController(feedController)
         }
     }

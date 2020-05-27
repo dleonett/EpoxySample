@@ -65,9 +65,6 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         }
     }
 
-    override fun isStickyHeader(position: Int) =
-        adapter.getModelAtPosition(position) is PostHeaderModel
-
     fun setOnItemClickListener(onInteractionListener: OnInteractionListener) {
         this.onInteractionListener = onInteractionListener
     }
