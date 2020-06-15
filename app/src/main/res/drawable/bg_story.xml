@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <stroke
+        android:width="@dimen/story_avatar_indicator_width"
+        android:color="@color/colorAccent" />
+    <padding
+        android:bottom="@dimen/story_avatar_indicator_padding"
+        android:left="@dimen/story_avatar_indicator_padding"
+        android:right="@dimen/story_avatar_indicator_padding"
+        android:top="@dimen/story_avatar_indicator_padding" />
+</shape>

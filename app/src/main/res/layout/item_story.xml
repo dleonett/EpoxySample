@@ -5,13 +5,21 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imgPicture"
+    <FrameLayout
+        android:id="@+id/imgContainer"
         android:layout_width="@dimen/story_avatar_size"
         android:layout_height="@dimen/story_avatar_size"
+        android:background="@drawable/bg_story"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgPicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/txtUsername"
@@ -24,7 +32,7 @@
         android:textAppearance="@style/Text.StoryUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgPicture"
+        app:layout_constraintTop_toBottomOf="@id/imgContainer"
         tools:text="username" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
