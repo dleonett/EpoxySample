@@ -18,6 +18,7 @@
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_bar_size"
+        app:itemIconTint="@color/bottom_nav_item_color"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom_nav" />

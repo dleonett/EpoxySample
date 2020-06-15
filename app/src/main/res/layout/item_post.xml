@@ -56,7 +56,7 @@
             android:layout_height="@dimen/post_action_size"
             android:layout_marginStart="@dimen/spacing_xxs"
             android:padding="@dimen/spacing_xxxs"
-            android:src="@drawable/ic_share" />
+            android:src="@drawable/ic_send" />
 
     </LinearLayout>
 

@@ -10,7 +10,7 @@
         android:title="Explore" />
     <item
         android:id="@+id/inbox_nav_graph"
-        android:icon="@drawable/ic_inbox"
+        android:icon="@drawable/ic_send"
         android:title="Inbox" />
     <item
         android:id="@+id/settings_nav_graph"
