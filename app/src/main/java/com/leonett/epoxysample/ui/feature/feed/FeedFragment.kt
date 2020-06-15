@@ -1,5 +1,6 @@
 package com.leonett.epoxysample.ui.feature.feed
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -27,9 +28,14 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     override val layoutId: Int
         get() = R.layout.fragment_feed
 
-    override fun initVars() {
-        (requireContext().applicationContext as App).appComponent.inject(this)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
+        (requireContext().applicationContext as App).appComponent.feedComponent().create()
+            .inject(this)
+    }
+
+    override fun initVars() {
         feedViewModel = ViewModelProvider(this, feedViewModelFactory)
             .get(FeedViewModel::class.java)
     }

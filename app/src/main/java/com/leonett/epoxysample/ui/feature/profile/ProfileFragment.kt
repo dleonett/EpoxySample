@@ -1,5 +1,6 @@
 package com.leonett.epoxysample.ui.feature.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -28,9 +29,14 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
     override val layoutId: Int
         get() = R.layout.fragment_profile
 
-    override fun initVars() {
-        (requireContext().applicationContext as App).appComponent.inject(this)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
+        (requireContext().applicationContext as App).appComponent.profileComponent().create()
+            .inject(this)
+    }
+
+    override fun initVars() {
         profileViewModel = ViewModelProvider(this, feedViewModelFactory)
             .get(ProfileViewModel::class.java)
 

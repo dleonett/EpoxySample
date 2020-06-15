@@ -23,8 +23,6 @@ class PostDetailFragment : BaseFragment() {
             post = it.getSerializable(POST_ARGUMENT) as Post?
             postId = it.getString(POST_ID_ARGUMENT)
         }
-
-        showToast(postId ?: "N/A")
     }
 
     override fun initViews(view: View) {
