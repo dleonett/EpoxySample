@@ -91,6 +91,18 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
         )
     }
 
+    override fun onPostLikeClick(post: Post) {
+        feedViewModel.onPostLikeClick(post)
+    }
+
+    override fun onPostCommentClick(post: Post) {
+        feedViewModel.onPostCommentClick(post)
+    }
+
+    override fun onPostShareClick(post: Post) {
+        feedViewModel.onPostShareClick(post)
+    }
+
     override fun onStoryClick(story: Story) {
         findNavController().navigate(
             R.id.actionStoryDetail,

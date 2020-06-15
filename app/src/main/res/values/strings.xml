@@ -7,4 +7,5 @@
     <string name="load_more_text">Load more</string>
     <string name="post_detail_screen_title">Post</string>
     <string name="feed_screen_title">My Feed</string>
+    <string name="post_likes">%s likes</string>
 </resources>

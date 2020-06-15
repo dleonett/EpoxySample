@@ -17,32 +17,56 @@ abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
 
     @EpoxyAttribute
     var post: Post? = null
+
     @EpoxyAttribute
-    var itemClickListener: View.OnClickListener? = null
+    var onInteractionListener: OnInteractionListener? = null
 
     override fun bind(holder: PostHolder) {
-        Glide.with(holder.imgPicture.context)
-            .load(post?.imgUrl)
-            .apply(RequestOptions().placeholder(R.color.gray_light))
-            .into(holder.imgPicture)
+        post?.let {
+            Glide.with(holder.imgPicture.context)
+                .load(it.imgUrl)
+                .apply(RequestOptions().placeholder(R.color.gray_light))
+                .into(holder.imgPicture)
 
-        holder.txtTitle.text = post?.title
-        holder.txtSubtitle.text = post?.subtitle
-        holder.container.setOnClickListener(itemClickListener)
+            holder.txtLikes.text = holder.txtLikes.context.getString(R.string.post_likes, "100")
+            holder.txtTitle.text = it.title
+            holder.txtSubtitle.text = it.subtitle
+            holder.btnLike.setOnClickListener { _ ->
+                onInteractionListener?.onPostLikeClick(it)
+            }
+            holder.btnComment.setOnClickListener { _ ->
+                onInteractionListener?.onPostCommentClick(it)
+            }
+            holder.btnShare.setOnClickListener { _ ->
+                onInteractionListener?.onPostShareClick(it)
+            }
+        }
+    }
+
+    interface OnInteractionListener {
+        fun onPostLikeClick(post: Post)
+        fun onPostCommentClick(post: Post)
+        fun onPostShareClick(post: Post)
     }
 }
 
 class PostHolder : EpoxyHolder() {
 
     lateinit var imgPicture: ImageView
+    lateinit var txtLikes: TextView
     lateinit var txtTitle: TextView
     lateinit var txtSubtitle: TextView
-    lateinit var container: View
+    lateinit var btnLike: ImageView
+    lateinit var btnComment: ImageView
+    lateinit var btnShare: ImageView
 
     override fun bindView(itemView: View) {
         imgPicture = itemView.findViewById(R.id.imgPicture)
+        txtLikes = itemView.findViewById(R.id.txtLikes)
         txtTitle = itemView.findViewById(R.id.txtTitle)
         txtSubtitle = itemView.findViewById(R.id.txtSubtitle)
-        container = itemView
+        btnLike = itemView.findViewById(R.id.btnLike)
+        btnComment = itemView.findViewById(R.id.btnComment)
+        btnShare = itemView.findViewById(R.id.btnShare)
     }
 }

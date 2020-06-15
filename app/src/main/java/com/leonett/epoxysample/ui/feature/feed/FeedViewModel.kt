@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leonett.epoxysample.data.PostsRepository
+import com.leonett.epoxysample.data.model.Post
 import com.leonett.epoxysample.data.model.PostsStoriesWrapper
 import com.leonett.epoxysample.ui.viewobject.FeedScreenData
 import kotlinx.coroutines.flow.collect
@@ -76,6 +77,18 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
                 showErrorStatus(error.message)
             }
         }
+    }
+
+    fun onPostLikeClick(post: Post) {
+
+    }
+
+    fun onPostCommentClick(post: Post) {
+
+    }
+
+    fun onPostShareClick(post: Post) {
+
     }
 
 }

@@ -14,15 +14,61 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtTitle"
+    <LinearLayout
+        android:id="@+id/layoutActions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_sm"
         android:layout_marginTop="@dimen/spacing_xxs"
         android:layout_marginEnd="@dimen/spacing_sm"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/imgPicture">
+
+        <ImageView
+            android:id="@+id/btnLike"
+            android:layout_width="@dimen/post_action_size"
+            android:layout_height="@dimen/post_action_size"
+            android:padding="@dimen/spacing_xxxs"
+            android:src="@drawable/ic_like_off" />
+
+        <ImageView
+            android:id="@+id/btnComment"
+            android:layout_width="@dimen/post_action_size"
+            android:layout_height="@dimen/post_action_size"
+            android:layout_marginStart="@dimen/spacing_xxs"
+            android:padding="@dimen/spacing_xxxs"
+            android:src="@drawable/ic_comment" />
+
+        <ImageView
+            android:id="@+id/btnShare"
+            android:layout_width="@dimen/post_action_size"
+            android:layout_height="@dimen/post_action_size"
+            android:layout_marginStart="@dimen/spacing_xxs"
+            android:padding="@dimen/spacing_xxxs"
+            android:src="@drawable/ic_share" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtLikes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginTop="@dimen/spacing_xxxs"
+        android:layout_marginEnd="@dimen/spacing_sm"
+        android:textAppearance="@style/Text.PostLikes"
+        app:layout_constraintTop_toBottomOf="@id/layoutActions"
+        tools:text="100 likes" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginTop="@dimen/spacing_xxxs"
+        android:layout_marginEnd="@dimen/spacing_sm"
         android:textAppearance="@style/Text.PostTitle"
-        app:layout_constraintTop_toBottomOf="@id/imgPicture"
+        app:layout_constraintTop_toBottomOf="@id/txtLikes"
         tools:text="Title" />
 
     <TextView

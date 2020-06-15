@@ -9,7 +9,8 @@ import com.leonett.epoxysample.ui.adapter.*
 import com.leonett.epoxysample.ui.viewobject.FeedScreenData
 
 class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>(),
-    StoriesModel.OnInteractionListener {
+    StoriesModel.OnInteractionListener,
+    PostModel.OnInteractionListener {
 
     private var onInteractionListener: OnInteractionListener? = null
 
@@ -36,6 +37,7 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
             post {
                 id(it.id)
                 post(it)
+                onInteractionListener(this@FeedController)
             }
         }
 
@@ -68,9 +70,24 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         onInteractionListener?.onStoryClick(story)
     }
 
+    override fun onPostLikeClick(post: Post) {
+        onInteractionListener?.onPostLikeClick(post)
+    }
+
+    override fun onPostCommentClick(post: Post) {
+        onInteractionListener?.onPostCommentClick(post)
+    }
+
+    override fun onPostShareClick(post: Post) {
+        onInteractionListener?.onPostShareClick(post)
+    }
+
     interface OnInteractionListener {
         fun onStoryClick(story: Story)
         fun onPostAvatarClick(post: Post)
+        fun onPostLikeClick(post: Post)
+        fun onPostCommentClick(post: Post)
+        fun onPostShareClick(post: Post)
         fun onLoadMoreClick()
     }
 
