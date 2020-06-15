@@ -5,8 +5,6 @@
     <string name="profile_user_not_found_text">User not found</string>
     <string name="profile_no_posts_text">No posts yet</string>
     <string name="load_more_text">Load more</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="post_detail_screen_title">Post</string>
+    <string name="feed_screen_title">My Feed</string>
 </resources>

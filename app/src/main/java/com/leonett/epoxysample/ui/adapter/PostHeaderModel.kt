@@ -17,6 +17,7 @@ abstract class PostHeaderModel : EpoxyModelWithHolder<PostHeaderHolder>() {
 
     @EpoxyAttribute
     var post: Post? = null
+
     @EpoxyAttribute
     var itemClickListener: View.OnClickListener? = null
 
@@ -28,7 +29,9 @@ abstract class PostHeaderModel : EpoxyModelWithHolder<PostHeaderHolder>() {
             .into(holder.imgAvatar)
 
         holder.txtUsername.text = post?.username
-        holder.container.setOnClickListener(itemClickListener)
+
+        holder.imgAvatar.setOnClickListener(itemClickListener)
+        holder.txtUsername.setOnClickListener(itemClickListener)
     }
 }
 
@@ -36,11 +39,9 @@ class PostHeaderHolder : EpoxyHolder() {
 
     lateinit var imgAvatar: ImageView
     lateinit var txtUsername: TextView
-    lateinit var container: View
 
     override fun bindView(itemView: View) {
         imgAvatar = itemView.findViewById(R.id.imgAvatar)
         txtUsername = itemView.findViewById(R.id.txtUsername)
-        container = itemView
     }
 }

@@ -18,11 +18,6 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         loadMore: Boolean,
         isLoading: Boolean
     ) {
-        header {
-            id(HEADER_ID)
-            title("My feed")
-        }
-
         stories {
             id(STORIES_ID)
             stories(feedScreenData.postsStoriesWrapper.stories)
