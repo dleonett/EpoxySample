@@ -20,6 +20,8 @@ data class Post(
     var avatarUrl: String?,
     @SerializedName("username")
     var username: String?,
+    var likes: Int,
+    var likedByMe: Boolean,
     var userId: Int
 ) : Serializable {
 
@@ -35,6 +37,8 @@ data class Post(
                     "23 comments",
                     "https://i.pravatar.cc/150?img=9",
                     "snickerscarrion",
+                    20,
+                    false,
                     3
                 )
             )
@@ -46,6 +50,8 @@ data class Post(
                     "16 comments",
                     "https://i.pravatar.cc/150?img=14",
                     "rnacaddie",
+                    92,
+                    false,
                     8
                 )
             )
@@ -57,6 +63,8 @@ data class Post(
                     "4 comments",
                     "https://i.pravatar.cc/150?img=10",
                     "ditchmontie",
+                    55,
+                    false,
                     4
                 )
             )
@@ -68,6 +76,8 @@ data class Post(
                     "9 comments",
                     "https://i.pravatar.cc/150?img=17",
                     "nosegrab",
+                    15,
+                    true,
                     11
                 )
             )
@@ -79,6 +89,8 @@ data class Post(
                     "0 comments",
                     "https://i.pravatar.cc/150?img=11",
                     "elfcoffee",
+                    69,
+                    false,
                     5
                 )
             )
@@ -90,6 +102,8 @@ data class Post(
                     "11 comments",
                     "https://i.pravatar.cc/150?img=11",
                     "elfcoffee",
+                    196,
+                    true,
                     5
                 )
             )
@@ -101,6 +115,8 @@ data class Post(
                     "7 comments",
                     "https://i.pravatar.cc/150?img=7",
                     "awhilesuccessful",
+                    231,
+                    false,
                     1
                 )
             )
@@ -112,6 +128,8 @@ data class Post(
                     "9 comments",
                     "https://i.pravatar.cc/150?img=10",
                     "ditchmontie",
+                    5,
+                    false,
                     4
                 )
             )
@@ -123,6 +141,8 @@ data class Post(
                     "0 comments",
                     "https://i.pravatar.cc/150?img=9",
                     "snickerscarrion",
+                    87,
+                    false,
                     3
                 )
             )
@@ -134,6 +154,8 @@ data class Post(
                     "11 comments",
                     "https://i.pravatar.cc/150?img=9",
                     "snickerscarrion",
+                    120,
+                    true,
                     3
                 )
             )
@@ -145,6 +167,8 @@ data class Post(
                     "7 comments",
                     "https://i.pravatar.cc/150?img=17",
                     "nosegrab",
+                    56,
+                    true,
                     11
                 )
             )

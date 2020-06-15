@@ -45,6 +45,10 @@ class PostsLocalSource @Inject constructor(private val db: AppDatabase) {
         return db.usersDao().getUserObservable(userId)
     }
 
+    suspend fun updatePostLike(postId: Int, likedByMe: Boolean, likes: Int) {
+        db.postsDao().updateLike(postId, likedByMe, likes)
+    }
+
 }
 
 @Database(entities = [Post::class, Story::class, User::class], version = 1)
@@ -64,6 +68,9 @@ interface PostsDao {
 
     @Query("SELECT * FROM Post")
     fun getAllAsObservable(): Flow<List<Post>>
+
+    @Query("UPDATE post SET likedByMe = :likedByMe, likes = :likes WHERE id = :postId")
+    suspend fun updateLike(postId: Int, likedByMe: Boolean, likes: Int)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(posts: List<Post>)

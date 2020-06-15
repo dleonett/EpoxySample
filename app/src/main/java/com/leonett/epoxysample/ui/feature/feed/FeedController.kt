@@ -74,6 +74,10 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         onInteractionListener?.onPostLikeClick(post)
     }
 
+    override fun onPostLikeDoubleClick(post: Post) {
+        onInteractionListener?.onPostLikeDoubleClick(post)
+    }
+
     override fun onPostCommentClick(post: Post) {
         onInteractionListener?.onPostCommentClick(post)
     }
@@ -86,6 +90,7 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         fun onStoryClick(story: Story)
         fun onPostAvatarClick(post: Post)
         fun onPostLikeClick(post: Post)
+        fun onPostLikeDoubleClick(post: Post)
         fun onPostCommentClick(post: Post)
         fun onPostShareClick(post: Post)
         fun onLoadMoreClick()

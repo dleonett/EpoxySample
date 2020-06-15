@@ -80,7 +80,15 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
     }
 
     fun onPostLikeClick(post: Post) {
+        viewModelScope.launch {
+            postsRepository.likePost(post)
+        }
+    }
 
+    fun onPostLikeDoubleClick(post: Post) {
+        viewModelScope.launch {
+            postsRepository.forceLikePost(post)
+        }
     }
 
     fun onPostCommentClick(post: Post) {

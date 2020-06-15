@@ -14,6 +14,17 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imgHeart"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:alpha="0.7"
+        android:src="@drawable/avd_hear_like"
+        app:layout_constraintBottom_toBottomOf="@id/imgPicture"
+        app:layout_constraintEnd_toEndOf="@id/imgPicture"
+        app:layout_constraintStart_toStartOf="@id/imgPicture"
+        app:layout_constraintTop_toTopOf="@id/imgPicture" />
+
     <LinearLayout
         android:id="@+id/layoutActions"
         android:layout_width="match_parent"

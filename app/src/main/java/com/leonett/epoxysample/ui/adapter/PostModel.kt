@@ -1,8 +1,10 @@
 package com.leonett.epoxysample.ui.adapter
 
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
@@ -11,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Post
+import com.leonett.epoxysample.ui.util.DoubleClickListener
 
 @EpoxyModelClass(layout = R.layout.item_post)
 abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
@@ -28,9 +31,30 @@ abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
                 .apply(RequestOptions().placeholder(R.color.gray_light))
                 .into(holder.imgPicture)
 
-            holder.txtLikes.text = holder.txtLikes.context.getString(R.string.post_likes, "100")
+            holder.txtLikes.text =
+                holder.txtLikes.context.getString(R.string.post_likes, it.likes.toString())
             holder.txtTitle.text = it.title
             holder.txtSubtitle.text = it.subtitle
+            holder.btnLike.setImageResource(
+                if (it.likedByMe)
+                    R.drawable.ic_like_on
+                else
+                    R.drawable.ic_like_off
+            )
+
+            holder.imgPicture.setOnClickListener(object : DoubleClickListener() {
+                override fun onDoubleClick() {
+                    val drawable = holder.imgHeart.drawable
+
+                    if (drawable is AnimatedVectorDrawable) {
+                        drawable.start()
+                    } else if (drawable is AnimatedVectorDrawableCompat) {
+                        drawable.start()
+                    }
+
+                    onInteractionListener?.onPostLikeDoubleClick(it)
+                }
+            })
             holder.btnLike.setOnClickListener { _ ->
                 onInteractionListener?.onPostLikeClick(it)
             }
@@ -44,6 +68,7 @@ abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
     }
 
     interface OnInteractionListener {
+        fun onPostLikeDoubleClick(post: Post)
         fun onPostLikeClick(post: Post)
         fun onPostCommentClick(post: Post)
         fun onPostShareClick(post: Post)
@@ -53,6 +78,7 @@ abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
 class PostHolder : EpoxyHolder() {
 
     lateinit var imgPicture: ImageView
+    lateinit var imgHeart: ImageView
     lateinit var txtLikes: TextView
     lateinit var txtTitle: TextView
     lateinit var txtSubtitle: TextView
@@ -62,6 +88,7 @@ class PostHolder : EpoxyHolder() {
 
     override fun bindView(itemView: View) {
         imgPicture = itemView.findViewById(R.id.imgPicture)
+        imgHeart = itemView.findViewById(R.id.imgHeart)
         txtLikes = itemView.findViewById(R.id.txtLikes)
         txtTitle = itemView.findViewById(R.id.txtTitle)
         txtSubtitle = itemView.findViewById(R.id.txtSubtitle)

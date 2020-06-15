@@ -54,4 +54,17 @@ class PostsRepository @Inject constructor(
         postsLocalSource.insertUsers(User.generateDummyList())
     }
 
+    suspend fun likePost(post: Post) {
+        val likedByMe = !post.likedByMe
+        val likes = if (likedByMe) post.likes + 1 else post.likes - 1
+        postsLocalSource.updatePostLike(post.id, likedByMe, likes)
+    }
+
+    suspend fun forceLikePost(post: Post) {
+        if (!post.likedByMe) {
+            val likes = post.likes + 1
+            postsLocalSource.updatePostLike(post.id, true, likes)
+        }
+    }
+
 }

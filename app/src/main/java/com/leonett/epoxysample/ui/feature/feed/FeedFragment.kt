@@ -95,6 +95,10 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
         feedViewModel.onPostLikeClick(post)
     }
 
+    override fun onPostLikeDoubleClick(post: Post) {
+        feedViewModel.onPostLikeDoubleClick(post)
+    }
+
     override fun onPostCommentClick(post: Post) {
         feedViewModel.onPostCommentClick(post)
     }
