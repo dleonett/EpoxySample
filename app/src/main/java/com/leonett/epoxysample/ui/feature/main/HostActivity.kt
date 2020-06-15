@@ -21,11 +21,10 @@ class HostActivity : BaseActivity() {
 
         // Show/hide bottomNavigationView based on active destination
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.chatFragment) {
-                bottomNav.visibility = View.GONE
-            } else {
-                bottomNav.visibility = View.VISIBLE
-            }
+            bottomNav.visibility =
+                if (destination.id == R.id.chatFragment
+                    || destination.id == R.id.storyDetailFragment
+                ) View.GONE else View.VISIBLE
         }
 
         bottomNav.setupWithNavController(navController)

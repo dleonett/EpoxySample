@@ -93,7 +93,7 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
 
     override fun onStoryClick(story: Story) {
         findNavController().navigate(
-            R.id.actionStoryDetailActivity,
+            R.id.actionStoryDetail,
             StoryDetailFragment.createArguments(story)
         )
     }
