@@ -1,7 +1,9 @@
 package com.leonett.epoxysample.ui.feature.detail.story
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonett.epoxysample.R
@@ -36,6 +38,16 @@ class StoryDetailFragment : BaseFragment() {
             .into(imgAvatar)
 
         txtUsername.text = story?.username
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
+
+    override fun onDetach() {
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        super.onDetach()
     }
 
     companion object {
