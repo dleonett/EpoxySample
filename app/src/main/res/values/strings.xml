@@ -8,4 +8,9 @@
     <string name="post_detail_screen_title">Post</string>
     <string name="feed_screen_title">My Feed</string>
     <string name="post_likes">%s likes</string>
+    <string name="inbox_screen_title">Inbox</string>
+    <string name="chat_screen_title">Conversation</string>
+    <string name="explore_screen_title">Explore</string>
+    <string name="account_screen_title">Account</string>
+    <string name="about_screen_title">About</string>
 </resources>

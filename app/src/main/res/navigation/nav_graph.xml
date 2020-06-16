@@ -80,9 +80,9 @@
 
         <fragment
             android:id="@+id/settingsFragment"
-            android:name="com.leonett.epoxysample.ui.feature.settings.SettingsFragment"
+            android:name="com.leonett.epoxysample.ui.feature.settings.AccountFragment"
             android:label="Settings Fragment"
-            tools:layout="@layout/fragment_settings">
+            tools:layout="@layout/fragment_account">
             <action
                 android:id="@+id/actionAbout"
                 app:destination="@id/aboutFragment" />
