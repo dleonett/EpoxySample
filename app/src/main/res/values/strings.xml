@@ -13,4 +13,7 @@
     <string name="explore_screen_title">Explore</string>
     <string name="account_screen_title">Account</string>
     <string name="about_screen_title">About</string>
+    <string name="profile_posts_indicator_title">Posts</string>
+    <string name="profile_followers_indicator_title">Followers</string>
+    <string name="profile_following_indicator_title">Following</string>
 </resources>

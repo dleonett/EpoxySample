@@ -17,6 +17,7 @@ abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() 
 
     @EpoxyAttribute
     var user: User? = null
+
     @EpoxyAttribute
     var itemClickListener: View.OnClickListener? = null
 
@@ -27,6 +28,9 @@ abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() 
             .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
             .into(holder.imgAvatar)
 
+        holder.txtPosts.text = user?.posts.toString()
+        holder.txtFollowers.text = user?.followers.toString()
+        holder.txtFollowing.text = user?.following.toString()
         holder.txtTitle.text = user?.displayName
         holder.txtDescription.text = user?.description
         holder.container.setOnClickListener(itemClickListener)
@@ -36,12 +40,18 @@ abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() 
 class ProfileHeaderHolder : EpoxyHolder() {
 
     lateinit var imgAvatar: ImageView
+    lateinit var txtPosts: TextView
+    lateinit var txtFollowers: TextView
+    lateinit var txtFollowing: TextView
     lateinit var txtTitle: TextView
     lateinit var txtDescription: TextView
     lateinit var container: View
 
     override fun bindView(itemView: View) {
         imgAvatar = itemView.findViewById(R.id.imgAvatar)
+        txtPosts = itemView.findViewById(R.id.txtPosts)
+        txtFollowers = itemView.findViewById(R.id.txtFollowers)
+        txtFollowing = itemView.findViewById(R.id.txtFollowing)
         txtTitle = itemView.findViewById(R.id.txtTitle)
         txtDescription = itemView.findViewById(R.id.txtDescription)
         container = itemView

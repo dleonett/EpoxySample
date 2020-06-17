@@ -26,12 +26,25 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
-    <style name="Text.Profile.Name" parent="TextAppearance.AppCompat">
+    <style name="Text.Profile" parent="TextAppearance.AppCompat">
+
+    </style>
+
+    <style name="Text.Profile.Name">
         <item name="android:textSize">@dimen/font_size_14</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text.Profile.ScreenTitle" parent="TextAppearance.AppCompat">
+    <style name="Text.Profile.Indicator">
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Profile.IndicatorFooter">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="Text.Profile.ScreenTitle">
         <item name="android:textSize">@dimen/font_size_16</item>
         <item name="android:textStyle">bold</item>
     </style>

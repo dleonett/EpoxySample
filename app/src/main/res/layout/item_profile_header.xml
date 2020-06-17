@@ -14,6 +14,88 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
+    <LinearLayout
+        android:id="@+id/layoutPosts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toStartOf="@id/layoutFollowers"
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+        <TextView
+            android:id="@+id/txtPosts"
+            style="@style/Text.Profile.Indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="999" />
+
+        <TextView
+            style="@style/Text.Profile.IndicatorFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/profile_posts_indicator_title" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutFollowers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toStartOf="@id/layoutFollowing"
+        app:layout_constraintStart_toEndOf="@id/layoutPosts"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+        <TextView
+            android:id="@+id/txtFollowers"
+            style="@style/Text.Profile.Indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="999" />
+
+        <TextView
+            style="@style/Text.Profile.IndicatorFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/profile_followers_indicator_title" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutFollowing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/layoutFollowers"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar">
+
+        <TextView
+            android:id="@+id/txtFollowing"
+            style="@style/Text.Profile.Indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="999" />
+
+        <TextView
+            style="@style/Text.Profile.IndicatorFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/profile_following_indicator_title" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"

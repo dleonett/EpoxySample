@@ -72,7 +72,7 @@ interface PostsDao {
     @Query("UPDATE post SET likedByMe = :likedByMe, likes = :likes WHERE id = :postId")
     suspend fun updateLike(postId: Int, likedByMe: Boolean, likes: Int)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(posts: List<Post>)
 
     @Delete
@@ -84,7 +84,7 @@ interface UsersDao {
     @Query("SELECT * FROM User WHERE id = :userId")
     fun getUserObservable(userId: Int): Flow<User>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<User>)
 
     @Delete
@@ -99,7 +99,7 @@ interface StoriesDao {
     @Query("SELECT * FROM Story")
     fun getAllAsObservable(): Flow<List<Story>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(stories: List<Story>)
 
     @Delete
