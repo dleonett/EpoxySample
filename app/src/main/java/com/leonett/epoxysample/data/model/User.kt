@@ -40,7 +40,7 @@ data class User(
                     "Simone Wisoky",
                     "The wind fears. Blessing is the only core, the only guarantee of faith.",
                     "https://i.pravatar.cc/150?img=8",
-                    1,
+                    0,
                     100,
                     150
                 )
@@ -88,7 +88,7 @@ data class User(
                     "Jessyca Zieme",
                     "Sorrow happens when you desire definition so authoratively that whatsoever you are empowering is your blessing.",
                     "https://i.pravatar.cc/150?img=12",
-                    1,
+                    0,
                     100,
                     150
                 )
@@ -100,7 +100,7 @@ data class User(
                     "Destin Hane",
                     "Who can desire the conclusion and blessing of an aspect if he has the united harmony of the body?",
                     "https://i.pravatar.cc/150?img=13",
-                    1,
+                    0,
                     100,
                     150
                 )
@@ -124,7 +124,7 @@ data class User(
                     "Billy Spencer",
                     "Zen, heaven and a unbiased next world.\nThe man is a soft monkey.",
                     "https://i.pravatar.cc/150?img=15",
-                    1,
+                    0,
                     100,
                     150
                 )
@@ -136,7 +136,7 @@ data class User(
                     "Keyshawn Mayert",
                     "Heavens of conclusion will wisely grasp an inner wind.",
                     "https://i.pravatar.cc/150?img=16",
-                    1,
+                    0,
                     100,
                     150
                 )

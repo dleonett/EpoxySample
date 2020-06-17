@@ -13,6 +13,7 @@ abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>(),
 
     @EpoxyAttribute
     var stories: List<Story>? = null
+
     @EpoxyAttribute
     var onInteractionListener: OnInteractionListener? = null
 
@@ -23,6 +24,10 @@ abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>(),
 
     override fun onStoryClick(story: Story) {
         onInteractionListener?.onStoryClick(story)
+    }
+
+    override fun shouldSaveViewState(): Boolean {
+        return true
     }
 
     interface OnInteractionListener {
@@ -50,7 +55,11 @@ class StoriesHolder : EpoxyHolder() {
         rvStories.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             setController(storiesController)
-            addItemDecoration(EpoxyItemSpacingDecorator(resources.getDimension(R.dimen.spacing_sm).toInt()))
+            addItemDecoration(
+                EpoxyItemSpacingDecorator(
+                    resources.getDimension(R.dimen.spacing_sm).toInt()
+                )
+            )
         }
     }
 }

@@ -13,7 +13,8 @@ data class Story(
     @SerializedName("avatarUrl")
     var imgUrl: String,
     @SerializedName("username")
-    var username: String
+    var username: String,
+    var userId: Int
 ) : Serializable {
 
     companion object {
@@ -24,77 +25,88 @@ data class Story(
                 Story(
                     1,
                     "https://i.pravatar.cc/150?img=7",
-                    "awhilesuccessful"
+                    "awhilesuccessful",
+                    1
                 )
             )
             items.add(
                 Story(
                     2,
                     "https://i.pravatar.cc/150?img=8",
-                    "firechef"
+                    "firechef",
+                    2
                 )
             )
             items.add(
                 Story(
                     3,
                     "https://i.pravatar.cc/150?img=9",
-                    "snickerscarrion"
+                    "snickerscarrion",
+                    3
                 )
             )
             items.add(
                 Story(
                     4,
                     "https://i.pravatar.cc/150?img=10",
-                    "ditchmontie"
+                    "ditchmontie",
+                    4
                 )
             )
             items.add(
                 Story(
                     5,
                     "https://i.pravatar.cc/150?img=11",
-                    "elfcoffee"
+                    "elfcoffee",
+                    5
                 )
             )
             items.add(
                 Story(
                     6,
                     "https://i.pravatar.cc/150?img=12",
-                    "scrabblebased"
+                    "scrabblebased",
+                    6
                 )
             )
             items.add(
                 Story(
                     7,
                     "https://i.pravatar.cc/150?img=13",
-                    "taskspiritual"
+                    "taskspiritual",
+                    7
                 )
             )
             items.add(
                 Story(
                     8,
                     "https://i.pravatar.cc/150?img=14",
-                    "rnacaddie"
+                    "rnacaddie",
+                    8
                 )
             )
             items.add(
                 Story(
                     9,
                     "https://i.pravatar.cc/150?img=15",
-                    "repeatsavior"
+                    "repeatsavior",
+                    9
                 )
             )
             items.add(
                 Story(
                     10,
                     "https://i.pravatar.cc/150?img=16",
-                    "superstoreaspen"
+                    "superstoreaspen",
+                    10
                 )
             )
             items.add(
                 Story(
                     11,
                     "https://i.pravatar.cc/150?img=17",
-                    "nosegrab"
+                    "nosegrab",
+                    11
                 )
             )
 

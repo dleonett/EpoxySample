@@ -32,6 +32,9 @@
             android:name="story"
             app:argType="com.leonett.epoxysample.data.model.Story"
             app:nullable="true" />
+        <action
+            android:id="@+id/actionProfile"
+            app:destination="@id/profile_nav_graph" />
         <deepLink app:uri="epoxysample://home/story/{id}" />
     </fragment>
 

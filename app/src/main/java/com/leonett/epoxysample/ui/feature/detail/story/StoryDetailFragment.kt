@@ -4,11 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonett.epoxysample.R
 import com.leonett.epoxysample.data.model.Story
 import com.leonett.epoxysample.ui.base.BaseFragment
+import com.leonett.epoxysample.ui.feature.profile.ProfileFragment
 import kotlinx.android.synthetic.main.fragment_story_detail.*
 
 class StoryDetailFragment : BaseFragment() {
@@ -38,6 +40,15 @@ class StoryDetailFragment : BaseFragment() {
             .into(imgAvatar)
 
         txtUsername.text = story?.username
+
+        story?.userId?.let { userId ->
+            imgAvatar.setOnClickListener {
+                findNavController().navigate(
+                    R.id.actionProfile,
+                    ProfileFragment.createArguments(userId)
+                )
+            }
+        }
     }
 
     override fun onAttach(context: Context) {
