@@ -36,7 +36,7 @@
     </style>
 
     <style name="Text.Profile.Indicator">
-        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:textSize">@dimen/font_size_20</item>
         <item name="android:textStyle">bold</item>
     </style>
 
