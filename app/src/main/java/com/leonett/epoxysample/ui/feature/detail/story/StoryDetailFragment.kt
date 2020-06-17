@@ -1,6 +1,5 @@
 package com.leonett.epoxysample.ui.feature.detail.story
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -49,16 +48,13 @@ class StoryDetailFragment : BaseFragment() {
                 )
             }
         }
-    }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
-    override fun onDetach() {
+    override fun onDestroyView() {
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        super.onDetach()
+        super.onDestroyView()
     }
 
     companion object {
