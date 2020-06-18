@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">EpoxySample</string>
+    <string name="app_name">Instafeed</string>
     <string name="header_text">My feed</string>
     <string name="footer_text">You\'re up to date</string>
     <string name="profile_user_not_found_text">User not found</string>
     <string name="profile_no_posts_text">No posts yet</string>
     <string name="load_more_text">Load more</string>
     <string name="post_detail_screen_title">Post</string>
-    <string name="feed_screen_title">My Feed</string>
+    <string name="feed_screen_title">Feed</string>
     <string name="post_likes">%s likes</string>
     <string name="inbox_screen_title">Inbox</string>
     <string name="chat_screen_title">Conversation</string>
@@ -16,4 +16,7 @@
     <string name="profile_posts_indicator_title">Posts</string>
     <string name="profile_followers_indicator_title">Followers</string>
     <string name="profile_following_indicator_title">Following</string>
+    <string name="login_input_username_hint">Username</string>
+    <string name="login_input_password_hint">Password</string>
+    <string name="login_button_login_text">Login</string>
 </resources>

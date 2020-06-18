@@ -8,4 +8,11 @@
         <item name="android:textColorPrimary">@color/gray_extra_dark</item>
     </style>
 
+    <style name="AppTheme.Login" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/orange_dark</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
 </resources>

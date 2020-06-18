@@ -11,5 +11,6 @@
     <dimen name="top_bar_size">48dp</dimen>
     <dimen name="bottom_bar_size">48dp</dimen>
     <dimen name="top_bar_elevation">2dp</dimen>
+    <dimen name="login_logo_width">250dp</dimen>
 
 </resources>
