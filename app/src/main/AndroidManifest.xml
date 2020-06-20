@@ -15,14 +15,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.leonett.photofeed.ui.feature.login.LoginActivity"
-            android:theme="@style/AppTheme.Login">
+            android:name="com.leonett.photofeed.ui.feature.splash.SplashActivity"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.leonett.photofeed.ui.feature.login.LoginActivity"
+            android:theme="@style/AppTheme.Login" />
         <activity android:name="com.leonett.photofeed.ui.feature.main.HostActivity">
             <nav-graph android:value="@navigation/nav_graph" />
         </activity>
