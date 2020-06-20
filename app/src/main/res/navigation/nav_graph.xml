@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.leonett.epoxysample.ui.feature.feed.FeedFragment"
+        android:name="com.leonett.photofeed.ui.feature.feed.FeedFragment"
         android:label="Feed Fragment"
         tools:layout="@layout/fragment_feed">
         <action
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/storyDetailFragment"
-        android:name="com.leonett.epoxysample.ui.feature.detail.story.StoryDetailFragment"
+        android:name="com.leonett.photofeed.ui.feature.detail.story.StoryDetailFragment"
         android:label="Story Detail Fragment"
         tools:layout="@layout/fragment_story_detail">
         <argument
@@ -30,7 +30,7 @@
             app:nullable="true" />
         <argument
             android:name="story"
-            app:argType="com.leonett.epoxysample.data.model.Story"
+            app:argType="com.leonett.photofeed.data.model.Story"
             app:nullable="true" />
         <action
             android:id="@+id/actionProfile"
@@ -44,7 +44,7 @@
 
         <fragment
             android:id="@+id/exploreFragment"
-            android:name="com.leonett.epoxysample.ui.feature.explore.ExploreFragment"
+            android:name="com.leonett.photofeed.ui.feature.explore.ExploreFragment"
             android:label="Explore Fragment"
             tools:layout="@layout/fragment_explore">
             <deepLink app:uri="epoxysample://home/explore" />
@@ -58,7 +58,7 @@
 
         <fragment
             android:id="@+id/inboxFragment"
-            android:name="com.leonett.epoxysample.ui.feature.inbox.InboxFragment"
+            android:name="com.leonett.photofeed.ui.feature.inbox.InboxFragment"
             android:label="Inbox Fragment"
             tools:layout="@layout/fragment_inbox">
             <action
@@ -69,7 +69,7 @@
 
         <fragment
             android:id="@+id/chatFragment"
-            android:name="com.leonett.epoxysample.ui.feature.inbox.ChatFragment"
+            android:name="com.leonett.photofeed.ui.feature.inbox.ChatFragment"
             android:label="Chat Fragment"
             tools:layout="@layout/fragment_chat">
             <deepLink app:uri="epoxysample://home/inbox/chat" />
@@ -83,7 +83,7 @@
 
         <fragment
             android:id="@+id/settingsFragment"
-            android:name="com.leonett.epoxysample.ui.feature.settings.AccountFragment"
+            android:name="com.leonett.photofeed.ui.feature.settings.AccountFragment"
             android:label="Settings Fragment"
             tools:layout="@layout/fragment_account">
             <action
@@ -94,7 +94,7 @@
 
         <fragment
             android:id="@+id/aboutFragment"
-            android:name="com.leonett.epoxysample.ui.feature.settings.AboutFragment"
+            android:name="com.leonett.photofeed.ui.feature.settings.AboutFragment"
             android:label="About Fragment"
             tools:layout="@layout/fragment_about">
             <deepLink app:uri="epoxysample://home/settings/about" />
@@ -108,7 +108,7 @@
 
         <fragment
             android:id="@+id/profileFragment"
-            android:name="com.leonett.epoxysample.ui.feature.profile.ProfileFragment"
+            android:name="com.leonett.photofeed.ui.feature.profile.ProfileFragment"
             android:label="Profile Fragment"
             tools:layout="@layout/fragment_profile">
             <action
@@ -123,7 +123,7 @@
 
         <fragment
             android:id="@+id/postDetailFragment"
-            android:name="com.leonett.epoxysample.ui.feature.detail.post.PostDetailFragment"
+            android:name="com.leonett.photofeed.ui.feature.detail.post.PostDetailFragment"
             android:label="Post Detail Fragment"
             tools:layout="@layout/fragment_post_detail">
             <argument
