@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.User
+import org.apache.commons.lang3.StringEscapeUtils
 
 @EpoxyModelClass(layout = R.layout.item_profile_header)
 abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() {
@@ -32,7 +33,7 @@ abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() 
         holder.txtFollowers.text = user?.followers.toString()
         holder.txtFollowing.text = user?.following.toString()
         holder.txtTitle.text = user?.displayName
-        holder.txtDescription.text = user?.description
+        holder.txtDescription.text = StringEscapeUtils.unescapeJava(user?.description)
         holder.container.setOnClickListener(itemClickListener)
     }
 }
