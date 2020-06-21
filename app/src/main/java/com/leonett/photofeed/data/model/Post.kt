@@ -9,20 +9,23 @@ import java.io.Serializable
 data class Post(
     @SerializedName("id")
     @PrimaryKey
-    var id: Int,
+    var id: String,
     @SerializedName("imgUrl")
     var imgUrl: String?,
+    @SerializedName("thumbnailUrl")
+    var thumbnailUrl: String?,
     @SerializedName("title")
     var title: String?,
-    @SerializedName("subtitle")
-    var subtitle: String?,
     @SerializedName("avatarUrl")
     var avatarUrl: String?,
+    @SerializedName("location")
+    var location: String?,
     @SerializedName("username")
     var username: String?,
     var likes: Int,
+    var comments: Int,
     var likedByMe: Boolean,
-    var userId: Int
+    var userId: String
 ) : Serializable {
 
     companion object {
@@ -31,145 +34,167 @@ data class Post(
 
             items.add(
                 Post(
-                    1,
+                    "1",
+                    "https://picsum.photos/id/1011/1000/1000",
                     "https://picsum.photos/id/1011/1000/1000",
                     "Let\'s take a ride 🛶🛶🛶",
-                    "23 comments",
                     "https://i.pravatar.cc/150?img=9",
+                    null,
                     "snickerscarrion",
                     20,
+                    23,
                     false,
-                    3
+                    "3"
                 )
             )
             items.add(
                 Post(
-                    2,
+                    "2",
+                    "https://picsum.photos/id/1012/1000/1000",
                     "https://picsum.photos/id/1012/1000/1000",
                     "My best friend 🐶",
-                    "16 comments",
                     "https://i.pravatar.cc/150?img=14",
+                    null,
                     "rnacaddie",
                     92,
+                    16,
                     false,
-                    8
+                    "8"
                 )
             )
             items.add(
                 Post(
-                    3,
+                    "3",
+                    "https://picsum.photos/id/1013/1000/1000",
                     "https://picsum.photos/id/1013/1000/1000",
                     "Annie\'s wedding... Lovely!",
-                    "4 comments",
                     "https://i.pravatar.cc/150?img=10",
+                    null,
                     "ditchmontie",
                     55,
+                    4,
                     false,
-                    4
+                    "4"
                 )
             )
             items.add(
                 Post(
-                    4,
+                    "4",
+                    "https://picsum.photos/id/1014/1000/1000",
                     "https://picsum.photos/id/1014/1000/1000",
                     "It\'s not about what you see but what you feel",
-                    "9 comments",
                     "https://i.pravatar.cc/150?img=17",
+                    null,
                     "nosegrab",
                     15,
+                    9,
                     true,
-                    11
+                    "11"
                 )
             )
             items.add(
                 Post(
-                    5,
+                    "5",
+                    "https://picsum.photos/id/1015/1000/1000",
                     "https://picsum.photos/id/1015/1000/1000",
                     "River!!",
-                    "0 comments",
                     "https://i.pravatar.cc/150?img=11",
+                    null,
                     "elfcoffee",
                     69,
+                    0,
                     false,
-                    5
+                    "5"
                 )
             )
             items.add(
                 Post(
-                    6,
+                    "6",
+                    "https://picsum.photos/id/1016/1000/1000",
                     "https://picsum.photos/id/1016/1000/1000",
                     "🔥🔥",
-                    "11 comments",
                     "https://i.pravatar.cc/150?img=11",
+                    null,
                     "elfcoffee",
                     196,
+                    11,
                     true,
-                    5
+                    "5"
                 )
             )
             items.add(
                 Post(
-                    7,
+                    "7",
+                    "https://picsum.photos/id/1018/1000/1000",
                     "https://picsum.photos/id/1018/1000/1000",
                     "A very peaceful place!",
-                    "7 comments",
                     "https://i.pravatar.cc/150?img=7",
+                    null,
                     "awhilesuccessful",
                     231,
+                    7,
                     false,
-                    1
+                    "1"
                 )
             )
             items.add(
                 Post(
-                    8,
+                    "8",
+                    "https://picsum.photos/id/1020/1000/1000",
                     "https://picsum.photos/id/1020/1000/1000",
                     "Those little bears!",
-                    "9 comments",
                     "https://i.pravatar.cc/150?img=10",
+                    null,
                     "ditchmontie",
                     5,
+                    9,
                     false,
-                    4
+                    "4"
                 )
             )
             items.add(
                 Post(
-                    9,
+                    "9",
+                    "https://picsum.photos/id/1021/1000/1000",
                     "https://picsum.photos/id/1021/1000/1000",
                     "Lost in the fog",
-                    "0 comments",
                     "https://i.pravatar.cc/150?img=9",
+                    null,
                     "snickerscarrion",
                     87,
+                    0,
                     false,
-                    3
+                    "3"
                 )
             )
             items.add(
                 Post(
-                    10,
+                    "10",
+                    "https://picsum.photos/id/1026/1000/1000",
                     "https://picsum.photos/id/1026/1000/1000",
                     "🚂🚂🚂",
-                    "11 comments",
                     "https://i.pravatar.cc/150?img=9",
+                    null,
                     "snickerscarrion",
                     120,
+                    11,
                     true,
-                    3
+                    "3"
                 )
             )
             items.add(
                 Post(
-                    11,
+                    "11",
+                    "https://picsum.photos/id/1027/1000/1000",
                     "https://picsum.photos/id/1027/1000/1000",
                     "Shooting portraits, let\'s do this",
-                    "7 comments",
                     "https://i.pravatar.cc/150?img=17",
+                    null,
                     "nosegrab",
                     56,
+                    7,
                     true,
-                    11
+                    "11"
                 )
             )
 

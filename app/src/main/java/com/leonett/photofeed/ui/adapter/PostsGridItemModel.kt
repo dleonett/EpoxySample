@@ -16,12 +16,13 @@ abstract class PostsGridItemModel : EpoxyModelWithHolder<PostsGridItemHolder>() 
 
     @EpoxyAttribute
     var post: Post? = null
+
     @EpoxyAttribute
     var itemClickListener: View.OnClickListener? = null
 
     override fun bind(holder: PostsGridItemHolder) {
         Glide.with(holder.imgPicture.context)
-            .load(post?.imgUrl)
+            .load(post?.thumbnailUrl)
             .apply(RequestOptions().placeholder(R.color.gray_light))
             .into(holder.imgPicture)
 

@@ -29,6 +29,9 @@ abstract class PostHeaderModel : EpoxyModelWithHolder<PostHeaderHolder>() {
             .into(holder.imgAvatar)
 
         holder.txtUsername.text = post?.username
+        holder.txtLocation.text = post?.location
+        holder.txtLocation.visibility =
+            if (post?.location.isNullOrEmpty()) View.GONE else View.VISIBLE
 
         holder.imgAvatar.setOnClickListener(itemClickListener)
         holder.txtUsername.setOnClickListener(itemClickListener)
@@ -39,9 +42,11 @@ class PostHeaderHolder : EpoxyHolder() {
 
     lateinit var imgAvatar: ImageView
     lateinit var txtUsername: TextView
+    lateinit var txtLocation: TextView
 
     override fun bindView(itemView: View) {
         imgAvatar = itemView.findViewById(R.id.imgAvatar)
         txtUsername = itemView.findViewById(R.id.txtUsername)
+        txtLocation = itemView.findViewById(R.id.txtLocation)
     }
 }

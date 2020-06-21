@@ -72,19 +72,18 @@ dependencies {
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_gson_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_login_interceptor_version"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_android_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
 
     // Multidex
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation "com.android.support:multidex:$multidex_version"
 
     // Apache Commons
-    implementation 'org.apache.commons:commons-lang3:3.4'
+    implementation "org.apache.commons:commons-lang3:$apache_commons_version"
 
     // Testing
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

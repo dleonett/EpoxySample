@@ -34,7 +34,9 @@ abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
             holder.txtLikes.text =
                 holder.txtLikes.context.getString(R.string.post_likes, it.likes.toString())
             holder.txtTitle.text = it.title
-            holder.txtSubtitle.text = it.subtitle
+            holder.txtTitle.visibility = if (it.title.isNullOrEmpty()) View.GONE else View.VISIBLE
+            holder.txtSubtitle.text =
+                holder.txtSubtitle.context.getString(R.string.post_comments, it.comments.toString())
             holder.btnLike.setImageResource(
                 if (it.likedByMe)
                     R.drawable.ic_like_on

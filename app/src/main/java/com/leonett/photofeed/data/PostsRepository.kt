@@ -1,9 +1,6 @@
 package com.leonett.photofeed.data
 
-import com.leonett.photofeed.data.model.Post
-import com.leonett.photofeed.data.model.PostsStoriesWrapper
-import com.leonett.photofeed.data.model.Story
-import com.leonett.photofeed.data.model.User
+import com.leonett.photofeed.data.model.*
 import com.leonett.photofeed.data.source.PostsLocalSource
 import com.leonett.photofeed.data.source.PostsRemoteSource
 import kotlinx.coroutines.flow.Flow
@@ -33,6 +30,40 @@ class PostsRepository @Inject constructor(
         return posts
     }
 
+    suspend fun fetchUserProfile(username: String): UserPostsWrapper {
+        val response = postsRemoteSource.fetchUserProfile(username)
+        val igUser = response.graphQl.user
+        val user = User(
+            igUser.id,
+            igUser.username,
+            igUser.fullName,
+            igUser.biography,
+            igUser.profilePicUrl,
+            igUser.edgeOwnerToTimelineMedia.count,
+            igUser.edgeFollowedBy.count,
+            igUser.edgeFollow.count
+        )
+        val posts = mutableListOf<Post>()
+        igUser.edgeOwnerToTimelineMedia.edges?.forEach {
+            posts.add(
+                Post(
+                    it.node?.id ?: "",
+                    it.node?.displayUrl,
+                    it.node?.thumbnailSrc,
+                    it.node?.edgeMediaToCaption?.edges?.getOrNull(0)?.node?.text,
+                    igUser.profilePicUrl,
+                    it.node?.location?.name,
+                    igUser.username,
+                    it.node?.edgeLikedBy?.count ?: 0,
+                    it.node?.edgeMediaToComment?.count ?: 0,
+                    false,
+                    igUser.id
+                )
+            )
+        }
+        return UserPostsWrapper(user, posts)
+    }
+
     fun getPostAndStoriesObservable(): Flow<PostsStoriesWrapper> {
         return postsLocalSource.getPostsObservable()
             .combine(postsLocalSource.getStoriesObservable()) { posts, stories ->
@@ -40,7 +71,7 @@ class PostsRepository @Inject constructor(
             }
     }
 
-    fun getUserObservable(userId: Int): Flow<User> {
+    fun getUserObservable(userId: Int): Flow<User?> {
         return postsLocalSource.getUserObservable(userId)
     }
 

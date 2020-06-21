@@ -11,6 +11,7 @@ import com.leonett.photofeed.App
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.data.model.UserPostsWrapper
+import com.leonett.photofeed.data.model.instagram.IgUser
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.feature.detail.post.PostDetailFragment
 import kotlinx.android.synthetic.main.fragment_post_detail.rvMain
@@ -25,6 +26,7 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileController: ProfileController
     private var userId: Int? = null
+    private var username: String? = null
 
     override val layoutId: Int
         get() = R.layout.fragment_profile
@@ -42,9 +44,10 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
 
         arguments?.let {
             userId = it.getInt(USER_ID_ARGUMENT)
+            username = it.getString(USERNAME_ARGUMENT)
         }
 
-        profileViewModel.setArguments(userId ?: 0)
+        profileViewModel.setArguments(userId, username)
     }
 
     override fun initViews(view: View) {
@@ -59,6 +62,10 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
         btnNavigationUp.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        if (!username.isNullOrEmpty()) {
+            topBarTitle.text = username
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -71,12 +78,22 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
         profileViewModel.getUserPostsLiveData().observe(viewLifecycleOwner, Observer {
             handleScreenState(it)
         })
+
+        profileViewModel.getUserLiveData().observe(viewLifecycleOwner, Observer {
+            handleUser(it)
+        })
     }
 
     private fun handleScreenState(result: UserPostsWrapper?) {
         result?.let {
             topBarTitle.text = it.user.username
             profileController.setData(it.user, it.posts)
+        }
+    }
+
+    private fun handleUser(result: IgUser?) {
+        result?.let {
+            topBarTitle.text = it.fullName
         }
     }
 
@@ -89,10 +106,18 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
 
     companion object {
         private const val USER_ID_ARGUMENT = "userId"
+        private const val USERNAME_ARGUMENT = "username"
 
         fun createArguments(userId: Int): Bundle {
             val bundle = Bundle()
             bundle.putInt(USER_ID_ARGUMENT, userId)
+
+            return bundle
+        }
+
+        fun createArguments(username: String): Bundle {
+            val bundle = Bundle()
+            bundle.putString(USERNAME_ARGUMENT, username)
 
             return bundle
         }

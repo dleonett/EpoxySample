@@ -19,6 +19,11 @@
 
     <style name="Text.PostUsername">
         <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.PostLocation">
+        <item name="android:textSize">@dimen/font_size_14</item>
     </style>
 
     <style name="Text.PostSubtitle">
@@ -66,6 +71,15 @@
     <style name="Text.Footer">
         <item name="android:textSize">@dimen/font_size_14</item>
         <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <!-- Input -->
+    <style name="Input" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+    </style>
+
+    <style name="Input.Normal">
+        <item name="boxStrokeColor">@color/stroke_input_dark</item>
     </style>
 
 </resources>

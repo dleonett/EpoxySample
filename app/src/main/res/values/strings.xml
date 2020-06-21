@@ -8,6 +8,7 @@
     <string name="post_detail_screen_title">Post</string>
     <string name="feed_screen_title">Feed</string>
     <string name="post_likes">%s likes</string>
+    <string name="post_comments">%s comments</string>
     <string name="inbox_screen_title">Inbox</string>
     <string name="chat_screen_title">Conversation</string>
     <string name="explore_screen_title">Explore</string>
@@ -19,4 +20,5 @@
     <string name="login_input_username_hint">Username</string>
     <string name="login_input_password_hint">Password</string>
     <string name="login_button_login_text">Login</string>
+    <string name="explore_search_button">Search</string>
 </resources>

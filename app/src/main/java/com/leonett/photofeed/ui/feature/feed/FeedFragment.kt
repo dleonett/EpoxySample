@@ -87,7 +87,7 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     override fun onPostAvatarClick(post: Post) {
         findNavController().navigate(
             R.id.actionProfile,
-            ProfileFragment.createArguments(post.userId)
+            ProfileFragment.createArguments(post.userId.toInt())
         )
     }
 
