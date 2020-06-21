@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonett.photofeed.App
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
-import com.leonett.photofeed.data.model.UserPostsWrapper
-import com.leonett.photofeed.data.model.instagram.IgUser
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.feature.detail.post.PostDetailFragment
 import kotlinx.android.synthetic.main.fragment_post_detail.rvMain
@@ -75,25 +73,38 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
     }
 
     private fun observeViewModels() {
-        profileViewModel.getUserPostsLiveData().observe(viewLifecycleOwner, Observer {
+        profileViewModel.getProfileScreenStateLiveData().observe(viewLifecycleOwner, Observer {
             handleScreenState(it)
         })
-
-        profileViewModel.getUserLiveData().observe(viewLifecycleOwner, Observer {
-            handleUser(it)
-        })
     }
 
-    private fun handleScreenState(result: UserPostsWrapper?) {
-        result?.let {
-            topBarTitle.text = it.user.username
-            profileController.setData(it.user, it.posts)
-        }
-    }
-
-    private fun handleUser(result: IgUser?) {
-        result?.let {
-            topBarTitle.text = it.fullName
+    private fun handleScreenState(state: ProfileScreenState?) {
+        state?.let {
+            when (it) {
+                is ProfileScreenState.Loading -> {
+                    profileController.setData(
+                        it.userPostsWrapper?.user,
+                        it.userPostsWrapper?.posts,
+                        true
+                    )
+                }
+                is ProfileScreenState.Success -> {
+                    topBarTitle.text = it.userPostsWrapper?.user?.username
+                    profileController.setData(
+                        it.userPostsWrapper?.user,
+                        it.userPostsWrapper?.posts,
+                        false
+                    )
+                }
+                is ProfileScreenState.Error -> {
+                    profileController.setData(
+                        it.userPostsWrapper?.user,
+                        it.userPostsWrapper?.posts,
+                        false
+                    )
+                    showToast(it.message)
+                }
+            }
         }
     }
 
