@@ -35,6 +35,10 @@ abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() 
         holder.txtFollowing.text = user?.following?.prettyCount()
         holder.txtTitle.text = user?.displayName
         holder.txtDescription.text = StringEscapeUtils.unescapeJava(user?.description)
+        holder.txtDescription.visibility = when {
+            user?.description.isNullOrEmpty() -> View.GONE
+            else -> View.VISIBLE
+        }
         holder.txtExternalLink.text = user?.externalUrl
         holder.txtExternalLink.visibility = when {
             user?.externalUrl.isNullOrEmpty() -> View.GONE
