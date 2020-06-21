@@ -43,6 +43,7 @@ class PostsRepository @Inject constructor(
             igUser.edgeFollowedBy.count,
             igUser.edgeFollow.count,
             igUser.isPrivate,
+            igUser.isVerified,
             igUser.externalUrl
         )
         val posts = mutableListOf<Post>()

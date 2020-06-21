@@ -1,5 +1,9 @@
 package com.leonett.photofeed.ui.util
 
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ImageSpan
+import android.widget.TextView
 import kotlin.math.ln
 import kotlin.math.pow
 
@@ -13,4 +17,16 @@ fun Int.prettyCount(): String {
 
 fun Int.formatWithSeparators(): String {
     return String.format("%,d", this)
+}
+
+fun TextView.addImageAtEnd(drawableResId: Int) {
+    val ssb = SpannableStringBuilder("${this.text}  ")
+    ssb.setSpan(
+        ImageSpan(this.context, drawableResId, ImageSpan.ALIGN_BASELINE),
+        ssb.length - 1,
+        ssb.length,
+        Spannable.SPAN_INCLUSIVE_INCLUSIVE
+    )
+
+    this.text = ssb
 }

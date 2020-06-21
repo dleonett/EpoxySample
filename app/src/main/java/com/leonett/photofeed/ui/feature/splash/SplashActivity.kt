@@ -19,7 +19,7 @@ class SplashActivity : BaseActivity() {
 
     override fun initViews() {
         lifecycleScope.launch {
-            delay(2000)
+            delay(500)
             navigateToLogin()
         }
     }

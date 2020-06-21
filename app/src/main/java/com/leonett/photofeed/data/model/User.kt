@@ -16,6 +16,7 @@ data class User(
     val followers: Int,
     val following: Int,
     val isPrivate: Boolean = false,
+    val isVerified: Boolean = false,
     val externalUrl: String? = null
 ) : Serializable {
 

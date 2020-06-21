@@ -12,9 +12,11 @@ import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.feature.detail.post.PostDetailFragment
+import com.leonett.photofeed.ui.util.addImageAtEnd
 import kotlinx.android.synthetic.main.fragment_post_detail.rvMain
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
+
 
 class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener {
 
@@ -89,7 +91,15 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
                     )
                 }
                 is ProfileScreenState.Success -> {
-                    topBarTitle.text = it.userPostsWrapper?.user?.username
+                    val username = it.userPostsWrapper?.user?.username
+                    val isVerified = it.userPostsWrapper?.user?.isVerified == true
+
+                    topBarTitle.text = username
+
+                    if (isVerified) {
+                        topBarTitle.addImageAtEnd(R.drawable.ic_verified)
+                    }
+
                     profileController.setData(
                         it.userPostsWrapper?.user,
                         it.userPostsWrapper?.posts,
