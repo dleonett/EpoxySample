@@ -27,7 +27,7 @@
     </style>
 
     <style name="Text.PostSubtitle">
-        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 

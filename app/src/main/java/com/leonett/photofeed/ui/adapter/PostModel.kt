@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.ui.util.DoubleClickListener
+import com.leonett.photofeed.ui.util.formatWithSeparators
 
 @EpoxyModelClass(layout = R.layout.item_post)
 abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
@@ -32,16 +33,25 @@ abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {
                 .into(holder.imgPicture)
 
             holder.txtLikes.text =
-                holder.txtLikes.context.getString(R.string.post_likes, it.likes.toString())
+                holder.txtLikes.context.getString(
+                    R.string.post_likes,
+                    it.likes.formatWithSeparators()
+                )
             holder.txtTitle.text = it.title
-            holder.txtTitle.visibility = if (it.title.isNullOrEmpty()) View.GONE else View.VISIBLE
+            holder.txtTitle.visibility = when {
+                it.title.isNullOrEmpty() -> View.GONE
+                else -> View.VISIBLE
+            }
             holder.txtSubtitle.text =
-                holder.txtSubtitle.context.getString(R.string.post_comments, it.comments.toString())
+                holder.txtSubtitle.context.getString(
+                    R.string.post_comments,
+                    it.comments.formatWithSeparators()
+                )
             holder.btnLike.setImageResource(
-                if (it.likedByMe)
-                    R.drawable.ic_like_on
-                else
-                    R.drawable.ic_like_off
+                when {
+                    it.likedByMe -> R.drawable.ic_like_on
+                    else -> R.drawable.ic_like_off
+                }
             )
 
             holder.imgPicture.setOnClickListener(object : DoubleClickListener() {
