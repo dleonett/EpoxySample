@@ -98,20 +98,28 @@
 
     <TextView
         android:id="@+id/txtTitle"
+        style="@style/Text.Profile.Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_sm"
-        android:textAppearance="@style/Text.Profile.Name"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar"
         tools:text="Richard Smith" />
 
     <TextView
         android:id="@+id/txtDescription"
+        style="@style/Text.Profile.Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/Text.Profile.Description"
         app:layout_constraintTop_toBottomOf="@id/txtTitle"
         tools:text="Welcome to my profile!" />
+
+    <TextView
+        android:id="@+id/txtExternalLink"
+        style="@style/Text.Profile.ExternalLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtDescription"
+        tools:text="https://youtu.be/" />
 
     <Button
         android:id="@+id/btnFollow"
@@ -120,6 +128,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_xxs"
         android:text="Follow"
-        app:layout_constraintTop_toBottomOf="@id/txtDescription" />
+        app:layout_constraintTop_toBottomOf="@id/txtExternalLink" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

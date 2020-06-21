@@ -14,7 +14,9 @@ data class User(
     val avatarUrl: String,
     val posts: Int,
     val followers: Int,
-    val following: Int
+    val following: Int,
+    val isPrivate: Boolean = false,
+    val externalUrl: String? = null
 ) : Serializable {
 
     companion object {

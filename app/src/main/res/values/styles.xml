@@ -31,6 +31,15 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <style name="Text.PostInfoTitle">
+        <item name="android:textSize">@dimen/font_size_20</item>
+    </style>
+
+    <style name="Text.PostInfoSubtitle">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
     <style name="Text.Profile" parent="TextAppearance.AppCompat">
 
     </style>
@@ -56,6 +65,13 @@
 
     <style name="Text.Profile.Description" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="Text.Profile.ExternalLink" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="Text.StoryUsername">

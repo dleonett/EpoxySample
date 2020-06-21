@@ -12,6 +12,7 @@ abstract class PostsGridModel : EpoxyModelWithHolder<PostsGridHolder>(),
 
     @EpoxyAttribute
     var posts: List<Post>? = null
+
     @EpoxyAttribute
     var onInteractionListener: OnInteractionListener? = null
 
@@ -48,9 +49,12 @@ class PostsGridHolder : EpoxyHolder() {
 
         rvPostsGrid.apply {
             layoutManager = GridLayoutManager(context, 3)
-            //layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             setController(postsGridController)
-            addItemDecoration(EpoxyItemSpacingDecorator(resources.getDimension(R.dimen.spacing_xxxxs).toInt()))
+            addItemDecoration(
+                EpoxyItemSpacingDecorator(
+                    resources.getDimension(R.dimen.spacing_xxxxs).toInt()
+                )
+            )
         }
     }
 }

@@ -12,5 +12,6 @@
     <dimen name="bottom_bar_size">48dp</dimen>
     <dimen name="top_bar_elevation">2dp</dimen>
     <dimen name="login_logo_width">200dp</dimen>
+    <dimen name="profile_info_icon_size">100dp</dimen>
 
 </resources>

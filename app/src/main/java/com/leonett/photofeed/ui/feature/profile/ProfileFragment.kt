@@ -97,6 +97,10 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
         }
     }
 
+    override fun onUserExternalLinkClick(externalUrl: String) {
+        openUrl(externalUrl)
+    }
+
     override fun onPostClick(post: Post) {
         findNavController().navigate(
             R.id.actionPostDetail,

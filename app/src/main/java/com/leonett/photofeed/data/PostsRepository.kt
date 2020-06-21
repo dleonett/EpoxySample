@@ -41,7 +41,9 @@ class PostsRepository @Inject constructor(
             igUser.profilePicUrl,
             igUser.edgeOwnerToTimelineMedia.count,
             igUser.edgeFollowedBy.count,
-            igUser.edgeFollow.count
+            igUser.edgeFollow.count,
+            igUser.isPrivate,
+            igUser.externalUrl
         )
         val posts = mutableListOf<Post>()
         igUser.edgeOwnerToTimelineMedia.edges?.forEach {

@@ -20,7 +20,7 @@ abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() 
     var user: User? = null
 
     @EpoxyAttribute
-    var itemClickListener: View.OnClickListener? = null
+    var onInteractionListener: OnInteractionListener? = null
 
     override fun bind(holder: ProfileHeaderHolder) {
         Glide.with(holder.imgAvatar.context)
@@ -34,7 +34,18 @@ abstract class ProfileHeaderModel : EpoxyModelWithHolder<ProfileHeaderHolder>() 
         holder.txtFollowing.text = user?.following.toString()
         holder.txtTitle.text = user?.displayName
         holder.txtDescription.text = StringEscapeUtils.unescapeJava(user?.description)
-        holder.container.setOnClickListener(itemClickListener)
+        holder.txtExternalLink.text = user?.externalUrl
+        holder.txtExternalLink.visibility = when {
+            user?.externalUrl.isNullOrEmpty() -> View.GONE
+            else -> View.VISIBLE
+        }
+        holder.txtExternalLink.setOnClickListener {
+            onInteractionListener?.onExternalLinkClick(user?.externalUrl!!)
+        }
+    }
+
+    interface OnInteractionListener {
+        fun onExternalLinkClick(externalUrl: String)
     }
 }
 
@@ -46,6 +57,7 @@ class ProfileHeaderHolder : EpoxyHolder() {
     lateinit var txtFollowing: TextView
     lateinit var txtTitle: TextView
     lateinit var txtDescription: TextView
+    lateinit var txtExternalLink: TextView
     lateinit var container: View
 
     override fun bindView(itemView: View) {
@@ -55,6 +67,7 @@ class ProfileHeaderHolder : EpoxyHolder() {
         txtFollowing = itemView.findViewById(R.id.txtFollowing)
         txtTitle = itemView.findViewById(R.id.txtTitle)
         txtDescription = itemView.findViewById(R.id.txtDescription)
+        txtExternalLink = itemView.findViewById(R.id.txtExternalLink)
         container = itemView
     }
 }

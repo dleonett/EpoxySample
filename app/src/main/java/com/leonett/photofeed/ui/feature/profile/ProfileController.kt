@@ -4,13 +4,11 @@ import com.airbnb.epoxy.Typed2EpoxyController
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.data.model.User
-import com.leonett.photofeed.ui.adapter.PostsGridModel
-import com.leonett.photofeed.ui.adapter.footer
-import com.leonett.photofeed.ui.adapter.postsGrid
-import com.leonett.photofeed.ui.adapter.profileHeader
+import com.leonett.photofeed.ui.adapter.*
 
 class ProfileController : Typed2EpoxyController<User, List<Post>>(),
-    PostsGridModel.OnInteractionListener {
+    PostsGridModel.OnInteractionListener,
+    ProfileHeaderModel.OnInteractionListener {
 
     private var onInteractionListener: OnInteractionListener? = null
 
@@ -19,6 +17,7 @@ class ProfileController : Typed2EpoxyController<User, List<Post>>(),
             profileHeader {
                 id(HEADER_ID)
                 user(it)
+                onInteractionListener(this@ProfileController)
             }
         } ?: run {
             footer {
@@ -34,9 +33,24 @@ class ProfileController : Typed2EpoxyController<User, List<Post>>(),
                 onInteractionListener(this@ProfileController)
             }
         } else {
-            footer {
-                id(FOOTER_ID)
-                titleResId(R.string.profile_no_posts_text)
+            val iconResId = when (user?.isPrivate) {
+                true -> R.drawable.ic_locked
+                else -> R.drawable.ic_images
+            }
+            val titleResId = when (user?.isPrivate) {
+                true -> R.string.profile_private_account_title
+                else -> R.string.profile_no_posts_title
+            }
+            val subtitleResId = when (user?.isPrivate) {
+                true -> R.string.profile_private_account_subtitle
+                else -> null
+            }
+
+            profileInfo {
+                id(INFO_ID)
+                iconResId(iconResId)
+                titleResId(titleResId)
+                subtitleResId(subtitleResId)
             }
         }
     }
@@ -45,11 +59,16 @@ class ProfileController : Typed2EpoxyController<User, List<Post>>(),
         this.onInteractionListener = onInteractionListener
     }
 
+    override fun onExternalLinkClick(externalUrl: String) {
+        onInteractionListener?.onUserExternalLinkClick(externalUrl)
+    }
+
     override fun onPostClick(post: Post) {
         onInteractionListener?.onPostClick(post)
     }
 
     interface OnInteractionListener {
+        fun onUserExternalLinkClick(externalUrl: String)
         fun onPostClick(post: Post)
     }
 
@@ -57,5 +76,6 @@ class ProfileController : Typed2EpoxyController<User, List<Post>>(),
         private const val HEADER_ID = "HEADER_ID"
         private const val POSTS_GRID_ID = "POSTS_GRID_ID"
         private const val FOOTER_ID = "FOOTER_ID"
+        private const val INFO_ID = "INFO_ID"
     }
 }

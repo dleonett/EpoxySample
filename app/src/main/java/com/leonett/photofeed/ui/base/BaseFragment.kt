@@ -1,5 +1,7 @@
 package com.leonett.photofeed.ui.base
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +43,14 @@ abstract class BaseFragment : Fragment() {
 
     fun showToast(resId: Int) {
         showToast(getString(resId))
+    }
+
+    fun openUrl(url: String) {
+        val webpage: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, webpage)
+        if (intent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(intent)
+        }
     }
 
 }
