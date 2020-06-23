@@ -18,6 +18,12 @@
             android:layout_height="wrap_content"
             android:text="Open about" />
 
+        <Button
+            android:id="@+id/btnSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign out" />
+
     </LinearLayout>
 
     <LinearLayout

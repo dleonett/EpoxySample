@@ -1,6 +1,7 @@
 package com.leonett.photofeed.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.leonett.photofeed.data.source.AppDatabase
 import com.leonett.photofeed.data.source.PostsApiService
@@ -41,6 +42,11 @@ class ApplicationModule(private val applicationContext: Context) {
             applicationContext,
             AppDatabase::class.java, "posts-db"
         ).build()
+    }
+
+    @Provides
+    fun provideSharedPreferences(): SharedPreferences {
+        return applicationContext.getSharedPreferences("user-prefs", Context.MODE_PRIVATE)
     }
 
 }

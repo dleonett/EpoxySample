@@ -1,4 +1,4 @@
-package com.leonett.photofeed.ui.feature.settings
+package com.leonett.photofeed.ui.feature.account
 
 import android.view.View
 import androidx.navigation.fragment.findNavController

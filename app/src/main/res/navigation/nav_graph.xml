@@ -86,7 +86,7 @@
 
         <fragment
             android:id="@+id/settingsFragment"
-            android:name="com.leonett.photofeed.ui.feature.settings.AccountFragment"
+            android:name="com.leonett.photofeed.ui.feature.account.AccountFragment"
             android:label="Settings Fragment"
             tools:layout="@layout/fragment_account">
             <action
@@ -97,7 +97,7 @@
 
         <fragment
             android:id="@+id/aboutFragment"
-            android:name="com.leonett.photofeed.ui.feature.settings.AboutFragment"
+            android:name="com.leonett.photofeed.ui.feature.account.AboutFragment"
             android:label="About Fragment"
             tools:layout="@layout/fragment_about">
             <deepLink app:uri="epoxysample://home/settings/about" />
