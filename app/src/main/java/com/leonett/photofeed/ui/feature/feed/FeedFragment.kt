@@ -1,7 +1,6 @@
 package com.leonett.photofeed.ui.feature.feed
 
 import android.content.Context
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -44,12 +43,6 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
         setupRecyclerView()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        observeViewModels()
-    }
-
     private fun setupRecyclerView() {
         feedController = FeedController()
         feedController.setOnItemClickListener(this)
@@ -60,7 +53,7 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
         }
     }
 
-    private fun observeViewModels() {
+    override fun observeViewModels() {
         feedViewModel.getScreenStateLiveData().observe(viewLifecycleOwner, Observer { state ->
             handleScreenState(state)
         })

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login_screen"
-    android:padding="@dimen/spacing_sm">
+    android:background="@drawable/bg_login_screen">
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -23,7 +22,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
         android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginEnd="@dimen/spacing_sm"
         app:boxBackgroundColor="@color/bg_input_light"
         app:hintEnabled="false"
         app:layout_constraintBottom_toTopOf="@id/inputPassword"
@@ -43,7 +44,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
         android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginEnd="@dimen/spacing_sm"
         app:boxBackgroundColor="@color/bg_input_light"
         app:hintEnabled="false"
         app:layout_constraintBottom_toTopOf="@id/btnLogin"
@@ -63,12 +66,19 @@
         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
         android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginEnd="@dimen/spacing_sm"
         android:backgroundTint="@color/white"
         android:minHeight="@dimen/button_size_xlg"
         android:text="@string/login_button_login_text"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputPassword" />
+
+    <include
+        android:id="@+id/viewLoader"
+        layout="@layout/view_loader"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

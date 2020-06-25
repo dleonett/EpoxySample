@@ -2,6 +2,7 @@ package com.leonett.photofeed.ui.feature.login
 
 import android.content.Context
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.leonett.photofeed.App
@@ -34,14 +35,31 @@ class LoginFragment : BaseFragment() {
 
     override fun initViews(view: View) {
         btnLogin.setOnClickListener {
+            hideKeyboard()
+
             loginViewModel.login(
                 inputUsername.editText?.text.toString(),
                 inputPassword.editText?.text.toString()
             )
-            // TODO: 22/06/20 Call Instagram endpoint to check if user exists and only then navigate to Home
-            // TODO: 22/06/20 Validate inputs are not empty
-            navigateToHome()
         }
+    }
+
+    override fun observeViewModels() {
+        loginViewModel.getLoginScreenStateLiveData().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is LoginScreenState.Loading -> {
+                    viewLoader.visibility = View.VISIBLE
+                }
+                is LoginScreenState.Success -> {
+                    viewLoader.visibility = View.GONE
+                    navigateToHome()
+                }
+                is LoginScreenState.Error -> {
+                    viewLoader.visibility = View.GONE
+                    showSnackbar(btnLogin, it.message)
+                }
+            }
+        })
     }
 
     private fun navigateToHome() {

@@ -18,6 +18,8 @@ class ExploreFragment : BaseFragment() {
 
     override fun initViews(view: View) {
         btnSearch.setOnClickListener {
+            hideKeyboard()
+
             val username = inputUsername.editText?.text.toString()
             navigateToProfile(username)
         }

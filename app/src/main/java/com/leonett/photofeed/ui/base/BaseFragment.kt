@@ -1,13 +1,18 @@
 package com.leonett.photofeed.ui.base
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
+import com.leonett.photofeed.R
 
 abstract class BaseFragment : Fragment() {
 
@@ -33,9 +38,17 @@ abstract class BaseFragment : Fragment() {
         initViews(view)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        observeViewModels()
+    }
+
     abstract fun initVars()
 
     abstract fun initViews(view: View)
+
+    protected open fun observeViewModels() {}
 
     fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
@@ -43,6 +56,34 @@ abstract class BaseFragment : Fragment() {
 
     fun showToast(resId: Int) {
         showToast(getString(resId))
+    }
+
+    fun showSnackbar(view: View, resId: Int) {
+        showSnackbar(view, getString(resId))
+    }
+
+    fun showSnackbar(view: View, message: String) {
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+            .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.gray_extra_dark))
+            .show()
+    }
+
+    fun showProgressDialog(resId: Int) {
+        showProgressDialog(getString(resId))
+    }
+
+    fun showProgressDialog(message: String) {
+
+    }
+
+    fun hideKeyboard() {
+        val view = requireActivity().currentFocus
+        view?.let { v ->
+            val imm =
+                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(v.windowToken, 0)
+        }
     }
 
     fun openUrl(url: String) {

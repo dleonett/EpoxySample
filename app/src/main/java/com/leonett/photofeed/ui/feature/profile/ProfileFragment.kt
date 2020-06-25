@@ -68,13 +68,7 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        observeViewModels()
-    }
-
-    private fun observeViewModels() {
+    override fun observeViewModels() {
         profileViewModel.getProfileScreenStateLiveData().observe(viewLifecycleOwner, Observer {
             handleScreenState(it)
         })
