@@ -89,6 +89,14 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <style name="Text.Dialog" parent="TextAppearance.AppCompat">
+
+    </style>
+
+    <style name="Text.Dialog.Message">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <!-- Input -->
     <style name="Input" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -96,6 +104,12 @@
 
     <style name="Input.Normal">
         <item name="boxStrokeColor">@color/stroke_input_dark</item>
+    </style>
+
+    <!-- Progress -->
+    <style name="Progress" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTintMode">src_in</item>
+        <item name="android:indeterminateTint">@color/black</item>
     </style>
 
 </resources>
