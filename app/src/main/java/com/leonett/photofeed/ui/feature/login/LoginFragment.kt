@@ -51,7 +51,7 @@ class LoginFragment : BaseFragment() {
         loginViewModel.getLoginScreenStateLiveData().observe(viewLifecycleOwner, Observer {
             when (it) {
                 is LoginScreenState.Loading -> {
-                    loaderDialog = LoaderDialog().create(requireContext(), "Loading")
+                    loaderDialog = LoaderDialog().create(requireContext(), getString(R.string.login_loading_message))
                     loaderDialog.show()
                 }
                 is LoginScreenState.Success -> {

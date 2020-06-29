@@ -5,7 +5,10 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:gravity="center"
-    android:padding="@dimen/spacing_sm">
+    android:paddingStart="@dimen/spacing_sm"
+    android:paddingTop="@dimen/spacing_xs"
+    android:paddingEnd="@dimen/spacing_sm"
+    android:paddingBottom="@dimen/spacing_xs">
 
     <ProgressBar
         android:id="@+id/progressLoader"

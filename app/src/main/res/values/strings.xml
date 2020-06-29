@@ -24,4 +24,5 @@
     <string name="login_button_login_text">Login</string>
     <string name="explore_search_button">Search</string>
     <string name="account_sign_out_button">Sign out</string>
+    <string name="login_loading_message">Signing in…</string>
 </resources>
