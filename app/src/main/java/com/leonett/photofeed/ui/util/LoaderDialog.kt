@@ -6,13 +6,13 @@ import android.view.View
 import android.widget.TextView
 import com.leonett.photofeed.R
 
-class LoaderDialog {
+object LoaderDialog {
 
     private var txtMessage: TextView? = null
 
-    fun create(context: Context, message: String?): Dialog {
+    fun create(context: Context, message: String?, cancelable: Boolean): Dialog {
         val dialog = Dialog(context)
-        dialog.setCancelable(false)
+        dialog.setCancelable(cancelable)
         dialog.setContentView(R.layout.dialog_loader)
 
         txtMessage = dialog.findViewById(R.id.txtLoader)

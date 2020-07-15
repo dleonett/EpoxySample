@@ -1,6 +1,5 @@
 package com.leonett.photofeed.ui.feature.login
 
-import android.app.Dialog
 import android.content.Context
 import android.view.View
 import androidx.lifecycle.Observer
@@ -9,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import com.leonett.photofeed.App
 import com.leonett.photofeed.R
 import com.leonett.photofeed.ui.base.BaseFragment
-import com.leonett.photofeed.ui.util.LoaderDialog
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
@@ -19,7 +17,6 @@ class LoginFragment : BaseFragment() {
     lateinit var loginViewModelFactory: LoginViewModelFactory
 
     private lateinit var loginViewModel: LoginViewModel
-    private lateinit var loaderDialog: Dialog
 
     override val layoutId: Int
         get() = R.layout.fragment_login
@@ -51,15 +48,14 @@ class LoginFragment : BaseFragment() {
         loginViewModel.getLoginScreenStateLiveData().observe(viewLifecycleOwner, Observer {
             when (it) {
                 is LoginScreenState.Loading -> {
-                    loaderDialog = LoaderDialog().create(requireContext(), getString(R.string.login_loading_message))
-                    loaderDialog.show()
+                    showProgressDialog(R.string.login_loading_message)
                 }
                 is LoginScreenState.Success -> {
-                    loaderDialog.dismiss()
+                    hideProgressDialog()
                     navigateToHome()
                 }
                 is LoginScreenState.Error -> {
-                    loaderDialog.dismiss()
+                    hideProgressDialog()
                     showSnackbar(btnLogin, it.message)
                 }
             }

@@ -1,5 +1,6 @@
 package com.leonett.photofeed.ui.base
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -13,10 +14,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.leonett.photofeed.R
+import com.leonett.photofeed.ui.util.LoaderDialog
 
 abstract class BaseFragment : Fragment() {
 
     protected abstract val layoutId: Int
+    private var loaderDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,12 +72,17 @@ abstract class BaseFragment : Fragment() {
             .show()
     }
 
-    fun showProgressDialog(resId: Int) {
-        showProgressDialog(getString(resId))
+    fun showProgressDialog(resId: Int, cancelable: Boolean = false) {
+        showProgressDialog(getString(resId), cancelable)
     }
 
-    fun showProgressDialog(message: String) {
+    fun showProgressDialog(message: String, cancelable: Boolean = false) {
+        loaderDialog = LoaderDialog.create(requireContext(), message, cancelable)
+        loaderDialog?.show()
+    }
 
+    fun hideProgressDialog() {
+        loaderDialog?.dismiss()
     }
 
     fun hideKeyboard() {
