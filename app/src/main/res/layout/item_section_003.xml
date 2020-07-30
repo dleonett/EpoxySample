@@ -38,7 +38,9 @@
                 android:layout_marginEnd="@dimen/spacing_sm"
                 android:textAppearance="@style/Text.PostInfoTitle"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/txtDescription"
                 app:layout_constraintTop_toBottomOf="@id/imgCover"
+                app:layout_constraintVertical_chainStyle="packed"
                 tools:text="Everyone just loves the consistency" />
 
             <TextView

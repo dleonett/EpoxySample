@@ -14,7 +14,9 @@
         android:layout_marginTop="@dimen/spacing_sm"
         android:layout_marginEnd="@dimen/spacing_sm"
         android:textAppearance="@style/Text.Header"
+        app:layout_constraintBottom_toTopOf="@id/btnAction"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="Title" />
 
     <Button
