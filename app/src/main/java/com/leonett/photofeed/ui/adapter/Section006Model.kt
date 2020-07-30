@@ -21,7 +21,14 @@ abstract class Section006Model : EpoxyModelWithHolder<Section006Holder>() {
 
     override fun bind(holder: Section006Holder) {
         section?.let {
-            holder.gridLayoutManager.spanCount = it.spanCount
+            holder.controller = SectionsController()
+
+            holder.rvMain.apply {
+                holder.gridLayoutManager = GridLayoutManager(context, it.spanCount)
+                layoutManager = holder.gridLayoutManager
+                setController(holder.controller)
+            }
+
             holder.controller.setData(it.sections, showIndicators, parentLevel + 1)
             holder.txtSectionIndicator.visibility = if (showIndicators) View.VISIBLE else View.GONE
         }
@@ -38,17 +45,5 @@ class Section006Holder : EpoxyHolder() {
     override fun bindView(itemView: View) {
         rvMain = itemView.findViewById(R.id.rvMain)
         txtSectionIndicator = itemView.findViewById(R.id.txtSectionIndicator)
-
-        setupRecyclerView()
-    }
-
-    private fun setupRecyclerView() {
-        controller = SectionsController()
-
-        rvMain.apply {
-            gridLayoutManager = GridLayoutManager(context, 1)
-            layoutManager = gridLayoutManager
-            setController(controller)
-        }
     }
 }

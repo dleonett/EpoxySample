@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_xxs"
         android:layout_marginEnd="@dimen/spacing_xxs"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true">
 
