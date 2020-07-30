@@ -18,10 +18,14 @@ abstract class Section003Model : EpoxyModelWithHolder<Section003Holder>() {
     @EpoxyAttribute
     var section: Section003? = null
 
+    @EpoxyAttribute
+    var showIndicators: Boolean = false
+
     override fun bind(holder: Section003Holder) {
         section?.let {
             holder.txtTitle.text = it.title
             holder.txtDescription.text = it.description
+            holder.txtSectionIndicator.visibility = if (showIndicators) View.VISIBLE else View.GONE
 
             Glide.with(holder.imgCover.context)
                 .load(it.imageUrl)
@@ -36,10 +40,12 @@ class Section003Holder : EpoxyHolder() {
     lateinit var txtTitle: TextView
     lateinit var txtDescription: TextView
     lateinit var imgCover: ImageView
+    lateinit var txtSectionIndicator: TextView
 
     override fun bindView(itemView: View) {
         txtTitle = itemView.findViewById(R.id.txtTitle)
         txtDescription = itemView.findViewById(R.id.txtDescription)
         imgCover = itemView.findViewById(R.id.imgCover)
+        txtSectionIndicator = itemView.findViewById(R.id.txtSectionIndicator)
     }
 }

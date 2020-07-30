@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:padding="@dimen/spacing_sm">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginEnd="@dimen/spacing_sm"
         android:textAppearance="@style/Text.PostInfoTitle"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,11 +20,25 @@
 
     <TextView
         android:id="@+id/txtDescription"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginEnd="@dimen/spacing_sm"
+        android:layout_marginBottom="@dimen/spacing_sm"
         android:textAppearance="@style/Text.Profile.Description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtTitle"
         tools:text="With ghees drink soy sauce. " />
+
+    <TextView
+        android:id="@+id/txtSectionIndicator"
+        style="@style/Text.SectionIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="001"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

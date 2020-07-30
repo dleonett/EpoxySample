@@ -97,6 +97,15 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Text.SectionIndicator">
+        <item name="android:textSize">@dimen/font_size_24</item>
+        <item name="android:textColor">#F00</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:gravity">end|top</item>
+        <item name="android:paddingEnd">@dimen/spacing_xxxs</item>
+        <item name="android:background">@drawable/bg_section_indicator</item>
+    </style>
+
     <!-- Input -->
     <style name="Input" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 

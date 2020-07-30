@@ -3,18 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingStart="@dimen/spacing_sm"
-    android:paddingTop="@dimen/spacing_xxxs"
-    android:paddingEnd="@dimen/spacing_sm"
-    android:paddingBottom="@dimen/spacing_xxxs">
+    android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/btnAction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginTop="@dimen/spacing_xxxs"
+        android:layout_marginEnd="@dimen/spacing_sm"
+        android:layout_marginBottom="@dimen/spacing_xxxs"
         android:minHeight="@dimen/button_size_xlg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Click me" />
+
+    <TextView
+        android:id="@+id/txtSectionIndicator"
+        style="@style/Text.SectionIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="005"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

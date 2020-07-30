@@ -40,9 +40,12 @@
             android:layout_weight="1"
             android:text="@string/about_screen_title" />
 
-        <View
-            android:layout_width="@dimen/top_bar_size"
-            android:layout_height="@dimen/top_bar_size" />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchIndicators"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/top_bar_size"
+            android:text="Sections indicator"
+            app:switchPadding="@dimen/spacing_xxs" />
 
     </LinearLayout>
 

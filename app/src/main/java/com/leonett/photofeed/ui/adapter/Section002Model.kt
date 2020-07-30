@@ -16,10 +16,14 @@ abstract class Section002Model : EpoxyModelWithHolder<Section002Holder>() {
     @EpoxyAttribute
     var section: Section002? = null
 
+    @EpoxyAttribute
+    var showIndicators: Boolean = false
+
     override fun bind(holder: Section002Holder) {
         section?.let {
             holder.txtTitle.text = it.title
             holder.btnAction.text = it.buttonText
+            holder.txtSectionIndicator.visibility = if (showIndicators) View.VISIBLE else View.GONE
         }
     }
 }
@@ -28,9 +32,11 @@ class Section002Holder : EpoxyHolder() {
 
     lateinit var txtTitle: TextView
     lateinit var btnAction: Button
+    lateinit var txtSectionIndicator: TextView
 
     override fun bindView(itemView: View) {
         txtTitle = itemView.findViewById(R.id.txtTitle)
         btnAction = itemView.findViewById(R.id.btnAction)
+        txtSectionIndicator = itemView.findViewById(R.id.txtSectionIndicator)
     }
 }

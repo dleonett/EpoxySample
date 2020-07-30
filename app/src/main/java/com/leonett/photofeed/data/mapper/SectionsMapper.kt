@@ -49,7 +49,16 @@ class SectionDeserializer(private val sectionTypeElementName: String) :
         val sectionTypeElement = sectionObject[sectionTypeElementName]
         val sectionType =
             sectionTypeRegistry[sectionTypeElement.asString] ?: return null
-        return gson.fromJson(sectionObject, sectionType)
+        val section = gson.fromJson(sectionObject, sectionType)
+
+        if (sectionObject.has("sections")) {
+            section.sections =
+                SectionsMapper().getSectionsList(
+                    sectionObject.getAsJsonArray("sections").toString()
+                )
+        }
+
+        return section
     }
 
     init {
@@ -59,6 +68,8 @@ class SectionDeserializer(private val sectionTypeElementName: String) :
 
 open class Section {
     val code: String? = null
+    val spanCount: Int = 1
+    var sections: List<Section>? = null
 }
 
 class Section001 : Section() {
@@ -86,6 +97,5 @@ class Section005 : Section() {
 }
 
 class Section006 : Section() {
-    val spanCount: Int = 1
-    val sections: List<Section>? = null
+
 }
