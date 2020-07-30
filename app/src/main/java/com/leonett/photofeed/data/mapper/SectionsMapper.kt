@@ -15,6 +15,7 @@ class SectionsMapper {
         deserializer.registerBarnType("004", Section004::class.java)
         deserializer.registerBarnType("005", Section005::class.java)
         deserializer.registerBarnType("006", Section006::class.java)
+        deserializer.registerBarnType("007", Section007::class.java)
 
         return (GsonBuilder()
             .registerTypeAdapter(Section::class.java, deserializer)
@@ -68,6 +69,7 @@ class SectionDeserializer(private val sectionTypeElementName: String) :
 
 open class Section {
     val code: String? = null
+    val id: Int? = null
     val spanCount: Int = 1
     var sections: List<Section>? = null
 }
@@ -96,6 +98,6 @@ class Section005 : Section() {
     val buttonText: String? = null
 }
 
-class Section006 : Section() {
+class Section006 : Section()
 
-}
+class Section007 : Section()

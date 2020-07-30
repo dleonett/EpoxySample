@@ -1,54 +1,62 @@
-package com.leonett.photofeed.ui.feature.account
+package com.leonett.photofeed.ui.adapter
 
-import com.airbnb.epoxy.Typed2EpoxyController
+import com.airbnb.epoxy.Typed3EpoxyController
 import com.leonett.photofeed.data.mapper.*
-import com.leonett.photofeed.ui.adapter.*
 
-class SectionsController : Typed2EpoxyController<List<Section>, Boolean>() {
+class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() {
 
-    override fun buildModels(sections: List<Section>, showIndicators: Boolean) {
+    override fun buildModels(sections: List<Section>, showIndicators: Boolean, level: Int) {
         sections.forEachIndexed { index, section ->
             when (section) {
                 is Section001 -> {
                     section001 {
-                        id("${section.code} $index")
+                        id(section.code + section.id + level)
                         section(section)
                         showIndicators(showIndicators)
                     }
                 }
                 is Section002 -> {
                     section002 {
-                        id("${section.code} $index")
+                        id(section.code + section.id + level)
                         section(section)
                         showIndicators(showIndicators)
                     }
                 }
                 is Section003 -> {
                     section003 {
-                        id("${section.code} $index")
+                        id(section.code + section.id + level)
                         section(section)
                         showIndicators(showIndicators)
                     }
                 }
                 is Section004 -> {
                     section004 {
-                        id("${section.code} $index")
+                        id(section.code + section.id + level)
                         section(section)
                         showIndicators(showIndicators)
                     }
                 }
                 is Section005 -> {
                     section005 {
-                        id("${section.code} $index")
+                        id(section.code + section.id + level)
                         section(section)
                         showIndicators(showIndicators)
                     }
                 }
                 is Section006 -> {
                     section006 {
-                        id("${section.code} $index")
+                        id(section.code + section.id + level)
                         section(section)
                         showIndicators(showIndicators)
+                        parentLevel(level)
+                    }
+                }
+                is Section007 -> {
+                    section007 {
+                        id(section.code + section.id + level)
+                        section(section)
+                        showIndicators(showIndicators)
+                        parentLevel(level)
                     }
                 }
             }
