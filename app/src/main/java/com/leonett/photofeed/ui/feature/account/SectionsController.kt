@@ -4,7 +4,7 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.leonett.photofeed.data.mapper.*
 import com.leonett.photofeed.ui.adapter.*
 
-class AboutController : TypedEpoxyController<List<Section>>() {
+class SectionsController : TypedEpoxyController<List<Section>>() {
 
     override fun buildModels(sections: List<Section>) {
         sections.forEachIndexed { index, section ->
@@ -35,6 +35,12 @@ class AboutController : TypedEpoxyController<List<Section>>() {
                 }
                 is Section005 -> {
                     section005 {
+                        id("${section.code} $index")
+                        section(section)
+                    }
+                }
+                is Section006 -> {
+                    section006 {
                         id("${section.code} $index")
                         section(section)
                     }
