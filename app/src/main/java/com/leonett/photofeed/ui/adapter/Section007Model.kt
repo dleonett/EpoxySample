@@ -33,6 +33,10 @@ abstract class Section007Model : EpoxyModelWithHolder<Section007Holder>() {
             holder.txtSectionIndicator.visibility = if (showIndicators) View.VISIBLE else View.GONE
         }
     }
+
+    override fun getSpanSize(totalSpanCount: Int, position: Int, itemCount: Int): Int {
+        return section?.spanSize ?: 1
+    }
 }
 
 class Section007Holder : EpoxyHolder() {

@@ -101,7 +101,9 @@ class Section005 : Section() {
 
 class Section006 : Section()
 
-class Section007 : Section()
+class Section007 : Section() {
+    val spanSize: Int = 1
+}
 
 class Section008 : Section() {
     val imageUrl: String? = null
