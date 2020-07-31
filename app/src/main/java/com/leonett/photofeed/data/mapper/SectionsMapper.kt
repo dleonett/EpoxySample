@@ -70,7 +70,6 @@ class SectionDeserializer(private val sectionTypeElementName: String) :
 
 open class Section {
     val code: String? = null
-    val id: Int? = null
     val spanCount: Int = 1
     var sections: List<Section>? = null
 }
