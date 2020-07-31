@@ -15,6 +15,7 @@
             android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:textAppearance="@style/Text.Header"
             tools:text="Title" />
 
@@ -22,6 +23,7 @@
             android:id="@+id/btnAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             tools:text="Click me" />
 
     </LinearLayout>
