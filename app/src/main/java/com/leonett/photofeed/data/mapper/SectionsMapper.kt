@@ -2,6 +2,7 @@ package com.leonett.photofeed.data.mapper
 
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
+import com.leonett.photofeed.util.RuntimeTypeAdapterFactory
 import java.lang.reflect.Type
 
 
@@ -27,13 +28,35 @@ class SectionsMapper {
             ) as List<Section?>).filterNotNull()
     }
 
+    fun getSectionsListAlt(responseJson: String): List<Section> {
+        val sectionsAdapterFactory =
+            RuntimeTypeAdapterFactory.of(Section::class.java, "code", true)
+                .registerSubtype(Section001::class.java, "001")
+                .registerSubtype(Section002::class.java, "002")
+                .registerSubtype(Section003::class.java, "003")
+                .registerSubtype(Section004::class.java, "004")
+                .registerSubtype(Section005::class.java, "005")
+                .registerSubtype(Section006::class.java, "006")
+                .registerSubtype(Section007::class.java, "007")
+                .registerSubtype(Section008::class.java, "008")
+
+        return (GsonBuilder()
+            .registerTypeAdapterFactory(sectionsAdapterFactory)
+            .create()
+            .fromJson(
+                responseJson,
+                object : TypeToken<List<Section?>>() {}.type
+            ) as List<Section?>).filterNotNull()
+    }
+
 }
 
 class SectionDeserializer(private val sectionTypeElementName: String) :
     JsonDeserializer<Section?> {
 
-    private val gson: Gson = Gson()
-    private val sectionTypeRegistry: MutableMap<String, Class<out Section>>
+    private val gson = Gson()
+    private val sectionsMapper = SectionsMapper()
+    private val sectionTypeRegistry: MutableMap<String, Class<out Section>> = HashMap()
 
     fun registerBarnType(
         sectionTypeName: String,
@@ -55,16 +78,12 @@ class SectionDeserializer(private val sectionTypeElementName: String) :
 
         if (sectionObject.has("sections")) {
             section.sections =
-                SectionsMapper().getSectionsList(
+                sectionsMapper.getSectionsList(
                     sectionObject.getAsJsonArray("sections").toString()
                 )
         }
 
         return section
-    }
-
-    init {
-        sectionTypeRegistry = HashMap()
     }
 }
 
