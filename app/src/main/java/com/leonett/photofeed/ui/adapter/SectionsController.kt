@@ -76,6 +76,38 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         actionListener(actionListener)
                     }
                 }
+                is Section009 -> {
+                    section009 {
+                        id(section.toString())
+                        section(section)
+                        showIndicators(showIndicators)
+                        actionListener(actionListener)
+                    }
+                }
+                is Section010 -> {
+                    section010 {
+                        id(section.toString())
+                        section(section)
+                        showIndicators(showIndicators)
+                        actionListener(actionListener)
+                    }
+                }
+                is Section011 -> {
+                    section011 {
+                        id(section.toString())
+                        section(section)
+                        showIndicators(showIndicators)
+                        actionListener(actionListener)
+                    }
+                }
+                is Section012 -> {
+                    section012 {
+                        id(section.toString())
+                        section(section)
+                        showIndicators(showIndicators)
+                        actionListener(actionListener)
+                    }
+                }
             }
         }
     }

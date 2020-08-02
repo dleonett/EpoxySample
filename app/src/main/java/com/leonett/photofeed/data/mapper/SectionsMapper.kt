@@ -18,6 +18,10 @@ class SectionsMapper {
         deserializer.registerBarnType("006", Section006::class.java)
         deserializer.registerBarnType("007", Section007::class.java)
         deserializer.registerBarnType("008", Section008::class.java)
+        deserializer.registerBarnType("009", Section009::class.java)
+        deserializer.registerBarnType("010", Section010::class.java)
+        deserializer.registerBarnType("011", Section011::class.java)
+        deserializer.registerBarnType("012", Section012::class.java)
 
         return (GsonBuilder()
             .registerTypeAdapter(Section::class.java, deserializer)
@@ -39,6 +43,10 @@ class SectionsMapper {
                 .registerSubtype(Section006::class.java, "006")
                 .registerSubtype(Section007::class.java, "007")
                 .registerSubtype(Section008::class.java, "008")
+                .registerSubtype(Section009::class.java, "009")
+                .registerSubtype(Section010::class.java, "010")
+                .registerSubtype(Section011::class.java, "011")
+                .registerSubtype(Section012::class.java, "012")
 
         return (GsonBuilder()
             .registerTypeAdapterFactory(sectionsAdapterFactory)
@@ -140,6 +148,23 @@ class Section007 : Section() {
 }
 
 class Section008 : Section() {
+    val imageUrl: String? = null
+    val title: String? = null
+}
+
+class Section009 : Section()
+
+class Section010 : Section() {
+    val description: String? = null
+    val imageUrl: String? = null
+}
+
+class Section011 : Section() {
+    val imageUrl: String? = null
+    val title: String? = null
+}
+
+class Section012 : Section() {
     val imageUrl: String? = null
     val title: String? = null
 }
