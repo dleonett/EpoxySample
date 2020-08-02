@@ -19,9 +19,13 @@ abstract class Section007Model : EpoxyModelWithHolder<Section007Holder>() {
     @EpoxyAttribute
     var parentLevel: Int = 0
 
+    @EpoxyAttribute
+    var actionListener: SectionsController.ActionListener? = null
+
     override fun bind(holder: Section007Holder) {
         section?.let {
             holder.controller = SectionsController()
+            holder.controller.actionListener = actionListener
 
             holder.rvMain.apply {
                 holder.gridLayoutManager = GridLayoutManager(context, it.spanCount)
@@ -45,9 +49,11 @@ class Section007Holder : EpoxyHolder() {
     lateinit var controller: SectionsController
     lateinit var gridLayoutManager: GridLayoutManager
     lateinit var txtSectionIndicator: TextView
+    lateinit var container: View
 
     override fun bindView(itemView: View) {
         rvMain = itemView.findViewById(R.id.rvMain)
         txtSectionIndicator = itemView.findViewById(R.id.txtSectionIndicator)
+        container = itemView
     }
 }

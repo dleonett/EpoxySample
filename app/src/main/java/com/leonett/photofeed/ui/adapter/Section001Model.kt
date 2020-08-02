@@ -18,6 +18,9 @@ abstract class Section001Model : EpoxyModelWithHolder<Section001Holder>() {
     @EpoxyAttribute
     var showIndicators: Boolean = false
 
+    @EpoxyAttribute
+    var actionListener: SectionsController.ActionListener? = null
+
     override fun bind(holder: Section001Holder) {
         section?.let {
             holder.txtTitle.text = it.title

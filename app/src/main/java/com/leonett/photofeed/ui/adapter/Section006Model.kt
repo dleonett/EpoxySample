@@ -19,9 +19,13 @@ abstract class Section006Model : EpoxyModelWithHolder<Section006Holder>() {
     @EpoxyAttribute
     var parentLevel: Int = 0
 
+    @EpoxyAttribute
+    var actionListener: SectionsController.ActionListener? = null
+
     override fun bind(holder: Section006Holder) {
         section?.let {
             holder.controller = SectionsController()
+            holder.controller.actionListener = actionListener
 
             holder.rvMain.apply {
                 holder.gridLayoutManager = GridLayoutManager(context, it.spanCount)

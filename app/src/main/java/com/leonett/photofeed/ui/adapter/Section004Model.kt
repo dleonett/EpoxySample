@@ -21,6 +21,9 @@ abstract class Section004Model : EpoxyModelWithHolder<Section004Holder>() {
     @EpoxyAttribute
     var showIndicators: Boolean = false
 
+    @EpoxyAttribute
+    var actionListener: SectionsController.ActionListener? = null
+
     override fun bind(holder: Section004Holder) {
         section?.let {
             Glide.with(holder.imgCover.context)

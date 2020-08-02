@@ -5,68 +5,82 @@ import com.leonett.photofeed.data.mapper.*
 
 class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() {
 
+    var actionListener: ActionListener? = null
+
     override fun buildModels(sections: List<Section>, showIndicators: Boolean, level: Int) {
         sections.forEachIndexed { index, section ->
             when (section) {
                 is Section001 -> {
                     section001 {
-                        id(section.code + index + level)
+                        id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
+                        actionListener(actionListener)
                     }
                 }
                 is Section002 -> {
                     section002 {
-                        id(section.code + index + level)
+                        id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
+                        actionListener(actionListener)
                     }
                 }
                 is Section003 -> {
                     section003 {
-                        id(section.code + index + level)
+                        id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
+                        actionListener(actionListener)
                     }
                 }
                 is Section004 -> {
                     section004 {
-                        id(section.code + index + level)
+                        id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
+                        actionListener(actionListener)
                     }
                 }
                 is Section005 -> {
                     section005 {
-                        id(section.code + index + level)
+                        id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
+                        actionListener(actionListener)
                     }
                 }
                 is Section006 -> {
                     section006 {
-                        id(section.code + index + level)
+                        id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
                         parentLevel(level)
+                        actionListener(actionListener)
                     }
                 }
                 is Section007 -> {
                     section007 {
-                        id(section.code + index + level)
+                        id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
                         parentLevel(level)
+                        actionListener(actionListener)
                     }
                 }
                 is Section008 -> {
                     section008 {
-                        id(section.code + index + level)
+                        id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
+                        actionListener(actionListener)
                     }
                 }
             }
         }
+    }
+
+    interface ActionListener {
+        fun onActionPerformed(action: Section.Action)
     }
 }

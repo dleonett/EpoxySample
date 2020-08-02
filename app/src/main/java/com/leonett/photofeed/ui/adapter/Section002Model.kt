@@ -19,12 +19,25 @@ abstract class Section002Model : EpoxyModelWithHolder<Section002Holder>() {
     @EpoxyAttribute
     var showIndicators: Boolean = false
 
+    @EpoxyAttribute
+    var actionListener: SectionsController.ActionListener? = null
+
     override fun bind(holder: Section002Holder) {
         section?.let {
             holder.txtTitle.text = it.title
             holder.btnAction.text = it.buttonText
             holder.txtSectionIndicator.visibility = if (showIndicators) View.VISIBLE else View.GONE
+
+            it.action?.let {
+                holder.btnAction.setOnClickListener { _ ->
+                    actionListener?.onActionPerformed(it)
+                }
+            }
         }
+    }
+
+    override fun unbind(holder: Section002Holder) {
+        holder.btnAction.setOnClickListener(null)
     }
 }
 

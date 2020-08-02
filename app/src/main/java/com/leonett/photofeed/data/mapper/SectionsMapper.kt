@@ -91,6 +91,22 @@ open class Section {
     val code: String? = null
     val spanCount: Int = 1
     var sections: List<Section>? = null
+    var action: Action? = null
+
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
+
+    class Action(
+        val type: String,
+        val uri: String?,
+        val code: String?
+    ) {
+        companion object {
+            const val TYPE_ACTION = "action"
+            const val TYPE_DEEPLINK = "deeplink"
+        }
+    }
 }
 
 class Section001 : Section() {
