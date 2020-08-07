@@ -15,7 +15,7 @@
     <color name="gray">#9F9F9F</color>
     <color name="gray_30_percent">#4D9F9F9F</color>
     <color name="gray_light">#C9C9C9</color>
-    <color name="gray_extra_light">#F4F5F5</color>
+    <color name="gray_extra_light">#EAEAEA</color>
     <color name="white">#FFFFFF</color>
     <color name="white_30_percent">#4DFFFFFF</color>
     <color name="white_70_percent">#B3FFFFFF</color>
