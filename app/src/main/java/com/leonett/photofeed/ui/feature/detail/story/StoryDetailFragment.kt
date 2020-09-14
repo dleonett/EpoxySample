@@ -33,10 +33,14 @@ class StoryDetailFragment : BaseFragment() {
 
     override fun initViews(view: View) {
         Glide.with(imgAvatar.context)
-            .load(story?.imgUrl)
+            .load(story?.avatarUrl)
             .apply(RequestOptions().circleCrop())
             .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
             .into(imgAvatar)
+
+        Glide.with(imgAvatar.context)
+            .load(story?.imgUrl)
+            .into(imgContent)
 
         txtUsername.text = story?.username
 

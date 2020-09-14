@@ -7,9 +7,10 @@
     android:background="@color/black">
 
     <ImageView
-        android:id="@+id/imgStory"
+        android:id="@+id/imgContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/imgAvatar"

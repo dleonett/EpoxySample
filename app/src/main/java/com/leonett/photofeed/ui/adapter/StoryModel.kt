@@ -22,7 +22,7 @@ abstract class StoryModel : EpoxyModelWithHolder<StoryHolder>() {
 
     override fun bind(holder: StoryHolder) {
         Glide.with(holder.imgPicture.context)
-                .load(story?.imgUrl)
+                .load(story?.avatarUrl)
                 .apply(RequestOptions().circleCrop())
                 .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
                 .into(holder.imgPicture)
