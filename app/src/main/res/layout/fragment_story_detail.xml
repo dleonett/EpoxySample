@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_sm"
         android:layout_marginEnd="@dimen/spacing_sm"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar"

@@ -36,7 +36,7 @@ data class Story(
                 Story(
                     2,
                     "https://i.pravatar.cc/150?img=8",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/250/1080/1920",
                     "firechef",
                     2
                 )
@@ -45,7 +45,7 @@ data class Story(
                 Story(
                     3,
                     "https://i.pravatar.cc/150?img=9",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/251/1080/1920",
                     "snickerscarrion",
                     3
                 )
@@ -54,7 +54,7 @@ data class Story(
                 Story(
                     4,
                     "https://i.pravatar.cc/150?img=10",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/252/1080/1920",
                     "ditchmontie",
                     4
                 )
@@ -63,7 +63,7 @@ data class Story(
                 Story(
                     5,
                     "https://i.pravatar.cc/150?img=11",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/253/1080/1920",
                     "elfcoffee",
                     5
                 )
@@ -72,7 +72,7 @@ data class Story(
                 Story(
                     6,
                     "https://i.pravatar.cc/150?img=12",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/254/1080/1920",
                     "scrabblebased",
                     6
                 )
@@ -81,7 +81,7 @@ data class Story(
                 Story(
                     7,
                     "https://i.pravatar.cc/150?img=13",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/351/1080/1920",
                     "taskspiritual",
                     7
                 )
@@ -90,7 +90,7 @@ data class Story(
                 Story(
                     8,
                     "https://i.pravatar.cc/150?img=14",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/352/1080/1920",
                     "rnacaddie",
                     8
                 )
@@ -99,7 +99,7 @@ data class Story(
                 Story(
                     9,
                     "https://i.pravatar.cc/150?img=15",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/333/1080/1920",
                     "repeatsavior",
                     9
                 )
@@ -108,7 +108,7 @@ data class Story(
                 Story(
                     10,
                     "https://i.pravatar.cc/150?img=16",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/345/1080/1920",
                     "superstoreaspen",
                     10
                 )
@@ -117,7 +117,7 @@ data class Story(
                 Story(
                     11,
                     "https://i.pravatar.cc/150?img=17",
-                    "https://picsum.photos/id/350/1080/1920",
+                    "https://picsum.photos/id/320/1080/1920",
                     "nosegrab",
                     11
                 )
