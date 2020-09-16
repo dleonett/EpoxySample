@@ -26,7 +26,7 @@
         style="@style/Text.StoryDetailUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_xs"
+        android:layout_marginStart="@dimen/spacing_xxs"
         android:layout_marginEnd="@dimen/spacing_sm"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
