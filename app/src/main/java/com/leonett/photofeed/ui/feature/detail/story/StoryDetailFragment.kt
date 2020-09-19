@@ -1,11 +1,18 @@
 package com.leonett.photofeed.ui.feature.detail.story
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Story
 import com.leonett.photofeed.ui.base.BaseFragment
@@ -32,15 +39,46 @@ class StoryDetailFragment : BaseFragment() {
     }
 
     override fun initViews(view: View) {
-        Glide.with(imgAvatar.context)
-            .load(story?.avatarUrl)
-            .apply(RequestOptions().circleCrop())
-            .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
-            .into(imgAvatar)
+        sharedElementEnterTransition = TransitionInflater.from(context)
+            .inflateTransition(R.transition.shared_element_transition)
+
+        postponeEnterTransition()
+
+        imgAvatar.transitionName = story?.username
 
         Glide.with(imgAvatar.context)
+            .load("https://api.adorable.io/avatars/200/${story?.username}")
+            .dontAnimate()
+            .apply(RequestOptions().circleCrop())
+            .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    startPostponedEnterTransition()
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    startPostponedEnterTransition()
+                    return false
+                }
+            })
+            .into(imgAvatar)
+
+        /*Glide.with(imgContent.context)
             .load(story?.imgUrl)
-            .into(imgContent)
+            .transition(withCrossFade())
+            .into(imgContent)*/
 
         txtUsername.text = story?.username
 

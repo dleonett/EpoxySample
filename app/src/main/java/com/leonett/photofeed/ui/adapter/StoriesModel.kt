@@ -22,8 +22,8 @@ abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>(),
         holder.storiesController.setData(stories)
     }
 
-    override fun onStoryClick(story: Story) {
-        onInteractionListener?.onStoryClick(story)
+    override fun onStoryClick(story: Story, view: View) {
+        onInteractionListener?.onStoryClick(story, view)
     }
 
     override fun shouldSaveViewState(): Boolean {
@@ -31,7 +31,7 @@ abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>(),
     }
 
     interface OnInteractionListener {
-        fun onStoryClick(story: Story)
+        fun onStoryClick(story: Story, view: View)
     }
 }
 

@@ -17,18 +17,21 @@ abstract class StoryModel : EpoxyModelWithHolder<StoryHolder>() {
 
     @EpoxyAttribute
     var story: Story? = null
+
     @EpoxyAttribute
     var itemClickListener: View.OnClickListener? = null
 
     override fun bind(holder: StoryHolder) {
         Glide.with(holder.imgPicture.context)
-                .load(story?.avatarUrl)
-                .apply(RequestOptions().circleCrop())
-                .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
-                .into(holder.imgPicture)
+            .load("https://api.adorable.io/avatars/200/${story?.username}")
+            .apply(RequestOptions().circleCrop())
+            .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
+            .into(holder.imgPicture)
+
+        holder.imgPicture.transitionName = story?.username
+        holder.imgPicture.setOnClickListener(itemClickListener)
 
         holder.txtUsername.text = story?.username
-        holder.container.setOnClickListener(itemClickListener)
     }
 }
 

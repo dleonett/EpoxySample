@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonett.photofeed.App
@@ -44,12 +45,19 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     }
 
     private fun setupRecyclerView() {
+        postponeEnterTransition()
+
         feedController = FeedController()
         feedController.setOnItemClickListener(this)
 
         rvMain.apply {
             layoutManager = LinearLayoutManager(context)
             setController(feedController)
+            viewTreeObserver
+                .addOnPreDrawListener {
+                    startPostponedEnterTransition()
+                    true
+                }
         }
     }
 
@@ -100,10 +108,16 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
         feedViewModel.onPostShareClick(post)
     }
 
-    override fun onStoryClick(story: Story) {
+    override fun onStoryClick(story: Story, view: View) {
+        val extras = FragmentNavigatorExtras(
+            view to story.username
+        )
+
         findNavController().navigate(
             R.id.actionStoryDetail,
-            StoryDetailFragment.createArguments(story)
+            StoryDetailFragment.createArguments(story),
+            null,
+            extras
         )
     }
 
