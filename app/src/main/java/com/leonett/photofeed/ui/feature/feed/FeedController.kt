@@ -1,7 +1,8 @@
 package com.leonett.photofeed.ui.feature.feed
 
 import android.view.View
-import com.airbnb.epoxy.Typed3EpoxyController
+import com.airbnb.epoxy.*
+import com.airbnb.epoxy.carousel
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.data.model.Story
@@ -19,10 +20,18 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         loadMore: Boolean,
         isLoading: Boolean
     ) {
-        stories {
+        Carousel.setDefaultGlobalSnapHelperFactory(null)
+
+        carousel {
             id(STORIES_ID)
-            stories(feedScreenData.postsStoriesWrapper.stories)
-            onInteractionListener(this@FeedController)
+            withModelsFrom(feedScreenData.postsStoriesWrapper.stories) {
+                StoryModel_()
+                    .id(it.id)
+                    .story(it)
+                    .itemClickListener { _: View? ->
+                        onInteractionListener?.onStoryClick(it)
+                    }
+            }
         }
 
         feedScreenData.postsStoriesWrapper.posts.forEach {
@@ -104,4 +113,25 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         private const val LOAD_MORE_ID = "LOAD_MORE_ID"
         private const val LOADER_ID = "LOADER_ID"
     }
+}
+
+/** For use in the buildModels method of EpoxyController. A shortcut for creating a Carousel model, initializing it, and adding it to the controller.
+ *
+ */
+inline fun EpoxyController.carousel(modelInitializer: CarouselModelBuilder.() -> Unit) {
+    CarouselModel_().apply {
+        modelInitializer()
+    }.addTo(this)
+}
+
+/** Add models to a CarouselModel_ by transforming a list of items into EpoxyModels.
+ *
+ * @param items The items to transform to models
+ * @param modelBuilder A function that take an item and returns a new EpoxyModel for that item.
+ */
+inline fun <T> CarouselModelBuilder.withModelsFrom(
+    items: List<T>,
+    modelBuilder: (T) -> EpoxyModel<*>
+) {
+    models(items.map { modelBuilder(it) })
 }

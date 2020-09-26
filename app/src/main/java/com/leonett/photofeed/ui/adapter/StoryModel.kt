@@ -17,15 +17,16 @@ abstract class StoryModel : EpoxyModelWithHolder<StoryHolder>() {
 
     @EpoxyAttribute
     var story: Story? = null
-    @EpoxyAttribute
+
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var itemClickListener: View.OnClickListener? = null
 
     override fun bind(holder: StoryHolder) {
         Glide.with(holder.imgPicture.context)
-                .load(story?.avatarUrl)
-                .apply(RequestOptions().circleCrop())
-                .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
-                .into(holder.imgPicture)
+            .load(story?.avatarUrl)
+            .apply(RequestOptions().circleCrop())
+            .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
+            .into(holder.imgPicture)
 
         holder.txtUsername.text = story?.username
         holder.container.setOnClickListener(itemClickListener)
