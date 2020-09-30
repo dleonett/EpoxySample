@@ -37,6 +37,9 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     override fun initVars() {
         feedViewModel = ViewModelProvider(this, feedViewModelFactory)
             .get(FeedViewModel::class.java)
+
+        feedController = FeedController()
+        feedController.setOnItemClickListener(this)
     }
 
     override fun initViews(view: View) {
@@ -44,9 +47,6 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     }
 
     private fun setupRecyclerView() {
-        feedController = FeedController()
-        feedController.setOnItemClickListener(this)
-
         rvMain.apply {
             layoutManager = LinearLayoutManager(context)
             setController(feedController)

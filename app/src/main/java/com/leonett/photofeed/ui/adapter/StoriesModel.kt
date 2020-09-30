@@ -14,7 +14,7 @@ abstract class StoriesModel : EpoxyModelWithHolder<StoriesHolder>(),
     @EpoxyAttribute
     var stories: List<Story>? = null
 
-    @EpoxyAttribute
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var onInteractionListener: OnInteractionListener? = null
 
     override fun bind(holder: StoriesHolder) {

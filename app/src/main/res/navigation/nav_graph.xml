@@ -9,14 +9,15 @@
         android:id="@+id/actionProfile"
         app:destination="@id/profile_nav_graph" />
 
+    <action
+        android:id="@+id/actionStoryDetail"
+        app:destination="@id/storyDetailFragment" />
+
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.leonett.photofeed.ui.feature.feed.FeedFragment"
         android:label="Feed Fragment"
         tools:layout="@layout/fragment_feed">
-        <action
-            android:id="@+id/actionStoryDetail"
-            app:destination="@id/storyDetailFragment" />
         <deepLink app:uri="epoxysample://home/feed" />
     </fragment>
 
