@@ -3,36 +3,11 @@ package com.leonett.photofeed.data.mapper
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
 import com.leonett.photofeed.util.RuntimeTypeAdapterFactory
-import java.lang.reflect.Type
 
 
 class SectionsMapper {
 
-    fun getSectionsList(responseJson: String): List<Section> {
-        val deserializer = SectionDeserializer("code")
-        deserializer.registerBarnType("001", Section001::class.java)
-        deserializer.registerBarnType("002", Section002::class.java)
-        deserializer.registerBarnType("003", Section003::class.java)
-        deserializer.registerBarnType("004", Section004::class.java)
-        deserializer.registerBarnType("005", Section005::class.java)
-        deserializer.registerBarnType("006", Section006::class.java)
-        deserializer.registerBarnType("007", Section007::class.java)
-        deserializer.registerBarnType("008", Section008::class.java)
-        deserializer.registerBarnType("009", Section009::class.java)
-        deserializer.registerBarnType("010", Section010::class.java)
-        deserializer.registerBarnType("011", Section011::class.java)
-        deserializer.registerBarnType("012", Section012::class.java)
-
-        return (GsonBuilder()
-            .registerTypeAdapter(Section::class.java, deserializer)
-            .create()
-            .fromJson(
-                responseJson,
-                object : TypeToken<List<Section?>?>() {}.type
-            ) as List<Section?>).filterNotNull()
-    }
-
-    fun getSectionsListAlt(responseJson: String): List<Section> {
+    fun getSectionsListFromJson(jsonResponse: String): List<Section> {
         val sectionsAdapterFactory =
             RuntimeTypeAdapterFactory.of(Section::class.java, "code", true)
                 .registerSubtype(Section001::class.java, "001")
@@ -52,47 +27,11 @@ class SectionsMapper {
             .registerTypeAdapterFactory(sectionsAdapterFactory)
             .create()
             .fromJson(
-                responseJson,
+                jsonResponse,
                 object : TypeToken<List<Section?>>() {}.type
             ) as List<Section?>).filterNotNull()
     }
 
-}
-
-class SectionDeserializer(private val sectionTypeElementName: String) :
-    JsonDeserializer<Section?> {
-
-    private val gson = Gson()
-    private val sectionsMapper = SectionsMapper()
-    private val sectionTypeRegistry: MutableMap<String, Class<out Section>> = HashMap()
-
-    fun registerBarnType(
-        sectionTypeName: String,
-        sectionType: Class<out Section>
-    ) {
-        sectionTypeRegistry[sectionTypeName] = sectionType
-    }
-
-    override fun deserialize(
-        json: JsonElement,
-        typeOfT: Type?,
-        context: JsonDeserializationContext?
-    ): Section? {
-        val sectionObject = json.asJsonObject
-        val sectionTypeElement = sectionObject[sectionTypeElementName]
-        val sectionType =
-            sectionTypeRegistry[sectionTypeElement.asString] ?: return null
-        val section = gson.fromJson(sectionObject, sectionType)
-
-        if (sectionObject.has("sections")) {
-            section.sections =
-                sectionsMapper.getSectionsList(
-                    sectionObject.getAsJsonArray("sections").toString()
-                )
-        }
-
-        return section
-    }
 }
 
 open class Section {
