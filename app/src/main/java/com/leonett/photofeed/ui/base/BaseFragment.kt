@@ -32,6 +32,8 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        restoreState(savedInstanceState)
+
         return inflater.inflate(layoutId, container, false)
     }
 
@@ -44,7 +46,6 @@ abstract class BaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        restoreState(savedInstanceState)
         observeViewModels()
     }
 

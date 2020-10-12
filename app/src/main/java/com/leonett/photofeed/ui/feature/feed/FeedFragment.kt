@@ -1,12 +1,12 @@
 package com.leonett.photofeed.ui.feature.feed
 
 import android.content.Context
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.epoxy.Carousel
 import com.leonett.photofeed.App
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
@@ -49,8 +49,6 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
             layoutManager = LinearLayoutManager(context)
             setController(feedController)
         }
-
-        Carousel.setDefaultGlobalSnapHelperFactory(null)
     }
 
     override fun observeViewModels() {
@@ -114,5 +112,20 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     private fun loadMorePosts() {
         feedViewModel.loadMorePosts()
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        feedController.onSaveInstanceState(outState)
+    }
+
+    override fun restoreState(savedInstanceState: Bundle?) {
+        feedController.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        rvMain.clear()
+        super.onDestroyView()
+    }
+
 
 }

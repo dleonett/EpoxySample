@@ -19,6 +19,7 @@ class FeedController(private var onInteractionListener: OnInteractionListener? =
     ) {
         carousel {
             id(STORIES_ID)
+            paddingDp(8)
             withModelsFrom(feedScreenData.postsStoriesWrapper.stories) {
                 StoryModel_()
                     .id(it.id)
