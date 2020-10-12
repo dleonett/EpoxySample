@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.epoxy.Carousel
 import com.leonett.photofeed.App
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
@@ -21,8 +22,8 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     @Inject
     lateinit var feedViewModelFactory: FeedViewModelFactory
 
+    private val feedController = FeedController(this)
     private lateinit var feedViewModel: FeedViewModel
-    private lateinit var feedController: FeedController
 
     override val layoutId: Int
         get() = R.layout.fragment_feed
@@ -37,9 +38,6 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     override fun initVars() {
         feedViewModel = ViewModelProvider(this, feedViewModelFactory)
             .get(FeedViewModel::class.java)
-
-        feedController = FeedController()
-        feedController.setOnItemClickListener(this)
     }
 
     override fun initViews(view: View) {
@@ -51,6 +49,8 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
             layoutManager = LinearLayoutManager(context)
             setController(feedController)
         }
+
+        Carousel.setDefaultGlobalSnapHelperFactory(null)
     }
 
     override fun observeViewModels() {

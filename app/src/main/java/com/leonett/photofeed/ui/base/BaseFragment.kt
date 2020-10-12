@@ -44,12 +44,15 @@ abstract class BaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        restoreState(savedInstanceState)
         observeViewModels()
     }
 
     abstract fun initVars()
 
     abstract fun initViews(view: View)
+
+    protected open fun restoreState(savedInstanceState: Bundle?) {}
 
     protected open fun observeViewModels() {}
 

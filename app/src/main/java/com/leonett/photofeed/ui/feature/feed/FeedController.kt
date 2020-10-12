@@ -2,26 +2,21 @@ package com.leonett.photofeed.ui.feature.feed
 
 import android.view.View
 import com.airbnb.epoxy.*
-import com.airbnb.epoxy.carousel
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.data.model.Story
 import com.leonett.photofeed.ui.adapter.*
 import com.leonett.photofeed.ui.viewobject.FeedScreenData
 
-class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>(),
-    StoriesModel.OnInteractionListener,
+class FeedController(private var onInteractionListener: OnInteractionListener? = null) :
+    Typed3EpoxyController<FeedScreenData, Boolean, Boolean>(),
     PostModel.OnInteractionListener {
-
-    private var onInteractionListener: OnInteractionListener? = null
 
     override fun buildModels(
         feedScreenData: FeedScreenData,
         loadMore: Boolean,
         isLoading: Boolean
     ) {
-        Carousel.setDefaultGlobalSnapHelperFactory(null)
-
         carousel {
             id(STORIES_ID)
             withModelsFrom(feedScreenData.postsStoriesWrapper.stories) {
@@ -75,10 +70,6 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         this.onInteractionListener = onInteractionListener
     }
 
-    override fun onStoryClick(story: Story) {
-        onInteractionListener?.onStoryClick(story)
-    }
-
     override fun onPostLikeClick(post: Post) {
         onInteractionListener?.onPostLikeClick(post)
     }
@@ -113,15 +104,6 @@ class FeedController : Typed3EpoxyController<FeedScreenData, Boolean, Boolean>()
         private const val LOAD_MORE_ID = "LOAD_MORE_ID"
         private const val LOADER_ID = "LOADER_ID"
     }
-}
-
-/** For use in the buildModels method of EpoxyController. A shortcut for creating a Carousel model, initializing it, and adding it to the controller.
- *
- */
-inline fun EpoxyController.carousel(modelInitializer: CarouselModelBuilder.() -> Unit) {
-    CarouselModel_().apply {
-        modelInitializer()
-    }.addTo(this)
 }
 
 /** Add models to a CarouselModel_ by transforming a list of items into EpoxyModels.
