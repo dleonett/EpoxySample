@@ -10,28 +10,34 @@
         android:id="@+id/imgContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
-    <ImageView
-        android:id="@+id/imgAvatar"
-        android:layout_width="@dimen/story_detail_avatar_size"
-        android:layout_height="@dimen/story_detail_avatar_size"
-        android:layout_margin="@dimen/spacing_sm"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/txtUsername"
-        style="@style/Text.StoryDetailUsername"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_xxs"
-        android:layout_marginEnd="@dimen/spacing_sm"
-        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@id/imgAvatar"
-        tools:text="username" />
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_story_header_shadow"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="@dimen/story_detail_avatar_size"
+            android:layout_height="@dimen/story_detail_avatar_size"
+            android:layout_margin="@dimen/spacing_sm"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/txtUsername"
+            style="@style/Text.StoryDetailUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_sm"
+            tools:text="username" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
