@@ -45,6 +45,10 @@ class PostsLocalSource @Inject constructor(private val db: AppDatabase) {
         return db.usersDao().getUserObservable(userId)
     }
 
+    fun getPostByIdAsObservable(postId: String): Flow<Post> {
+        return db.postsDao().getPostByIdAsObservable(postId)
+    }
+
     suspend fun updatePostLike(postId: String, likedByMe: Boolean, likes: Int) {
         db.postsDao().updateLike(postId, likedByMe, likes)
     }
@@ -68,6 +72,9 @@ interface PostsDao {
 
     @Query("SELECT * FROM Post")
     fun getAllAsObservable(): Flow<List<Post>>
+
+    @Query("SELECT * FROM Post WHERE id = :postId")
+    fun getPostByIdAsObservable(postId: String): Flow<Post>
 
     @Query("UPDATE post SET likedByMe = :likedByMe, likes = :likes WHERE id = :postId")
     suspend fun updateLike(postId: String, likedByMe: Boolean, likes: Int)

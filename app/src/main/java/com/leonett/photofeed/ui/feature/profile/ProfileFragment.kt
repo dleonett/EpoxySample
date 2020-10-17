@@ -21,7 +21,7 @@ import javax.inject.Inject
 class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener {
 
     @Inject
-    lateinit var feedViewModelFactory: ProfileViewModelFactory
+    lateinit var profileViewModelFactory: ProfileViewModelFactory
 
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileController: ProfileController
@@ -39,7 +39,7 @@ class ProfileFragment : BaseFragment(), ProfileController.OnInteractionListener 
     }
 
     override fun initVars() {
-        profileViewModel = ViewModelProvider(this, feedViewModelFactory)
+        profileViewModel = ViewModelProvider(this, profileViewModelFactory)
             .get(ProfileViewModel::class.java)
 
         arguments?.let {

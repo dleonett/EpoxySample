@@ -82,6 +82,10 @@ class PostsRepository @Inject constructor(
         return postsLocalSource.getPostsByUserObservable(userId)
     }
 
+    fun getPostByIdAsObservable(postId: String): Flow<Post> {
+        return postsLocalSource.getPostByIdAsObservable(postId)
+    }
+
     suspend fun populateData() {
         postsLocalSource.insertPosts(Post.generateDummyList())
         postsLocalSource.insertStories(Story.generateDummyList())

@@ -9,6 +9,7 @@ import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.data.model.PostsStoriesWrapper
 import com.leonett.photofeed.ui.viewobject.FeedScreenData
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +20,6 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
     private var screenStateMutableLiveData: MutableLiveData<FeedScreenState> = MutableLiveData()
 
     init {
-        observePostsAndStories()
-
         viewModelScope.launch {
             postsRepository.populateData()
         }
@@ -56,12 +55,14 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
         }
     }
 
-    private fun observePostsAndStories() {
+    fun onViewCreated() {
         viewModelScope.launch {
-            postsRepository.getPostAndStoriesObservable().collect { result ->
-                postsStoriesWrapper = result
-                showSuccessStatus()
-            }
+            postsRepository.getPostAndStoriesObservable()
+                .distinctUntilChanged()
+                .collect { result ->
+                    postsStoriesWrapper = result
+                    showSuccessStatus()
+                }
         }
     }
 

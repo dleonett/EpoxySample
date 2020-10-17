@@ -1,11 +1,16 @@
 package com.leonett.photofeed.ui.feature.detail.story
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Story
 import com.leonett.photofeed.ui.base.BaseFragment
@@ -38,8 +43,30 @@ class StoryDetailFragment : BaseFragment() {
             .apply(RequestOptions().placeholder(R.drawable.placeholder_image_circle))
             .into(imgAvatar)
 
-        Glide.with(imgAvatar.context)
+        Glide.with(imgContent.context)
             .load(story?.imgUrl)
+            .addListener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    progressLoader.visibility = View.GONE
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    progressLoader.visibility = View.GONE
+                    return false
+                }
+            })
             .into(imgContent)
 
         txtUsername.text = story?.username

@@ -42,6 +42,8 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
 
     override fun initViews(view: View) {
         setupRecyclerView()
+
+        feedViewModel.onViewCreated()
     }
 
     private fun setupRecyclerView() {

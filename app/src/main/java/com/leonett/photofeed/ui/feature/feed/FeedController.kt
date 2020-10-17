@@ -67,10 +67,6 @@ class FeedController(private var onInteractionListener: OnInteractionListener? =
         }
     }
 
-    fun setOnItemClickListener(onInteractionListener: OnInteractionListener) {
-        this.onInteractionListener = onInteractionListener
-    }
-
     override fun onPostLikeClick(post: Post) {
         onInteractionListener?.onPostLikeClick(post)
     }
