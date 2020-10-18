@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.User
-import com.leonett.photofeed.ui.util.prettyCount
+import com.leonett.photofeed.util.prettyCount
 import org.apache.commons.lang3.StringEscapeUtils
 
 @EpoxyModelClass(layout = R.layout.item_profile_header)

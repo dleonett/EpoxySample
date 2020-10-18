@@ -16,8 +16,8 @@
 
     <ProgressBar
         android:id="@+id/progressLoader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_size_sm"
+        android:layout_height="@dimen/button_size_sm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

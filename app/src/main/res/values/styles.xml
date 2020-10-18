@@ -84,6 +84,37 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Text.Conversation" parent="TextAppearance.AppCompat">
+
+    </style>
+
+    <style name="Text.Conversation.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="Text.Conversation.Subtitle">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="Text.Conversation.Date">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="Text.TopBar" parent="TextAppearance.AppCompat">
+
+    </style>
+
+    <style name="Text.TopBar.Title">
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.TopBar.Subtitle">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
     <style name="Text.Footer">
         <item name="android:textSize">@dimen/font_size_14</item>
         <item name="android:textColor">@color/gray</item>

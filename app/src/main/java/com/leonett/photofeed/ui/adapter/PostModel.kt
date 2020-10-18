@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.ui.util.DoubleClickListener
-import com.leonett.photofeed.ui.util.formatWithSeparators
+import com.leonett.photofeed.util.formatWithSeparators
 
 @EpoxyModelClass(layout = R.layout.item_post)
 abstract class PostModel : EpoxyModelWithHolder<PostHolder>() {

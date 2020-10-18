@@ -72,9 +72,18 @@
 
         <fragment
             android:id="@+id/chatFragment"
-            android:name="com.leonett.photofeed.ui.feature.inbox.ChatFragment"
+            android:name="com.leonett.photofeed.ui.feature.inbox.conversation.ChatFragment"
             android:label="Chat Fragment"
             tools:layout="@layout/fragment_chat">
+            <argument
+                android:name="conversationId"
+                app:argType="string" />
+            <argument
+                android:name="userDisplayName"
+                app:argType="string" />
+            <argument
+                android:name="username"
+                app:argType="string" />
             <deepLink app:uri="epoxysample://home/inbox/chat" />
         </fragment>
 
