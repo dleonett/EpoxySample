@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,8 +15,12 @@ import com.leonett.photofeed.data.model.Conversation
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.feature.inbox.conversation.ChatFragment
 import kotlinx.android.synthetic.main.fragment_inbox.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
 
     @Inject
@@ -39,6 +43,8 @@ class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
     override fun initVars() {
         inboxViewModel = ViewModelProvider(this, inboxViewModelFactory)
             .get(InboxViewModel::class.java)
+
+        inboxViewModel.initialize()
     }
 
     override fun initViews(view: View) {
@@ -63,13 +69,16 @@ class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
     }
 
     override fun observeViewModels() {
-        inboxViewModel.getScreenStateLiveData().observe(viewLifecycleOwner, Observer {
-            handleScreenState(it)
-        })
+        inboxViewModel.state
+            .onEach { state -> handleScreenState(state) }
+            .launchIn(lifecycleScope)
     }
 
     private fun handleScreenState(state: InboxScreenState) {
         when (state) {
+            is InboxScreenState.Idle -> {
+                // Do nothing
+            }
             is InboxScreenState.Loading -> {
                 inboxController.setData(state.conversations, true)
                 progressLoader.visibility = View.VISIBLE

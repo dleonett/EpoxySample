@@ -1,5 +1,6 @@
 package com.leonett.photofeed.ui.adapter
 
+import android.text.format.DateUtils
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,7 +13,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Conversation
 import com.leonett.photofeed.util.toDate
-import com.leonett.photofeed.util.toShortFormat
 
 @EpoxyModelClass(layout = R.layout.item_conversation)
 abstract class ConversationModel : EpoxyModelWithHolder<ConversationHolder>() {
@@ -33,7 +33,12 @@ abstract class ConversationModel : EpoxyModelWithHolder<ConversationHolder>() {
 
             holder.txtTitle.text = it.user.displayName
             holder.txtSubtitle.text = it.lastMessage?.body
-            holder.txtDate.text = it.lastMessage?.timestamp?.toDate()?.toShortFormat()
+            holder.txtDate.text =
+                DateUtils.getRelativeTimeSpanString(
+                    it.lastMessage?.timestamp?.toDate()?.time ?: 0,
+                    System.currentTimeMillis(),
+                    DateUtils.MINUTE_IN_MILLIS
+                )
             holder.container.setOnClickListener(itemClickListener)
         }
     }

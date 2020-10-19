@@ -111,6 +111,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Text.TopBar.Title.Small">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Text.TopBar.Subtitle">
         <item name="android:textSize">@dimen/font_size_14</item>
     </style>
