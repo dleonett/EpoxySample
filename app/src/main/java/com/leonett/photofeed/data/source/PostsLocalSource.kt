@@ -55,7 +55,7 @@ class PostsLocalSource @Inject constructor(private val db: AppDatabase) {
 
 }
 
-@Database(entities = [Post::class, Story::class, User::class], version = 1)
+@Database(entities = [Post::class, Story::class, User::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun postsDao(): PostsDao
     abstract fun storiesDao(): StoriesDao

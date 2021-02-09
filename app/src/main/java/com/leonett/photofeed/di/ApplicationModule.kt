@@ -37,6 +37,7 @@ class ApplicationModule(private val applicationContext: Context) {
     }
 
     @Provides
+    @AppScope
     fun provideAppDataBase(): AppDatabase {
         return Room.databaseBuilder(
             applicationContext,

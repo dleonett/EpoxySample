@@ -23,6 +23,15 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
         viewModelScope.launch {
             postsRepository.populateData()
         }
+
+        viewModelScope.launch {
+            postsRepository.getPostAndStoriesObservable()
+                .distinctUntilChanged()
+                .collect { result ->
+                    postsStoriesWrapper = result
+                    showSuccessStatus()
+                }
+        }
     }
 
     private fun showLoadingStatus() {
@@ -52,17 +61,6 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
             } catch (error: Throwable) {
                 showErrorStatus(error.message)
             }
-        }
-    }
-
-    fun onViewCreated() {
-        viewModelScope.launch {
-            postsRepository.getPostAndStoriesObservable()
-                .distinctUntilChanged()
-                .collect { result ->
-                    postsStoriesWrapper = result
-                    showSuccessStatus()
-                }
         }
     }
 
