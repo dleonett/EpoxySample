@@ -76,6 +76,19 @@ abstract class BaseFragment : Fragment() {
             .show()
     }
 
+    fun showPersistentSnackbar(
+        view: View,
+        message: String,
+        actionText: String,
+        actionListener: () -> Unit
+    ) {
+        val snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE)
+            .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.gray_extra_dark))
+            .setAction(actionText) { actionListener() }
+            .show()
+    }
+
     fun showProgressDialog(resId: Int, cancelable: Boolean = false) {
         showProgressDialog(getString(resId), cancelable)
     }
