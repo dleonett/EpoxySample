@@ -15,13 +15,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.leonett.photofeed.ui.compose.constants.Dimens
 
 @Composable
 fun Header(title: String) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(48.dp)
+            .height(Dimens.TOOLBAR_HEIGHT)
     ) {
         Text(
             text = title,

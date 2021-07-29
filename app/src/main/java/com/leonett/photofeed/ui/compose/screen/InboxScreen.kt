@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.leonett.photofeed.data.model.Conversation
+import com.leonett.photofeed.ui.compose.constants.Dimens
 import com.leonett.photofeed.ui.compose.widget.Conversation
 import com.leonett.photofeed.ui.compose.widget.ContainerWithHeader
 import com.leonett.photofeed.ui.feature.inbox.InboxScreenState
@@ -38,7 +39,7 @@ fun InboxScreen(
                 ) {
                     CircularProgressIndicator(
                         modifier = Modifier
-                            .size(48.dp)
+                            .size(Dimens.LOADER_BASIC_SIZE)
                             .align(Alignment.Center)
                     )
                 }
