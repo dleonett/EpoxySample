@@ -159,6 +159,17 @@ data class User(
 
             return items
         }
+
+        fun mock() = User(
+            "1",
+            "awhilesuccessful",
+            "Tillman Veum",
+            "Upstairs is not the inward shame of the monkey.",
+            "https://i.pravatar.cc/150?img=7",
+            1,
+            100,
+            150
+        )
     }
 
 }

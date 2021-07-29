@@ -51,6 +51,84 @@ class InboxViewModel : ViewModel() {
                 ),
                 Conversation(
                     "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
+                ),
+                Conversation(
+                    "5", users[4], Message("5", "See you!", "2020-05-10 18:00:00", me, users[4])
                 )
             )
 

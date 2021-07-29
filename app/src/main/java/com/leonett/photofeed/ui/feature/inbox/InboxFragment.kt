@@ -2,17 +2,15 @@ package com.leonett.photofeed.ui.feature.inbox
 
 import android.content.Context
 import android.view.View
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
+import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonett.photofeed.App
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Conversation
 import com.leonett.photofeed.ui.base.BaseFragment
+import com.leonett.photofeed.ui.compose.screen.InboxScreen
 import com.leonett.photofeed.ui.feature.inbox.conversation.ChatFragment
 import kotlinx.android.synthetic.main.fragment_inbox.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,8 +25,6 @@ class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
     lateinit var inboxViewModelFactory: InboxViewModelFactory
 
     lateinit var inboxViewModel: InboxViewModel
-
-    private val inboxController = InboxController(this)
 
     override val layoutId: Int
         get() = R.layout.fragment_inbox
@@ -48,24 +44,7 @@ class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
     }
 
     override fun initViews(view: View) {
-        setupRecyclerView()
-    }
-
-    private fun setupRecyclerView() {
-        rvMain.apply {
-            layoutManager = LinearLayoutManager(context)
-            setController(inboxController)
-
-            val dividerItemDecoration =
-                DividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
-            dividerItemDecoration.setDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.item_divider
-                )!!
-            )
-            addItemDecoration(dividerItemDecoration)
-        }
+        // no-op
     }
 
     override fun observeViewModels() {
@@ -75,21 +54,9 @@ class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
     }
 
     private fun handleScreenState(state: InboxScreenState) {
-        when (state) {
-            is InboxScreenState.Idle -> {
-                // Do nothing
-            }
-            is InboxScreenState.Loading -> {
-                inboxController.setData(state.conversations, true)
-                progressLoader.visibility = View.VISIBLE
-            }
-            is InboxScreenState.Success -> {
-                inboxController.setData(state.conversations, false)
-                progressLoader.visibility = View.GONE
-            }
-            else -> {
-                inboxController.setData(null, false)
-                progressLoader.visibility = View.GONE
+        (view as ComposeView).setContent {
+            InboxScreen(state = state) {
+                navigateToChat(it)
             }
         }
     }
