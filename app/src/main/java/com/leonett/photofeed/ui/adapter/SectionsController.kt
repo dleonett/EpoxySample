@@ -15,7 +15,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section002 -> {
@@ -23,7 +23,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section003 -> {
@@ -31,7 +31,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section004 -> {
@@ -39,7 +39,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section005 -> {
@@ -47,7 +47,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section006 -> {
@@ -56,7 +56,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         section(section)
                         showIndicators(showIndicators)
                         parentLevel(level)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section007 -> {
@@ -65,7 +65,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         section(section)
                         showIndicators(showIndicators)
                         parentLevel(level)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section008 -> {
@@ -73,7 +73,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section009 -> {
@@ -81,7 +81,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section010 -> {
@@ -89,7 +89,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section011 -> {
@@ -97,7 +97,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
                 is Section012 -> {
@@ -105,7 +105,7 @@ class SectionsController : Typed3EpoxyController<List<Section>, Boolean, Int>() 
                         id(section.toString())
                         section(section)
                         showIndicators(showIndicators)
-                        actionListener(actionListener)
+                        actionListener(this@SectionsController.actionListener)
                     }
                 }
             }

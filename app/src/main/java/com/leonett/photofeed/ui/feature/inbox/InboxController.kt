@@ -14,7 +14,7 @@ class InboxController(private var onInteractionListener: OnInteractionListener? 
                     id(CONVERSATION_ID + conversation.id)
                     conversation(conversation)
                     itemClickListener { _ ->
-                        onInteractionListener?.onConversationClick(conversation)
+                        this@InboxController.onInteractionListener?.onConversationClick(conversation)
                     }
                 }
             }

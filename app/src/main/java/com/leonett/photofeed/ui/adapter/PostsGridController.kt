@@ -14,7 +14,7 @@ class PostsGridController : TypedEpoxyController<List<Post>>() {
                 id(POST_ID + it.id)
                 post(it)
                 itemClickListener { _: View? ->
-                    onInteractionListener?.onPostClick(it)
+                    this@PostsGridController.onInteractionListener?.onPostClick(it)
                 }
             }
         }

@@ -25,7 +25,7 @@ class FeedController(private var onInteractionListener: OnInteractionListener? =
                     .id(it.id)
                     .story(it)
                     .itemClickListener { _: View? ->
-                        onInteractionListener?.onStoryClick(it)
+                        this@FeedController.onInteractionListener?.onStoryClick(it)
                     }
             }
         }
@@ -35,7 +35,7 @@ class FeedController(private var onInteractionListener: OnInteractionListener? =
                 id(POST_HEADER_ID + it.id)
                 post(it)
                 itemClickListener { _: View? ->
-                    onInteractionListener?.onPostAvatarClick(it)
+                    this@FeedController.onInteractionListener?.onPostAvatarClick(it)
                 }
             }
 
@@ -55,7 +55,7 @@ class FeedController(private var onInteractionListener: OnInteractionListener? =
                 loadMore {
                     id(LOAD_MORE_ID)
                     itemClickListener { _: View? ->
-                        onInteractionListener?.onLoadMoreClick()
+                        this@FeedController.onInteractionListener?.onLoadMoreClick()
                     }
                 }
             } else {
