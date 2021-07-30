@@ -1,7 +1,6 @@
 package com.leonett.photofeed.ui.feature.feed
 
 import android.content.Context
-import android.os.Bundle
 import android.view.View
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
@@ -16,12 +15,11 @@ import com.leonett.photofeed.ui.feature.detail.story.StoryDetailFragment
 import com.leonett.photofeed.ui.feature.profile.ProfileFragment
 import javax.inject.Inject
 
-class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
+class FeedFragment : BaseFragment() {
 
     @Inject
     lateinit var feedViewModelFactory: FeedViewModelFactory
 
-    private val feedController = FeedController(this)
     private lateinit var feedViewModel: FeedViewModel
 
     override val layoutId: Int
@@ -57,52 +55,42 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
         }
     }
 
-    override fun onPostAvatarClick(post: Post) {
+    private fun onPostAvatarClick(post: Post) {
         findNavController().navigate(
             R.id.actionProfile,
             ProfileFragment.createArguments(post.userId.toInt())
         )
     }
 
-    override fun onPostLikeClick(post: Post) {
+    private fun onPostLikeClick(post: Post) {
         feedViewModel.onPostLikeClick(post)
     }
 
-    override fun onPostLikeDoubleClick(post: Post) {
+    private fun onPostLikeDoubleClick(post: Post) {
         feedViewModel.onPostLikeDoubleClick(post)
     }
 
-    override fun onPostCommentClick(post: Post) {
+    private fun onPostCommentClick(post: Post) {
         feedViewModel.onPostCommentClick(post)
     }
 
-    override fun onPostShareClick(post: Post) {
+    private fun onPostShareClick(post: Post) {
         feedViewModel.onPostShareClick(post)
     }
 
-    override fun onStoryClick(story: Story) {
+    private fun onStoryClick(story: Story) {
         findNavController().navigate(
             R.id.actionStoryDetail,
             StoryDetailFragment.createArguments(story)
         )
     }
 
-    override fun onLoadMoreClick() {
+    private fun onLoadMoreClick() {
         loadMorePosts()
     }
 
     private fun loadMorePosts() {
         feedViewModel.loadMorePosts()
     }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        feedController.onSaveInstanceState(outState)
-    }
-
-    override fun restoreState(savedInstanceState: Bundle?) {
-        feedController.onRestoreInstanceState(savedInstanceState)
-    }
-
 
 }

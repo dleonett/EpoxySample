@@ -12,14 +12,13 @@ import com.leonett.photofeed.data.model.Conversation
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.compose.screen.InboxScreen
 import com.leonett.photofeed.ui.feature.inbox.conversation.ChatFragment
-import kotlinx.android.synthetic.main.fragment_inbox.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
+class InboxFragment : BaseFragment() {
 
     @Inject
     lateinit var inboxViewModelFactory: InboxViewModelFactory
@@ -27,7 +26,7 @@ class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
     lateinit var inboxViewModel: InboxViewModel
 
     override val layoutId: Int
-        get() = R.layout.fragment_inbox
+        get() = R.layout.fragment_compose
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -59,10 +58,6 @@ class InboxFragment : BaseFragment(), InboxController.OnInteractionListener {
                 navigateToChat(it)
             }
         }
-    }
-
-    override fun onConversationClick(conversation: Conversation) {
-        navigateToChat(conversation)
     }
 
     private fun navigateToChat(conversation: Conversation) {

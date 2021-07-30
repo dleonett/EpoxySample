@@ -4,18 +4,12 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.ui.adapter.PostModel
 import com.leonett.photofeed.ui.adapter.post
-import com.leonett.photofeed.ui.adapter.postHeader
 
 class PostDetailController(private var onInteractionListener: OnInteractionListener? = null) :
     TypedEpoxyController<Post>(), PostModel.OnInteractionListener {
 
     override fun buildModels(post: Post?) {
         post?.let {
-            postHeader {
-                id(POST_HEADER_ID)
-                post(it)
-            }
-
             post {
                 id(it.id)
                 post(it)

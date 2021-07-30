@@ -3,15 +3,13 @@ package com.leonett.photofeed.ui.compose.widget
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -69,9 +67,16 @@ fun PostHeader(post: Post) {
 fun PostContent(post: Post) {
     Box(modifier = Modifier.fillMaxWidth()) {
         Image(
-            painter = rememberImagePainter(post.imgUrl),
+            painter = rememberImagePainter(
+                data = post.imgUrl,
+                builder = {
+                    placeholder(R.color.gray_light)
+                }),
             contentDescription = "Content",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1F),
+            contentScale = ContentScale.Crop
         )
     }
 }
@@ -92,7 +97,7 @@ fun PostFooter(post: Post) {
                     .size(32.dp)
                     .padding(4.dp)
             )
-            Spacer(modifier = Modifier.width(2.dp))
+            Spacer(modifier = Modifier.width(4.dp))
             Image(
                 painter = painterResource(id = R.drawable.ic_comment),
                 contentDescription = "Comment button",
@@ -100,7 +105,7 @@ fun PostFooter(post: Post) {
                     .size(32.dp)
                     .padding(4.dp)
             )
-            Spacer(modifier = Modifier.width(2.dp))
+            Spacer(modifier = Modifier.width(4.dp))
             Image(
                 painter = painterResource(id = R.drawable.ic_send),
                 contentDescription = "Share button",

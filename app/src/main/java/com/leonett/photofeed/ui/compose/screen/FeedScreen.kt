@@ -23,16 +23,14 @@ fun FeedScreen(state: FeedScreenState = FeedScreenState.Idle) {
                 // Do nothing
             }
             is FeedScreenState.Loading -> {
-                LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
+                LazyColumn(contentPadding = PaddingValues(bottom = 8.dp)) {
                     items(state.feedScreenData.postsStoriesWrapper.posts) { post ->
                         Post(post)
                     }
                 }
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
-                ) {
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)) {
                     CircularProgressIndicator(
                         modifier = Modifier
                             .size(Dimens.LOADER_BASIC_SIZE)
@@ -41,7 +39,7 @@ fun FeedScreen(state: FeedScreenState = FeedScreenState.Idle) {
                 }
             }
             is FeedScreenState.Success -> {
-                LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
+                LazyColumn(contentPadding = PaddingValues(bottom = 8.dp)) {
                     items(state.feedScreenData.postsStoriesWrapper.posts) { post ->
                         Post(post)
                     }
