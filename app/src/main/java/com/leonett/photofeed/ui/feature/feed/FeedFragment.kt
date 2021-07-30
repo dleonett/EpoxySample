@@ -3,18 +3,17 @@ package com.leonett.photofeed.ui.feature.feed
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
+import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonett.photofeed.App
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.data.model.Story
 import com.leonett.photofeed.ui.base.BaseFragment
+import com.leonett.photofeed.ui.compose.screen.FeedScreen
 import com.leonett.photofeed.ui.feature.detail.story.StoryDetailFragment
 import com.leonett.photofeed.ui.feature.profile.ProfileFragment
-import kotlinx.android.synthetic.main.fragment_feed.*
 import javax.inject.Inject
 
 class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
@@ -26,7 +25,7 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     private lateinit var feedViewModel: FeedViewModel
 
     override val layoutId: Int
-        get() = R.layout.fragment_feed
+        get() = R.layout.fragment_compose
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,36 +40,19 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
     }
 
     override fun initViews(view: View) {
-        setupRecyclerView()
-    }
-
-    private fun setupRecyclerView() {
-        rvMain.apply {
-            layoutManager = LinearLayoutManager(context)
-            setController(feedController)
-        }
+        // no-op
     }
 
     override fun observeViewModels() {
-        feedViewModel.getScreenStateLiveData().observe(viewLifecycleOwner, Observer { state ->
+        feedViewModel.getScreenStateLiveData().observe(viewLifecycleOwner, { state ->
             handleScreenState(state)
         })
     }
 
     private fun handleScreenState(state: FeedScreenState?) {
         state?.let {
-            when (it) {
-                is FeedScreenState.Loading -> {
-                    feedController.setData(it.feedScreenData, it.loadMore, true)
-                }
-                is FeedScreenState.Success -> {
-                    feedController.setData(it.feedScreenData, it.loadMore, false)
-                }
-                is FeedScreenState.Error -> {
-                    feedController.setData(it.feedScreenData, it.loadMore, false)
-
-                    showToast("Error")
-                }
+            (view as ComposeView).setContent {
+                FeedScreen(it)
             }
         }
     }
@@ -120,11 +102,6 @@ class FeedFragment : BaseFragment(), FeedController.OnInteractionListener {
 
     override fun restoreState(savedInstanceState: Bundle?) {
         feedController.onRestoreInstanceState(savedInstanceState)
-    }
-
-    override fun onDestroyView() {
-        rvMain.clear()
-        super.onDestroyView()
     }
 
 

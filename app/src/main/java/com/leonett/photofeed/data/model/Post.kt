@@ -200,6 +200,20 @@ data class Post(
 
             return items
         }
+
+        fun mock() = Post(
+            "1",
+            "https://picsum.photos/id/1011/1000/1000",
+            "https://picsum.photos/id/1011/1000/1000",
+            "Let\'s take a ride 🛶🛶🛶",
+            "https://i.pravatar.cc/150?img=9",
+            null,
+            "snickerscarrion",
+            20,
+            23,
+            false,
+            "3"
+        )
     }
 
 }
