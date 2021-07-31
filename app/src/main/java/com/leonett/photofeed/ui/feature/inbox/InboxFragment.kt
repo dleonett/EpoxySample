@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.View
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.leonett.photofeed.App
 import com.leonett.photofeed.R
@@ -13,8 +12,6 @@ import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.compose.screen.InboxScreen
 import com.leonett.photofeed.ui.feature.inbox.conversation.ChatFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -43,18 +40,8 @@ class InboxFragment : BaseFragment() {
     }
 
     override fun initViews(view: View) {
-        // no-op
-    }
-
-    override fun observeViewModels() {
-        inboxViewModel.state
-            .onEach { state -> handleScreenState(state) }
-            .launchIn(lifecycleScope)
-    }
-
-    private fun handleScreenState(state: InboxScreenState) {
         (view as ComposeView).setContent {
-            InboxScreen(state = state) {
+            InboxScreen(inboxViewModel) {
                 navigateToChat(it)
             }
         }

@@ -28,9 +28,12 @@ fun FeedScreen(state: FeedScreenState = FeedScreenState.Idle) {
                         Post(post)
                     }
                 }
-                Box(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)) {
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                ) {
                     CircularProgressIndicator(
                         modifier = Modifier
                             .size(Dimens.LOADER_BASIC_SIZE)
