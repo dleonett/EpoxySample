@@ -11,7 +11,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.leonett.photofeed.data.model.Conversation
 import com.leonett.photofeed.ui.compose.constants.Dimens
@@ -24,7 +23,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 @Composable
 fun InboxScreen(
-    viewModel: InboxViewModel = InboxViewModel(),
+    viewModel: InboxViewModel,
     onConversationClick: ((conversation: Conversation) -> Unit)? = null
 ) {
     val state by remember(viewModel) { viewModel.state }.collectAsState()
@@ -66,11 +65,4 @@ fun InboxScreen(
             }
         }
     }
-}
-
-@ExperimentalCoroutinesApi
-@Preview(showBackground = true)
-@Composable
-fun PreviewInboxScreen() {
-    InboxScreen()
 }

@@ -1,13 +1,13 @@
 package com.leonett.photofeed.ui.feature.feed
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leonett.photofeed.data.PostsRepository
 import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.data.model.PostsStoriesWrapper
 import com.leonett.photofeed.ui.viewobject.FeedScreenData
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -17,7 +17,10 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
     ViewModel() {
 
     private var postsStoriesWrapper: PostsStoriesWrapper = PostsStoriesWrapper()
-    private var screenStateMutableLiveData: MutableLiveData<FeedScreenState> = MutableLiveData()
+
+    private val _state = MutableStateFlow<FeedScreenState>(FeedScreenState.Idle)
+    val state: StateFlow<FeedScreenState>
+        get() = _state
 
     init {
         viewModelScope.launch {
@@ -35,21 +38,18 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
     }
 
     private fun showLoadingStatus() {
-        screenStateMutableLiveData.value =
-            FeedScreenState.Loading(FeedScreenData(0, postsStoriesWrapper), false)
+        _state.value = FeedScreenState.Loading(FeedScreenData(0, postsStoriesWrapper), false)
     }
 
     private fun showSuccessStatus() {
-        screenStateMutableLiveData.value =
-            FeedScreenState.Success(
-                FeedScreenData(0, postsStoriesWrapper),
-                postsStoriesWrapper.posts.size < 11
-            )
+        _state.value = FeedScreenState.Success(
+            FeedScreenData(0, postsStoriesWrapper),
+            postsStoriesWrapper.posts.size < 11
+        )
     }
 
     private fun showErrorStatus(message: String?) {
-        screenStateMutableLiveData.value =
-            FeedScreenState.Error(FeedScreenData(0, postsStoriesWrapper), message, false)
+        _state.value = FeedScreenState.Error(FeedScreenData(0, postsStoriesWrapper), message, false)
     }
 
     private fun fetchPostsFromRemote() {
@@ -64,9 +64,6 @@ class FeedViewModel @Inject constructor(private val postsRepository: PostsReposi
         }
     }
 
-    fun getScreenStateLiveData(): LiveData<FeedScreenState> {
-        return screenStateMutableLiveData
-    }
 
     fun loadMorePosts() {
         viewModelScope.launch {

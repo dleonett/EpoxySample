@@ -6,17 +6,22 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.leonett.photofeed.ui.compose.constants.Dimens
 import com.leonett.photofeed.ui.compose.widget.ContainerWithHeader
 import com.leonett.photofeed.ui.compose.widget.Post
 import com.leonett.photofeed.ui.feature.feed.FeedScreenState
+import com.leonett.photofeed.ui.feature.feed.FeedViewModel
 
 @Composable
-fun FeedScreen(state: FeedScreenState = FeedScreenState.Idle) {
+fun FeedScreen(viewModel: FeedViewModel) {
+    val state by remember(viewModel) { viewModel.state }.collectAsState()
+
     ContainerWithHeader("Feed") {
         when (state) {
             is FeedScreenState.Idle -> {
@@ -24,7 +29,7 @@ fun FeedScreen(state: FeedScreenState = FeedScreenState.Idle) {
             }
             is FeedScreenState.Loading -> {
                 LazyColumn(contentPadding = PaddingValues(bottom = 8.dp)) {
-                    items(state.feedScreenData.postsStoriesWrapper.posts) { post ->
+                    items((state as FeedScreenState.Loading).feedScreenData.postsStoriesWrapper.posts) { post ->
                         Post(post)
                     }
                 }
@@ -43,7 +48,7 @@ fun FeedScreen(state: FeedScreenState = FeedScreenState.Idle) {
             }
             is FeedScreenState.Success -> {
                 LazyColumn(contentPadding = PaddingValues(bottom = 8.dp)) {
-                    items(state.feedScreenData.postsStoriesWrapper.posts) { post ->
+                    items((state as FeedScreenState.Success).feedScreenData.postsStoriesWrapper.posts) { post ->
                         Post(post)
                     }
                 }
@@ -53,10 +58,4 @@ fun FeedScreen(state: FeedScreenState = FeedScreenState.Idle) {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewFeedScreen() {
-    FeedScreen()
 }

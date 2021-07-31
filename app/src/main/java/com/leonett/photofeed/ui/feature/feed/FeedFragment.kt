@@ -38,20 +38,8 @@ class FeedFragment : BaseFragment() {
     }
 
     override fun initViews(view: View) {
-        // no-op
-    }
-
-    override fun observeViewModels() {
-        feedViewModel.getScreenStateLiveData().observe(viewLifecycleOwner, { state ->
-            handleScreenState(state)
-        })
-    }
-
-    private fun handleScreenState(state: FeedScreenState?) {
-        state?.let {
-            (view as ComposeView).setContent {
-                FeedScreen(it)
-            }
+        (view as ComposeView).setContent {
+            FeedScreen(feedViewModel)
         }
     }
 
