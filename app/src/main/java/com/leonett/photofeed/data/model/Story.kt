@@ -125,6 +125,14 @@ data class Story(
 
             return items
         }
+
+        fun mock() = Story(
+            1,
+            "https://i.pravatar.cc/150?img=7",
+            "https://picsum.photos/id/350/1080/1920",
+            "awhilesuccessful",
+            1
+        )
     }
 
 }

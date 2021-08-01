@@ -39,7 +39,7 @@ class FeedFragment : BaseFragment() {
 
     override fun initViews(view: View) {
         (view as ComposeView).setContent {
-            FeedScreen(feedViewModel)
+            FeedScreen(viewModel = feedViewModel, onPostLikeClick = feedViewModel::onPostLikeClick)
         }
     }
 

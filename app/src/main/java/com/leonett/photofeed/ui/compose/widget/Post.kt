@@ -1,6 +1,7 @@
 package com.leonett.photofeed.ui.compose.widget
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
@@ -23,11 +24,11 @@ import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.util.formatWithSeparators
 
 @Composable
-fun Post(post: Post) {
+fun Post(post: Post, onPostLikeClick: ((post: Post) -> Unit)? = null) {
     Column {
         PostHeader(post = post)
         PostContent(post = post)
-        PostFooter(post = post)
+        PostFooter(post = post, onPostLikeClick = onPostLikeClick)
     }
 }
 
@@ -39,7 +40,8 @@ fun PostHeader(post: Post) {
                 .padding(PaddingValues(horizontal = 16.dp, vertical = 8.dp))
         ) {
             Image(
-                painter = rememberImagePainter(post.avatarUrl),
+                painter = rememberImagePainter(post.avatarUrl,
+                    builder = { placeholder(R.drawable.placeholder_image_circle) }),
                 contentDescription = "User profile image",
                 modifier = Modifier
                     .size(36.dp)
@@ -82,7 +84,7 @@ fun PostContent(post: Post) {
 }
 
 @Composable
-fun PostFooter(post: Post) {
+fun PostFooter(post: Post, onPostLikeClick: ((post: Post) -> Unit)? = null) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -94,6 +96,7 @@ fun PostFooter(post: Post) {
                 painter = painterResource(id = likeIconRes),
                 contentDescription = "Like button",
                 modifier = Modifier
+                    .clickable { onPostLikeClick?.invoke(post) }
                     .size(32.dp)
                     .padding(4.dp)
             )
