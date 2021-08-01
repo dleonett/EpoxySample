@@ -183,7 +183,12 @@ fun PostFooter(
                 id = R.string.post_comments,
                 post.comments.formatWithSeparators()
             ),
-            style = TextStyle(fontSize = 14.sp, color = Color(0xFF9F9F9F))
+            style = TextStyle(fontSize = 14.sp, color = Color(0xFF808080))
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(
+            text = post.timeAgo,
+            style = TextStyle(fontSize = 10.sp, color = Color(0xFF808080))
         )
     }
 }

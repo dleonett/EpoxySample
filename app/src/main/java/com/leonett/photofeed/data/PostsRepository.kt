@@ -59,6 +59,7 @@ class PostsRepository @Inject constructor(
                     igUser.username,
                     it.node?.edgeLikedBy?.count ?: 0,
                     it.node?.edgeMediaToComment?.count ?: 0,
+                    "5 minutes ago",
                     false,
                     igUser.id
                 )

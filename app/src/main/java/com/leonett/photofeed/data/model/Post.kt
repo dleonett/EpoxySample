@@ -24,6 +24,7 @@ data class Post(
     var username: String?,
     var likes: Int,
     var comments: Int,
+    var timeAgo: String,
     var likedByMe: Boolean,
     var userId: String
 ) : Serializable {
@@ -43,6 +44,7 @@ data class Post(
                     "snickerscarrion",
                     20,
                     23,
+                    "5 minutes ago",
                     false,
                     "3"
                 )
@@ -58,6 +60,7 @@ data class Post(
                     "rnacaddie",
                     92,
                     16,
+                    "5 minutes ago",
                     false,
                     "8"
                 )
@@ -73,6 +76,7 @@ data class Post(
                     "ditchmontie",
                     55,
                     4,
+                    "5 minutes ago",
                     false,
                     "4"
                 )
@@ -88,6 +92,7 @@ data class Post(
                     "nosegrab",
                     15,
                     9,
+                    "5 minutes ago",
                     true,
                     "11"
                 )
@@ -103,6 +108,7 @@ data class Post(
                     "elfcoffee",
                     69,
                     0,
+                    "5 minutes ago",
                     false,
                     "5"
                 )
@@ -118,6 +124,7 @@ data class Post(
                     "elfcoffee",
                     196,
                     11,
+                    "5 minutes ago",
                     true,
                     "5"
                 )
@@ -133,6 +140,7 @@ data class Post(
                     "awhilesuccessful",
                     231,
                     7,
+                    "5 minutes ago",
                     false,
                     "1"
                 )
@@ -148,6 +156,7 @@ data class Post(
                     "ditchmontie",
                     5,
                     9,
+                    "5 minutes ago",
                     false,
                     "4"
                 )
@@ -163,6 +172,7 @@ data class Post(
                     "snickerscarrion",
                     87,
                     0,
+                    "5 minutes ago",
                     false,
                     "3"
                 )
@@ -178,6 +188,7 @@ data class Post(
                     "snickerscarrion",
                     120,
                     11,
+                    "5 minutes ago",
                     true,
                     "3"
                 )
@@ -193,6 +204,7 @@ data class Post(
                     "nosegrab",
                     56,
                     7,
+                    "5 minutes ago",
                     true,
                     "11"
                 )
@@ -211,6 +223,7 @@ data class Post(
             "snickerscarrion",
             20,
             23,
+            "5 minutes ago",
             false,
             "3"
         )
