@@ -39,7 +39,7 @@ data class Post(
                     "https://picsum.photos/id/1011/1000/1000",
                     "Let\'s take a ride 🛶🛶🛶",
                     "https://i.pravatar.cc/150?img=9",
-                    null,
+                    "Planet Earth",
                     "snickerscarrion",
                     20,
                     23,

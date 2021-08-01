@@ -28,6 +28,7 @@ fun FeedScreen(
     viewModel: FeedViewModel,
     onStoryClick: ((story: Story) -> Unit)? = null,
     onPostAvatarClick: ((post: Post) -> Unit)? = null,
+    onPostMoreClick: ((post: Post) -> Unit)? = null,
     onPostLikeClick: ((post: Post) -> Unit)? = null,
     onPostCommentClick: ((post: Post) -> Unit)? = null,
     onPostShareClick: ((post: Post) -> Unit)? = null,
@@ -53,6 +54,7 @@ fun FeedScreen(
                         Post(
                             post = post,
                             onPostAvatarClick = onPostAvatarClick,
+                            onPostMoreClick = onPostMoreClick,
                             onPostLikeClick = onPostLikeClick,
                             onPostCommentClick = onPostCommentClick,
                             onPostShareClick = onPostShareClick,
@@ -85,6 +87,7 @@ fun FeedScreen(
                         Post(
                             post = post,
                             onPostAvatarClick = onPostAvatarClick,
+                            onPostMoreClick = onPostMoreClick,
                             onPostLikeClick = onPostLikeClick,
                             onPostCommentClick = onPostCommentClick,
                             onPostShareClick = onPostShareClick,

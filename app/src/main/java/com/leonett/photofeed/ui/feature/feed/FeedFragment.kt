@@ -3,6 +3,7 @@ package com.leonett.photofeed.ui.feature.feed
 import android.content.Context
 import android.view.View
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -60,19 +61,15 @@ class FeedFragment : BaseFragment() {
         )
     }
 
+    private fun onPostMoreClick(post: Post) {
+        showToast("Options")
+    }
+
     private fun onStoryClick(story: Story) {
         findNavController().navigate(
             R.id.actionStoryDetail,
             StoryDetailFragment.createArguments(story)
         )
-    }
-
-    private fun onLoadMoreClick() {
-        loadMorePosts()
-    }
-
-    private fun loadMorePosts() {
-        feedViewModel.loadMorePosts()
     }
 
 }

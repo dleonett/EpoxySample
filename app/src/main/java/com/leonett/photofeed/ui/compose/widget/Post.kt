@@ -6,7 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,13 +33,18 @@ import com.leonett.photofeed.util.formatWithSeparators
 fun Post(
     post: Post,
     onPostAvatarClick: ((post: Post) -> Unit)? = null,
+    onPostMoreClick: ((post: Post) -> Unit)? = null,
     onPostLikeClick: ((post: Post) -> Unit)? = null,
     onPostCommentClick: ((post: Post) -> Unit)? = null,
     onPostShareClick: ((post: Post) -> Unit)? = null,
     onPostContentDoubleClick: ((post: Post) -> Unit)? = null
 ) {
     Column {
-        PostHeader(post = post, onPostAvatarClick = onPostAvatarClick)
+        PostHeader(
+            post = post,
+            onPostAvatarClick = onPostAvatarClick,
+            onPostMoreClick = onPostMoreClick
+        )
         PostContent(post = post, onPostContentDoubleClick = onPostContentDoubleClick)
         PostFooter(
             post = post, onPostLikeClick = onPostLikeClick, onPostCommentClick = onPostCommentClick,
@@ -46,36 +54,53 @@ fun Post(
 }
 
 @Composable
-fun PostHeader(post: Post, onPostAvatarClick: ((post: Post) -> Unit)? = null) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Row(
+fun PostHeader(
+    post: Post,
+    onPostAvatarClick: ((post: Post) -> Unit)? = null,
+    onPostMoreClick: ((post: Post) -> Unit)? = null
+) {
+    Row(
+        modifier = Modifier
+            .padding(PaddingValues(horizontal = 16.dp, vertical = 8.dp))
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = rememberImagePainter(post.avatarUrl,
+                builder = { placeholder(R.drawable.placeholder_image_circle) }),
+            contentDescription = "User profile image",
             modifier = Modifier
-                .padding(PaddingValues(horizontal = 16.dp, vertical = 8.dp))
+                .clickable { onPostAvatarClick?.invoke(post) }
+                .size(36.dp)
+                .clip(CircleShape)
+                .align(Alignment.CenterVertically)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Column(
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .weight(1F)
         ) {
-            Image(
-                painter = rememberImagePainter(post.avatarUrl,
-                    builder = { placeholder(R.drawable.placeholder_image_circle) }),
-                contentDescription = "User profile image",
-                modifier = Modifier
-                    .clickable { onPostAvatarClick?.invoke(post) }
-                    .size(36.dp)
-                    .clip(CircleShape)
-                    .align(Alignment.CenterVertically)
+            Text(
+                text = post.username.orEmpty(),
+                style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Bold)
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            Column(modifier = Modifier.align(Alignment.CenterVertically)) {
+            if (!post.location.isNullOrEmpty()) {
                 Text(
-                    text = post.username.orEmpty(),
-                    style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    text = post.location.orEmpty(),
+                    style = TextStyle(fontSize = 12.sp)
                 )
-                if (!post.location.isNullOrEmpty()) {
-                    Text(
-                        text = post.location.orEmpty(),
-                        style = TextStyle(fontSize = 12.sp)
-                    )
-                }
             }
         }
+        Spacer(modifier = Modifier.width(8.dp))
+        Icon(
+            imageVector = Icons.Filled.MoreVert,
+            contentDescription = "More button",
+            modifier = Modifier
+                .clickable { onPostMoreClick?.invoke(post) }
+                .size(36.dp)
+                .padding(4.dp)
+        )
     }
 }
 
