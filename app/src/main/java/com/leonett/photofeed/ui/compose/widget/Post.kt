@@ -1,7 +1,9 @@
 package com.leonett.photofeed.ui.compose.widget
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
@@ -21,19 +23,31 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
+import com.leonett.photofeed.data.model.Story
 import com.leonett.photofeed.util.formatWithSeparators
 
+@ExperimentalFoundationApi
 @Composable
-fun Post(post: Post, onPostLikeClick: ((post: Post) -> Unit)? = null) {
+fun Post(
+    post: Post,
+    onPostAvatarClick: ((post: Post) -> Unit)? = null,
+    onPostLikeClick: ((post: Post) -> Unit)? = null,
+    onPostCommentClick: ((post: Post) -> Unit)? = null,
+    onPostShareClick: ((post: Post) -> Unit)? = null,
+    onPostContentDoubleClick: ((post: Post) -> Unit)? = null
+) {
     Column {
-        PostHeader(post = post)
-        PostContent(post = post)
-        PostFooter(post = post, onPostLikeClick = onPostLikeClick)
+        PostHeader(post = post, onPostAvatarClick = onPostAvatarClick)
+        PostContent(post = post, onPostContentDoubleClick = onPostContentDoubleClick)
+        PostFooter(
+            post = post, onPostLikeClick = onPostLikeClick, onPostCommentClick = onPostCommentClick,
+            onPostShareClick = onPostShareClick
+        )
     }
 }
 
 @Composable
-fun PostHeader(post: Post) {
+fun PostHeader(post: Post, onPostAvatarClick: ((post: Post) -> Unit)? = null) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier
@@ -44,6 +58,7 @@ fun PostHeader(post: Post) {
                     builder = { placeholder(R.drawable.placeholder_image_circle) }),
                 contentDescription = "User profile image",
                 modifier = Modifier
+                    .clickable { onPostAvatarClick?.invoke(post) }
                     .size(36.dp)
                     .clip(CircleShape)
                     .align(Alignment.CenterVertically)
@@ -65,8 +80,9 @@ fun PostHeader(post: Post) {
     }
 }
 
+@ExperimentalFoundationApi
 @Composable
-fun PostContent(post: Post) {
+fun PostContent(post: Post, onPostContentDoubleClick: ((post: Post) -> Unit)? = null) {
     Box(modifier = Modifier.fillMaxWidth()) {
         Image(
             painter = rememberImagePainter(
@@ -77,21 +93,29 @@ fun PostContent(post: Post) {
             contentDescription = "Content",
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(1F),
+                .aspectRatio(1F)
+                .combinedClickable(
+                    onClick = {},
+                    onDoubleClick = { onPostContentDoubleClick?.invoke(post) }),
             contentScale = ContentScale.Crop
         )
     }
 }
 
 @Composable
-fun PostFooter(post: Post, onPostLikeClick: ((post: Post) -> Unit)? = null) {
+fun PostFooter(
+    post: Post,
+    onPostLikeClick: ((post: Post) -> Unit)? = null,
+    onPostCommentClick: ((post: Post) -> Unit)? = null,
+    onPostShareClick: ((post: Post) -> Unit)? = null,
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(PaddingValues(horizontal = 16.dp, vertical = 8.dp))
     ) {
         Row {
-            val likeIconRes = if (post.likedByMe) R.drawable.ic_like_off else R.drawable.ic_like_on
+            val likeIconRes = if (post.likedByMe) R.drawable.ic_like_on else R.drawable.ic_like_off
             Image(
                 painter = painterResource(id = likeIconRes),
                 contentDescription = "Like button",
@@ -105,6 +129,7 @@ fun PostFooter(post: Post, onPostLikeClick: ((post: Post) -> Unit)? = null) {
                 painter = painterResource(id = R.drawable.ic_comment),
                 contentDescription = "Comment button",
                 modifier = Modifier
+                    .clickable { onPostCommentClick?.invoke(post) }
                     .size(32.dp)
                     .padding(4.dp)
             )
@@ -113,6 +138,7 @@ fun PostFooter(post: Post, onPostLikeClick: ((post: Post) -> Unit)? = null) {
                 painter = painterResource(id = R.drawable.ic_send),
                 contentDescription = "Share button",
                 modifier = Modifier
+                    .clickable { onPostShareClick?.invoke(post) }
                     .size(32.dp)
                     .padding(4.dp)
             )
@@ -144,6 +170,7 @@ fun PreviewPostHeader() {
     PostHeader(Post.mock())
 }
 
+@ExperimentalFoundationApi
 @Preview(showBackground = true)
 @Composable
 fun PreviewPostContent() {

@@ -1,5 +1,6 @@
 package com.leonett.photofeed.ui.compose.screen
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -21,11 +22,16 @@ import com.leonett.photofeed.ui.compose.widget.Stories
 import com.leonett.photofeed.ui.feature.feed.FeedScreenState
 import com.leonett.photofeed.ui.feature.feed.FeedViewModel
 
+@ExperimentalFoundationApi
 @Composable
 fun FeedScreen(
     viewModel: FeedViewModel,
     onStoryClick: ((story: Story) -> Unit)? = null,
-    onPostLikeClick: ((post: Post) -> Unit)? = null
+    onPostAvatarClick: ((post: Post) -> Unit)? = null,
+    onPostLikeClick: ((post: Post) -> Unit)? = null,
+    onPostCommentClick: ((post: Post) -> Unit)? = null,
+    onPostShareClick: ((post: Post) -> Unit)? = null,
+    onPostContentDoubleClick: ((post: Post) -> Unit)? = null
 ) {
     val state by remember(viewModel) { viewModel.state }.collectAsState()
 
@@ -44,7 +50,14 @@ fun FeedScreen(
                         )
                     }
                     items(screenState.feedScreenData.postsStoriesWrapper.posts) { post ->
-                        Post(post = post, onPostLikeClick = onPostLikeClick)
+                        Post(
+                            post = post,
+                            onPostAvatarClick = onPostAvatarClick,
+                            onPostLikeClick = onPostLikeClick,
+                            onPostCommentClick = onPostCommentClick,
+                            onPostShareClick = onPostShareClick,
+                            onPostContentDoubleClick = onPostContentDoubleClick
+                        )
                     }
                 }
                 Box(
@@ -63,10 +76,20 @@ fun FeedScreen(
                 val screenState = state as FeedScreenState.Success
                 LazyColumn(contentPadding = PaddingValues(bottom = 8.dp)) {
                     item {
-                        Stories(stories = screenState.feedScreenData.postsStoriesWrapper.stories)
+                        Stories(
+                            stories = screenState.feedScreenData.postsStoriesWrapper.stories,
+                            onStoryClick = onStoryClick
+                        )
                     }
                     items(screenState.feedScreenData.postsStoriesWrapper.posts) { post ->
-                        Post(post = post, onPostLikeClick = onPostLikeClick)
+                        Post(
+                            post = post,
+                            onPostAvatarClick = onPostAvatarClick,
+                            onPostLikeClick = onPostLikeClick,
+                            onPostCommentClick = onPostCommentClick,
+                            onPostShareClick = onPostShareClick,
+                            onPostContentDoubleClick = onPostContentDoubleClick
+                        )
                     }
                 }
             }

@@ -2,6 +2,7 @@ package com.leonett.photofeed.ui.feature.feed
 
 import android.content.Context
 import android.view.View
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,7 @@ import com.leonett.photofeed.ui.feature.detail.story.StoryDetailFragment
 import com.leonett.photofeed.ui.feature.profile.ProfileFragment
 import javax.inject.Inject
 
+@ExperimentalFoundationApi
 class FeedFragment : BaseFragment() {
 
     @Inject
@@ -39,7 +41,15 @@ class FeedFragment : BaseFragment() {
 
     override fun initViews(view: View) {
         (view as ComposeView).setContent {
-            FeedScreen(viewModel = feedViewModel, onPostLikeClick = feedViewModel::onPostLikeClick)
+            FeedScreen(
+                viewModel = feedViewModel,
+                onStoryClick = this::onStoryClick,
+                onPostAvatarClick = this::onPostAvatarClick,
+                onPostLikeClick = feedViewModel::onPostLikeClick,
+                onPostCommentClick = feedViewModel::onPostCommentClick,
+                onPostShareClick = feedViewModel::onPostShareClick,
+                onPostContentDoubleClick = feedViewModel::onPostLikeDoubleClick
+            )
         }
     }
 
@@ -48,22 +58,6 @@ class FeedFragment : BaseFragment() {
             R.id.actionProfile,
             ProfileFragment.createArguments(post.userId.toInt())
         )
-    }
-
-    private fun onPostLikeClick(post: Post) {
-        feedViewModel.onPostLikeClick(post)
-    }
-
-    private fun onPostLikeDoubleClick(post: Post) {
-        feedViewModel.onPostLikeDoubleClick(post)
-    }
-
-    private fun onPostCommentClick(post: Post) {
-        feedViewModel.onPostCommentClick(post)
-    }
-
-    private fun onPostShareClick(post: Post) {
-        feedViewModel.onPostShareClick(post)
     }
 
     private fun onStoryClick(story: Story) {
