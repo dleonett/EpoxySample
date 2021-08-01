@@ -2,8 +2,8 @@ package com.leonett.photofeed.ui.feature.feed
 
 import android.content.Context
 import android.view.View
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,6 +17,7 @@ import com.leonett.photofeed.ui.feature.detail.story.StoryDetailFragment
 import com.leonett.photofeed.ui.feature.profile.ProfileFragment
 import javax.inject.Inject
 
+@ExperimentalAnimationApi
 @ExperimentalFoundationApi
 class FeedFragment : BaseFragment() {
 
@@ -46,6 +47,7 @@ class FeedFragment : BaseFragment() {
                 viewModel = feedViewModel,
                 onStoryClick = this::onStoryClick,
                 onPostAvatarClick = this::onPostAvatarClick,
+                onPostMoreClick = this::onPostMoreClick,
                 onPostLikeClick = feedViewModel::onPostLikeClick,
                 onPostCommentClick = feedViewModel::onPostCommentClick,
                 onPostShareClick = feedViewModel::onPostShareClick,
