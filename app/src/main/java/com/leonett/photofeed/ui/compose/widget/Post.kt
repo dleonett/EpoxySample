@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Post
-import com.leonett.photofeed.data.model.Story
 import com.leonett.photofeed.util.formatWithSeparators
 
 @ExperimentalFoundationApi
