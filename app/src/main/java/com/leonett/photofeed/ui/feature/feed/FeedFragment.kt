@@ -17,8 +17,7 @@ import com.leonett.photofeed.ui.feature.detail.story.StoryDetailFragment
 import com.leonett.photofeed.ui.feature.profile.ProfileFragment
 import javax.inject.Inject
 
-@ExperimentalAnimationApi
-@ExperimentalFoundationApi
+
 class FeedFragment : BaseFragment() {
 
     @Inject
@@ -41,6 +40,8 @@ class FeedFragment : BaseFragment() {
             .get(FeedViewModel::class.java)
     }
 
+    @ExperimentalFoundationApi
+    @ExperimentalAnimationApi
     override fun initViews(view: View) {
         (view as ComposeView).setContent {
             FeedScreen(

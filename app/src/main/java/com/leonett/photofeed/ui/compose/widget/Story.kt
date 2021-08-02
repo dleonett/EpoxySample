@@ -23,7 +23,7 @@ import com.leonett.photofeed.ui.compose.constants.Colors
 fun Story(story: Story, onStoryClick: ((story: Story) -> Unit)? = null) {
     Column(modifier = Modifier
         .clickable { onStoryClick?.invoke(story) }
-        .width(56.dp)) {
+        .width(64.dp)) {
         Image(
             painter = rememberImagePainter(story.avatarUrl,
                 builder = {
@@ -32,7 +32,7 @@ fun Story(story: Story, onStoryClick: ((story: Story) -> Unit)? = null) {
                 }),
             contentDescription = "User profile image",
             modifier = Modifier
-                .size(56.dp)
+                .size(64.dp)
                 .border(2.dp, Colors.ORANGE, CircleShape)
                 .padding(4.dp)
         )
