@@ -3,10 +3,12 @@ package com.leonett.photofeed.ui.compose.widget
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -22,7 +24,10 @@ import com.leonett.photofeed.ui.compose.constants.Colors
 @Composable
 fun Story(story: Story, onStoryClick: ((story: Story) -> Unit)? = null) {
     Column(modifier = Modifier
-        .clickable { onStoryClick?.invoke(story) }
+        .clickable(
+            indication = null,
+            interactionSource = remember { MutableInteractionSource() }
+        ) { onStoryClick?.invoke(story) }
         .width(64.dp)) {
         Image(
             painter = rememberImagePainter(story.avatarUrl,

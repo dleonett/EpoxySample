@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
@@ -11,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -70,10 +72,10 @@ fun PostHeader(
                 builder = { placeholder(R.drawable.placeholder_image_circle) }),
             contentDescription = "User profile image",
             modifier = Modifier
-                .clickable { onPostAvatarClick?.invoke(post) }
                 .size(36.dp)
                 .clip(CircleShape)
                 .align(Alignment.CenterVertically)
+                .clickable { onPostAvatarClick?.invoke(post) }
         )
         Spacer(modifier = Modifier.width(8.dp))
         Column(
@@ -83,7 +85,12 @@ fun PostHeader(
         ) {
             Text(
                 text = post.username.orEmpty(),
-                style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Bold),
+                modifier = Modifier
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() }
+                    ) { onPostAvatarClick?.invoke(post) }
             )
             if (!post.location.isNullOrEmpty()) {
                 Text(
@@ -97,8 +104,9 @@ fun PostHeader(
             imageVector = Icons.Filled.MoreVert,
             contentDescription = "More button",
             modifier = Modifier
-                .clickable { onPostMoreClick?.invoke(post) }
+                .clip(CircleShape)
                 .size(36.dp)
+                .clickable { onPostMoreClick?.invoke(post) }
                 .padding(4.dp)
         )
     }
@@ -119,8 +127,10 @@ fun PostContent(post: Post, onPostContentDoubleClick: ((post: Post) -> Unit)? = 
                 .fillMaxWidth()
                 .aspectRatio(1F)
                 .combinedClickable(
-                    onClick = {},
-                    onDoubleClick = { onPostContentDoubleClick?.invoke(post) }),
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() },
+                    onDoubleClick = { onPostContentDoubleClick?.invoke(post) }
+                ) {},
             contentScale = ContentScale.Crop
         )
     }
@@ -148,7 +158,7 @@ fun PostFooter(
                     .size(32.dp)
                     .padding(4.dp)
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             Image(
                 painter = painterResource(id = R.drawable.ic_comment),
                 contentDescription = "Comment button",
@@ -157,7 +167,7 @@ fun PostFooter(
                     .size(32.dp)
                     .padding(4.dp)
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             Image(
                 painter = painterResource(id = R.drawable.ic_send),
                 contentDescription = "Share button",

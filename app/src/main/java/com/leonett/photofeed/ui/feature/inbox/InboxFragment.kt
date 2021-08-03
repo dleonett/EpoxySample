@@ -10,6 +10,7 @@ import com.leonett.photofeed.R
 import com.leonett.photofeed.data.model.Conversation
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.compose.screen.InboxScreen
+import com.leonett.photofeed.ui.compose.theme.AppTheme
 import com.leonett.photofeed.ui.feature.inbox.conversation.ChatFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -41,8 +42,10 @@ class InboxFragment : BaseFragment() {
 
     override fun initViews(view: View) {
         (view as ComposeView).setContent {
-            InboxScreen(inboxViewModel) {
-                navigateToChat(it)
+            AppTheme {
+                InboxScreen(inboxViewModel) {
+                    navigateToChat(it)
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ import com.leonett.photofeed.data.model.Post
 import com.leonett.photofeed.data.model.Story
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.compose.screen.FeedScreen
+import com.leonett.photofeed.ui.compose.theme.AppTheme
 import com.leonett.photofeed.ui.feature.detail.story.StoryDetailFragment
 import com.leonett.photofeed.ui.feature.profile.ProfileFragment
 import javax.inject.Inject
@@ -44,16 +45,18 @@ class FeedFragment : BaseFragment() {
     @ExperimentalAnimationApi
     override fun initViews(view: View) {
         (view as ComposeView).setContent {
-            FeedScreen(
-                viewModel = feedViewModel,
-                onStoryClick = this::onStoryClick,
-                onPostAvatarClick = this::onPostAvatarClick,
-                onPostMoreClick = this::onPostMoreClick,
-                onPostLikeClick = feedViewModel::onPostLikeClick,
-                onPostCommentClick = feedViewModel::onPostCommentClick,
-                onPostShareClick = feedViewModel::onPostShareClick,
-                onPostContentDoubleClick = feedViewModel::onPostLikeDoubleClick
-            )
+            AppTheme {
+                FeedScreen(
+                    viewModel = feedViewModel,
+                    onStoryClick = this::onStoryClick,
+                    onPostAvatarClick = this::onPostAvatarClick,
+                    onPostMoreClick = this::onPostMoreClick,
+                    onPostLikeClick = feedViewModel::onPostLikeClick,
+                    onPostCommentClick = feedViewModel::onPostCommentClick,
+                    onPostShareClick = feedViewModel::onPostShareClick,
+                    onPostContentDoubleClick = feedViewModel::onPostLikeDoubleClick
+                )
+            }
         }
     }
 
