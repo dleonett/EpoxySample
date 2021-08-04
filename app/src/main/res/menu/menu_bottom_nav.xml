@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_search"
         android:title="Explore" />
     <item
+        android:id="@+id/hub_nav_graph"
+        android:icon="@drawable/ic_comment"
+        android:title="Hub" />
+    <item
         android:id="@+id/inbox_nav_graph"
         android:icon="@drawable/ic_send"
         android:title="Inbox" />

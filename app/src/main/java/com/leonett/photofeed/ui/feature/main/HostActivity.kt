@@ -23,6 +23,7 @@ class HostActivity : BaseActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNav.visibility =
                 if (destination.id == R.id.chatFragment
+                    || destination.id == R.id.hubFragment
                     || destination.id == R.id.storyDetailFragment
                 ) View.GONE else View.VISIBLE
         }

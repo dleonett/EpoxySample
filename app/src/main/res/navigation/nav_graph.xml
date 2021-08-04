@@ -63,7 +63,7 @@
             android:id="@+id/inboxFragment"
             android:name="com.leonett.photofeed.ui.feature.inbox.InboxFragment"
             android:label="Inbox Fragment"
-            tools:layout="@layout/fragment_inbox">
+            tools:layout="@layout/fragment_compose">
             <action
                 android:id="@+id/actionChat"
                 app:destination="@id/chatFragment" />
@@ -152,6 +152,18 @@
                 app:nullable="true" />
             <deepLink app:uri="epoxysample://home/profile/{userId}/post/{postId}" />
         </fragment>
+
+    </navigation>
+
+    <navigation
+        android:id="@+id/hub_nav_graph"
+        app:startDestination="@id/hubFragment">
+
+        <fragment
+            android:id="@+id/hubFragment"
+            android:name="com.leonett.photofeed.ui.feature.hub.HubFragment"
+            android:label="Hub Fragment"
+            tools:layout="@layout/fragment_compose" />
 
     </navigation>
 

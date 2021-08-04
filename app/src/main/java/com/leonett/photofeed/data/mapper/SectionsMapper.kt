@@ -1,7 +1,9 @@
 package com.leonett.photofeed.data.mapper
 
-import com.google.gson.*
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import com.leonett.photofeed.data.model.Contact
 import com.leonett.photofeed.util.RuntimeTypeAdapterFactory
 
 
@@ -56,6 +58,23 @@ open class Section {
     }
 }
 
+class Action(
+    val type: String,
+    val uri: String?,
+    val id: String? = null
+) {
+    companion object {
+        const val TYPE_ACTION = "action"
+        const val TYPE_DEEPLINK = "deeplink"
+    }
+}
+
+class Title(val text: String, val action: Action? = null)
+
+class RecentContactsSection(val title: Title, val viewAllTitle: Title, val contacts: List<Contact>) :
+    Section()
+
+// region Code-based sections
 class Section001 : Section() {
     val title: String? = null
     val description: String? = null
@@ -107,3 +126,4 @@ class Section012 : Section() {
     val imageUrl: String? = null
     val title: String? = null
 }
+// endregion
