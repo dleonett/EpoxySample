@@ -49,7 +49,7 @@ fun RecentContacts(
         }
         LazyRow(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             items(contacts) { contact ->
                 Contact(contact = contact, onActionClick = onActionClick)

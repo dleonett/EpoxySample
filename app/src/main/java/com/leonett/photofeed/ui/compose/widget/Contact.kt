@@ -73,7 +73,7 @@ fun Contact(contact: Contact, onActionClick: ((action: Action) -> Unit)? = null)
                 }
             }
         }
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = contact.username,
             style = TextStyle(fontSize = 12.sp, textAlign = TextAlign.Center),
