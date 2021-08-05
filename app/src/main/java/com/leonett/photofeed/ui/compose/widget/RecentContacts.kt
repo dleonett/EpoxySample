@@ -34,7 +34,7 @@ fun RecentContacts(
                 style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
                 modifier = Modifier
                     .weight(1f)
-                    .padding(PaddingValues(vertical = 16.dp))
+                    .padding(PaddingValues(vertical = 12.dp))
             )
 
             viewAllContactsTitle?.let {

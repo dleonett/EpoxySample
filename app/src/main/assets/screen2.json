@@ -11,7 +11,7 @@
           "id": 1,
           "username": "Jose Tovar",
           "avatarUrl": "https://i.pravatar.cc/150?img=13",
-          "type": "local",
+          "type": "none",
           "action": {
             "type": "deeplink",
             "uri": "test://contacts/1"
@@ -29,9 +29,9 @@
         },
         {
           "id": 3,
-          "username": "María Sanchez",
+          "username": "Mario Sanchez",
           "avatarUrl": "https://i.pravatar.cc/150?img=15",
-          "type": "local",
+          "type": "bank",
           "action": {
             "type": "deeplink",
             "uri": "test://contacts/3"
@@ -41,10 +41,50 @@
           "id": 4,
           "username": "Chloe Rojas",
           "avatarUrl": "https://i.pravatar.cc/150?img=16",
-          "type": "local",
+          "type": "none",
           "action": {
             "type": "deeplink",
             "uri": "test://contacts/4"
+          }
+        },
+        {
+          "id": 5,
+          "username": "Simón Rojas",
+          "avatarUrl": "https://i.pravatar.cc/150?img=17",
+          "type": "none",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://contacts/5"
+          }
+        },
+        {
+          "id": 6,
+          "username": "Iván Borges",
+          "avatarUrl": "https://i.pravatar.cc/150?img=18",
+          "type": "none",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://contacts/6"
+          }
+        },
+        {
+          "id": 7,
+          "username": "Adriana Rondón",
+          "avatarUrl": "https://i.pravatar.cc/150?img=19",
+          "type": "bank",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://contacts/7"
+          }
+        },
+        {
+          "id": 8,
+          "username": "Silvia Manchini",
+          "avatarUrl": "https://i.pravatar.cc/150?img=20",
+          "type": "local",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://contacts/8"
           }
         }
       ]
