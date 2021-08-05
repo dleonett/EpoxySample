@@ -7,17 +7,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.leonett.photofeed.data.mapper.Action
@@ -25,6 +20,7 @@ import com.leonett.photofeed.data.mapper.RecentContactsSection
 import com.leonett.photofeed.data.mapper.TopBar
 import com.leonett.photofeed.ui.compose.constants.Dimens
 import com.leonett.photofeed.ui.compose.widget.ActionIcon
+import com.leonett.photofeed.ui.compose.widget.FloatingActionIcon
 import com.leonett.photofeed.ui.compose.widget.RecentContacts
 import com.leonett.photofeed.ui.feature.hub.ComposableScreenData
 import com.leonett.photofeed.ui.feature.hub.HubScreenState
@@ -124,21 +120,7 @@ fun HubScreenContent(
                 ExtendedFloatingActionButton(
                     text = { Text(floatingAction.text) },
                     icon = floatingAction.iconId?.let { iconId ->
-                        {
-                            var iconSource: ImageVector? = null
-                            when (iconId) {
-                                "add" -> iconSource = Icons.Default.Add
-                                "done" -> iconSource = Icons.Default.Done
-                                "close" -> iconSource = Icons.Default.Close
-                            }
-
-                            iconSource?.let {
-                                Icon(
-                                    imageVector = it,
-                                    contentDescription = null
-                                )
-                            }
-                        }
+                        { FloatingActionIcon(iconId) }
                     },
                     backgroundColor = MaterialTheme.colors.primary,
                     onClick = {

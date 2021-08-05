@@ -18,8 +18,8 @@ class HubViewModel @Inject constructor(private val screensRepository: ScreensRep
     val state: StateFlow<HubScreenState>
         get() = _state
 
-    private val screenMaxId = 2
-    private var screenId = 1
+    private val screenMaxId = 3
+    private var screenId = 0
 
     init {
         fetchScreenFromRemote()

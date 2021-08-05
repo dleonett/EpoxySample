@@ -1,5 +1,17 @@
 {
-  "title": "Amigos",
+  "topBar": {
+    "title": "Amigos",
+    "actions": [
+      {
+        "iconId": "refresh",
+        "title": "Refrescar",
+        "action": {
+          "type": "action",
+          "id": "refresh"
+        }
+      }
+    ]
+  },
   "sections": [
     {
       "id": "recent_contacts",
@@ -7,10 +19,10 @@
         "text": "Recientes"
       },
       "viewAllTitle": {
-        "text": "Ver Agenda",
+        "text": "Ver agenda",
         "action": {
           "type": "deeplink",
-          "uri": "test://this/is/my/uri"
+          "uri": "test://app/address-book"
         }
       },
       "contacts": [
@@ -28,7 +40,7 @@
           "id": 2,
           "username": "Daniel Galviz",
           "avatarUrl": "https://i.pravatar.cc/150?img=14",
-          "type": "local",
+          "type": "bank",
           "action": {
             "type": "deeplink",
             "uri": "test://contacts/2"
@@ -38,7 +50,7 @@
           "id": 3,
           "username": "María Sanchez",
           "avatarUrl": "https://i.pravatar.cc/150?img=15",
-          "type": "local",
+          "type": "none",
           "action": {
             "type": "deeplink",
             "uri": "test://contacts/3"
