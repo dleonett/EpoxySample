@@ -66,7 +66,14 @@ class Action(
     val type: String, // deeplink | action
     val uri: String?,
     val id: String? = null
-)
+) {
+    companion object {
+        const val TYPE_ACTION = "action"
+        const val TYPE_DEEPLINK = "deeplink"
+    }
+}
+
+class FloatingAction(val text: String, val iconId: String? = null, val action: Action? = null)
 
 class Title(val text: String, val action: Action? = null)
 

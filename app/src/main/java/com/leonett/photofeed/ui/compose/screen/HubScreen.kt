@@ -9,21 +9,21 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.leonett.photofeed.data.mapper.Action
 import com.leonett.photofeed.data.mapper.RecentContactsSection
 import com.leonett.photofeed.ui.compose.constants.Dimens
 import com.leonett.photofeed.ui.compose.widget.RecentContacts
-import com.leonett.photofeed.ui.feature.hub.HubScreenData
+import com.leonett.photofeed.ui.feature.hub.ComposableScreenData
 import com.leonett.photofeed.ui.feature.hub.HubScreenState
 import com.leonett.photofeed.ui.feature.hub.HubViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -44,7 +44,6 @@ fun HubScreen(
             val screenData = (state as HubScreenState.Loading).screenData
             HubScreenLoading(
                 screenData = screenData,
-                onRefresh = onRefresh,
                 onNavigateBackClick = onNavigateBackClick
             )
         }
@@ -70,8 +69,7 @@ fun HubScreen(
 
 @Composable
 fun HubScreenLoading(
-    screenData: HubScreenData,
-    onRefresh: (() -> Unit)? = null,
+    screenData: ComposableScreenData,
     onNavigateBackClick: (() -> Unit)? = null
 ) {
     Scaffold(topBar = {
@@ -104,7 +102,7 @@ fun HubScreenLoading(
 
 @Composable
 fun HubScreenContent(
-    screenData: HubScreenData,
+    screenData: ComposableScreenData,
     onRefresh: (() -> Unit)? = null,
     onNavigateBackClick: (() -> Unit)? = null,
     onActionClick: ((action: Action) -> Unit)? = null
@@ -129,7 +127,37 @@ fun HubScreenContent(
                     }
                 )
             })
-    }) {
+    },
+        floatingActionButton = {
+            screenData.floatingAction?.let { floatingAction ->
+                ExtendedFloatingActionButton(
+                    text = { Text(floatingAction.text) },
+                    icon = {
+                        floatingAction.iconId?.let { iconId ->
+                            var iconSource: ImageVector? = null
+                            when (iconId) {
+                                "add" -> iconSource = Icons.Default.Add
+                                "done" -> iconSource = Icons.Default.Done
+                                "close" -> iconSource = Icons.Default.Close
+                            }
+
+                            iconSource?.let {
+                                Icon(
+                                    imageVector = it,
+                                    contentDescription = "Floating action button"
+                                )
+                            }
+                        }
+                    },
+                    backgroundColor = MaterialTheme.colors.primary,
+                    onClick = {
+                        floatingAction.action?.let {
+                            onActionClick?.invoke(it)
+                        }
+                    }
+                )
+            }
+        }) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(screenData.sections ?: listOf()) { section ->
                 when (section) {
@@ -147,7 +175,7 @@ fun HubScreenContent(
 
 @Composable
 fun HubScreenError(
-    screenData: HubScreenData,
+    screenData: ComposableScreenData,
     onRefresh: (() -> Unit)? = null,
     onNavigateBackClick: (() -> Unit)? = null
 ) {
@@ -188,17 +216,22 @@ fun HubScreenError(
 @Preview
 @Composable
 fun PreviewHubScreenLoading() {
-    HubScreenLoading(HubScreenData(""))
+    HubScreenLoading(ComposableScreenData(""))
 }
 
 @Preview
 @Composable
 fun PreviewHubScreenContent() {
-    HubScreenContent(HubScreenData("Amigos"))
+    HubScreenContent(ComposableScreenData("Amigos"))
 }
 
 @Preview
 @Composable
 fun PreviewHubScreenError() {
-    HubScreenError(HubScreenData("Amigos", "Something went wrong"))
+    HubScreenError(
+        ComposableScreenData(
+            screenTitle = "Amigos",
+            errorMessage = "Something went wrong"
+        )
+    )
 }

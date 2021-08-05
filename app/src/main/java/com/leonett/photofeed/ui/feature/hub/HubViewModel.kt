@@ -26,18 +26,20 @@ class HubViewModel @Inject constructor(private val screensRepository: ScreensRep
 
     private fun fetchScreenFromRemote() {
         viewModelScope.launch {
-            _state.value = HubScreenState.Loading(HubScreenData(""))
+            _state.value = HubScreenState.Loading(ComposableScreenData(screenTitle = ""))
 
             try {
                 val composableScreen = screensRepository.getScreen(calculateNextScreenId())
                 _state.value = HubScreenState.Success(
-                    HubScreenData(
+                    ComposableScreenData(
                         screenTitle = composableScreen.title.orEmpty(),
+                        floatingAction = composableScreen.floatingAction,
                         sections = composableScreen.sections
                     )
                 )
             } catch (e: Throwable) {
-                _state.value = HubScreenState.Error(HubScreenData("", ""))
+                _state.value =
+                    HubScreenState.Error(ComposableScreenData(screenTitle = "", errorMessage = ""))
             }
         }
     }
@@ -55,7 +57,7 @@ class HubViewModel @Inject constructor(private val screensRepository: ScreensRep
 
 sealed class HubScreenState {
     object Idle : HubScreenState()
-    data class Loading(val screenData: HubScreenData) : HubScreenState()
-    data class Success(val screenData: HubScreenData) : HubScreenState()
-    data class Error(val screenData: HubScreenData) : HubScreenState()
+    data class Loading(val screenData: ComposableScreenData) : HubScreenState()
+    data class Success(val screenData: ComposableScreenData) : HubScreenState()
+    data class Error(val screenData: ComposableScreenData) : HubScreenState()
 }

@@ -6,6 +6,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
 import com.leonett.photofeed.App
 import com.leonett.photofeed.R
+import com.leonett.photofeed.data.mapper.Action
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.compose.screen.HubScreen
 import com.leonett.photofeed.ui.compose.theme.BlueTheme
@@ -41,9 +42,24 @@ class HubFragment : BaseFragment() {
                 HubScreen(
                     viewModel = hubViewModel,
                     onRefresh = hubViewModel::refresh,
-                    onNavigateBackClick = { },
-                    onActionClick = { action -> showToast("URI: ${action.uri}") }
+                    onNavigateBackClick = this::onNavIconClick,
+                    onActionClick = this::handleAction
                 )
+            }
+        }
+    }
+
+    private fun onNavIconClick() {
+        showToast("Navigation icon click")
+    }
+
+    private fun handleAction(action: Action) {
+        when (action.type) {
+            Action.TYPE_ACTION -> {
+                showToast("ACTION: ${action.id}")
+            }
+            Action.TYPE_DEEPLINK -> {
+                showToast("URI: ${action.uri}")
             }
         }
     }

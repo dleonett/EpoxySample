@@ -1,5 +1,13 @@
 {
   "title": "Amigos",
+  "floatingAction": {
+    "text": "Crear evento",
+    "iconId": "add",
+    "action": {
+      "type": "action",
+      "id": "show_modal"
+    }
+  },
   "sections": [
     {
       "id": "recent_contacts",
