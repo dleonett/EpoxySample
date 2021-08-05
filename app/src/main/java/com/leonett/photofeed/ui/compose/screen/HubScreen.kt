@@ -16,10 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.leonett.photofeed.data.mapper.Action
+import com.leonett.photofeed.data.mapper.ActivitiesSection
 import com.leonett.photofeed.data.mapper.RecentContactsSection
 import com.leonett.photofeed.data.mapper.TopBar
 import com.leonett.photofeed.ui.compose.constants.Dimens
 import com.leonett.photofeed.ui.compose.widget.ActionIcon
+import com.leonett.photofeed.ui.compose.widget.Activities
 import com.leonett.photofeed.ui.compose.widget.FloatingActionIcon
 import com.leonett.photofeed.ui.compose.widget.RecentContacts
 import com.leonett.photofeed.ui.feature.hub.ComposableScreenData
@@ -140,6 +142,7 @@ fun HubScreenContent(
                         viewAllContactsTitle = section.viewAllTitle,
                         onActionClick = onActionClick
                     )
+                    is ActivitiesSection -> Activities(section.items, onActionClick)
                 }
             }
         }

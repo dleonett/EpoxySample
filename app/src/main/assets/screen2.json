@@ -123,6 +123,35 @@
           }
         }
       ]
+    },
+    {
+      "id": "activities",
+      "items": [
+        {
+          "title": "Cumpleaños de Fabiola",
+          "subtitle": "10 junio 2021",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://app/activity/1"
+          }
+        },
+        {
+          "title": "Cena con los amigos",
+          "subtitle": "11 agosto 2021",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://app/activity/2"
+          }
+        },
+        {
+          "title": "Regalo de David",
+          "subtitle": "31 agosto 2021",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://app/activity/3"
+          }
+        }
+      ]
     }
   ]
 }
