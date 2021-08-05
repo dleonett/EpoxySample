@@ -3,6 +3,7 @@ package com.leonett.photofeed.ui.feature.hub
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leonett.photofeed.data.ScreensRepository
+import com.leonett.photofeed.data.mapper.TopBar
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,20 +27,25 @@ class HubViewModel @Inject constructor(private val screensRepository: ScreensRep
 
     private fun fetchScreenFromRemote() {
         viewModelScope.launch {
-            _state.value = HubScreenState.Loading(ComposableScreenData(screenTitle = ""))
+            _state.value = HubScreenState.Loading(ComposableScreenData(TopBar(title = "")))
 
             try {
                 val composableScreen = screensRepository.getScreen(calculateNextScreenId())
                 _state.value = HubScreenState.Success(
                     ComposableScreenData(
-                        screenTitle = composableScreen.title.orEmpty(),
+                        topBar = composableScreen.topBar,
                         floatingAction = composableScreen.floatingAction,
                         sections = composableScreen.sections
                     )
                 )
             } catch (e: Throwable) {
                 _state.value =
-                    HubScreenState.Error(ComposableScreenData(screenTitle = "", errorMessage = ""))
+                    HubScreenState.Error(
+                        ComposableScreenData(
+                            topBar = TopBar(title = ""),
+                            errorMessage = ""
+                        )
+                    )
             }
         }
     }

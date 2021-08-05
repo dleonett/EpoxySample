@@ -1,5 +1,32 @@
 {
-  "title": "Amigos",
+  "topBar": {
+    "title": "Amigos",
+    "navIcon": {
+      "iconId": "back",
+      "action": {
+        "type": "action",
+        "id": "navigate_back"
+      }
+    },
+    "actions": [
+      {
+        "iconId": "refresh",
+        "title": "Refrescar",
+        "action": {
+          "type": "action",
+          "id": "refresh"
+        }
+      },
+      {
+        "iconId": "user",
+        "title": "Perfil",
+        "action": {
+          "type": "deeplink",
+          "uri": "test://app/profile"
+        }
+      }
+    ]
+  },
   "floatingAction": {
     "text": "Crear evento",
     "iconId": "add",

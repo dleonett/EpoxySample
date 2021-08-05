@@ -41,22 +41,20 @@ class HubFragment : BaseFragment() {
             BlueTheme {
                 HubScreen(
                     viewModel = hubViewModel,
-                    onRefresh = hubViewModel::refresh,
-                    onNavigateBackClick = this::onNavIconClick,
                     onActionClick = this::handleAction
                 )
             }
         }
     }
 
-    private fun onNavIconClick() {
-        showToast("Navigation icon click")
-    }
-
     private fun handleAction(action: Action) {
         when (action.type) {
             Action.TYPE_ACTION -> {
                 showToast("ACTION: ${action.id}")
+
+                when (action.id) {
+                    "refresh" -> hubViewModel.refresh()
+                }
             }
             Action.TYPE_DEEPLINK -> {
                 showToast("URI: ${action.uri}")

@@ -73,8 +73,6 @@ class Action(
     }
 }
 
-class FloatingAction(val text: String, val iconId: String? = null, val action: Action? = null)
-
 class Title(val text: String, val action: Action? = null)
 
 class Contact(
