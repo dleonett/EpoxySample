@@ -1,41 +1,46 @@
 package com.leonett.photofeed.ui.feature.hub
 
+import android.content.Context
 import android.view.View
 import androidx.compose.ui.platform.ComposeView
+import androidx.lifecycle.ViewModelProvider
+import com.leonett.photofeed.App
 import com.leonett.photofeed.R
-import com.leonett.photofeed.data.mapper.Action
-import com.leonett.photofeed.data.mapper.RecentContactsSection
-import com.leonett.photofeed.data.mapper.Section
-import com.leonett.photofeed.data.mapper.Title
-import com.leonett.photofeed.data.model.Contact
 import com.leonett.photofeed.ui.base.BaseFragment
 import com.leonett.photofeed.ui.compose.screen.HubScreen
 import com.leonett.photofeed.ui.compose.theme.BlueTheme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class HubFragment : BaseFragment() {
 
+    @Inject
+    lateinit var hubViewModelFactory: HubViewModelFactory
+
+    lateinit var hubViewModel: HubViewModel
+
     override val layoutId: Int
         get() = R.layout.fragment_compose
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        (requireContext().applicationContext as App).appComponent.hubComponent().create()
+            .inject(this)
+    }
+
     override fun initVars() {
-        // no-op
+        hubViewModel = ViewModelProvider(this, hubViewModelFactory)
+            .get(HubViewModel::class.java)
     }
 
     override fun initViews(view: View) {
-        val sections = listOf<Section>(
-            RecentContactsSection(
-                Title("Recientes"),
-                Title("Ver Agenda", Action("deeplink", "mp://this/is/an/uri")),
-                Contact.generateDummyList()
-            )
-        )
-
         (view as ComposeView).setContent {
             BlueTheme {
                 HubScreen(
-                    screenData = HubScreenData("Amigos", sections),
+                    viewModel = hubViewModel,
+                    onRefresh = hubViewModel::refresh,
                     onNavigateBackClick = { },
                     onActionClick = { action -> showToast("URI: ${action.uri}") }
                 )

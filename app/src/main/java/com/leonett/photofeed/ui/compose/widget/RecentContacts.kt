@@ -14,14 +14,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.leonett.photofeed.data.mapper.Action
+import com.leonett.photofeed.data.mapper.Contact
 import com.leonett.photofeed.data.mapper.Title
-import com.leonett.photofeed.data.model.Contact
 
 @Composable
 fun RecentContacts(
     contacts: List<Contact>,
     recentContactsTitle: Title,
-    viewAllContactsTitle: Title,
+    viewAllContactsTitle: Title? = null,
     onActionClick: ((action: Action) -> Unit)? = null
 ) {
     Column {
@@ -32,23 +32,27 @@ fun RecentContacts(
             Text(
                 text = recentContactsTitle.text,
                 style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(PaddingValues(vertical = 16.dp))
             )
 
-            TextButton(onClick = {
-                viewAllContactsTitle.action?.let {
-                    onActionClick?.invoke(it)
+            viewAllContactsTitle?.let {
+                TextButton(onClick = {
+                    it.action?.let {
+                        onActionClick?.invoke(it)
+                    }
+                }) {
+                    Text(text = it.text)
                 }
-            }) {
-                Text(text = viewAllContactsTitle.text)
             }
         }
         LazyRow(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(contacts) { contact ->
-                Contact(contact = contact)
+                Contact(contact = contact, onActionClick = onActionClick)
             }
         }
     }

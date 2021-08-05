@@ -1,0 +1,50 @@
+{
+  "title": "Amigos",
+  "sections": [
+    {
+      "id": "recent_contacts",
+      "title": {
+        "text": "Recientes"
+      },
+      "viewAllTitle": {
+        "text": "Ver Agenda",
+        "action": {
+          "type": "deeplink",
+          "uri": "test://this/is/my/uri"
+        }
+      },
+      "contacts": [
+        {
+          "id": 1,
+          "username": "Jose Tovar",
+          "avatarUrl": "https://i.pravatar.cc/150?img=13",
+          "type": "local",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://contacts/1"
+          }
+        },
+        {
+          "id": 2,
+          "username": "Daniel Galviz",
+          "avatarUrl": "https://i.pravatar.cc/150?img=14",
+          "type": "local",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://contacts/2"
+          }
+        },
+        {
+          "id": 3,
+          "username": "María Sanchez",
+          "avatarUrl": "https://i.pravatar.cc/150?img=15",
+          "type": "local",
+          "action": {
+            "type": "deeplink",
+            "uri": "test://contacts/3"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -3,11 +3,10 @@ package com.leonett.photofeed.data.mapper
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.leonett.photofeed.data.model.Contact
 import com.leonett.photofeed.util.RuntimeTypeAdapterFactory
 
 
-class SectionsMapper {
+object SectionsMapper {
 
     fun getSectionsListFromJson(jsonResponse: String): List<Section> {
         val sectionsAdapterFactory =
@@ -34,9 +33,14 @@ class SectionsMapper {
             ) as List<Section?>).filterNotNull()
     }
 
+    fun createAdapterFactory(): RuntimeTypeAdapterFactory<Section> =
+        RuntimeTypeAdapterFactory.of(Section::class.java, "id", true)
+            .registerSubtype(RecentContactsSection::class.java, "recent_contacts")
+
 }
 
 open class Section {
+    val id: String? = null
     val code: String? = null
     val spanCount: Int = 1
     var sections: List<Section>? = null
@@ -59,20 +63,94 @@ open class Section {
 }
 
 class Action(
-    val type: String,
+    val type: String, // deeplink | action
     val uri: String?,
     val id: String? = null
-) {
-    companion object {
-        const val TYPE_ACTION = "action"
-        const val TYPE_DEEPLINK = "deeplink"
-    }
-}
+)
 
 class Title(val text: String, val action: Action? = null)
 
-class RecentContactsSection(val title: Title, val viewAllTitle: Title, val contacts: List<Contact>) :
-    Section()
+class Contact(
+    val id: Int,
+    val avatarUrl: String,
+    val username: String,
+    val type: String,
+    val action: Action? = null
+) {
+    companion object {
+        fun generateDummyList(): List<Contact> {
+            return listOf(
+                Contact(
+                    1,
+                    "https://i.pravatar.cc/150?img=7",
+                    "Jose Tovar",
+                    "local"
+                ),
+                Contact(
+                    2,
+                    "https://i.pravatar.cc/150?img=8",
+                    "Alejandro Martinez",
+                    "bank"
+                ),
+                Contact(
+                    3,
+                    "https://i.pravatar.cc/150?img=9",
+                    "María Sanchez",
+                    "none"
+                ),
+                Contact(
+                    2,
+                    "https://i.pravatar.cc/150?img=10",
+                    "Camila López",
+                    "local"
+                ),
+                Contact(
+                    3,
+                    "https://i.pravatar.cc/150?img=11",
+                    "David Serrano",
+                    "none"
+                ),
+                Contact(
+                    3,
+                    "https://i.pravatar.cc/150?img=12",
+                    "Juan Valdez",
+                    "none"
+                ),
+                Contact(
+                    3,
+                    "https://i.pravatar.cc/150?img=13",
+                    "Cristian Suarez",
+                    "bank"
+                ),
+                Contact(
+                    3,
+                    "https://i.pravatar.cc/150?img=14",
+                    "John Silver",
+                    "none"
+                ),
+                Contact(
+                    3,
+                    "https://i.pravatar.cc/150?img=15",
+                    "Oscar Pérez",
+                    "none"
+                )
+            )
+        }
+
+        fun mock() = Contact(
+            1,
+            "https://i.pravatar.cc/150?img=7",
+            "Camila Lopez",
+            "local"
+        )
+    }
+}
+
+class RecentContactsSection(
+    val title: Title,
+    val viewAllTitle: Title?,
+    val contacts: List<Contact>
+) : Section()
 
 // region Code-based sections
 class Section001 : Section() {
