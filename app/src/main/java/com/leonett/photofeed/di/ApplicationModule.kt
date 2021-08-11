@@ -27,13 +27,13 @@ class ApplicationModule(private val applicationContext: Context) {
             .addInterceptor(loggingInterceptor)
             .build()
 
-        val sectionsAdapterFactory = SectionsMapper.createAdapterFactory()
-
-        val gson = (GsonBuilder()
-            .registerTypeAdapterFactory(sectionsAdapterFactory)).create()
+        val gson = GsonBuilder()
+            .registerTypeAdapterFactory(SectionsMapper.createContainerAdapterFactory())
+            .registerTypeAdapterFactory(SectionsMapper.createSectionAdapterFactory())
+            .create()
 
         return Retrofit.Builder()
-            .baseUrl("https://610b2cec52d56400176b0131.mockapi.io/")
+            .baseUrl("https://server-driven-poc.herokuapp.com/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

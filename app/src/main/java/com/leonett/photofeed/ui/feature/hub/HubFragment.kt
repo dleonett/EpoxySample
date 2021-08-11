@@ -50,9 +50,9 @@ class HubFragment : BaseFragment() {
     private fun handleAction(action: Action) {
         when (action.type) {
             Action.TYPE_ACTION -> {
-                showToast("ACTION: ${action.id}")
+                showToast("ACTION: ${action.uri}")
 
-                when (action.id) {
+                when (action.uri) {
                     "refresh" -> hubViewModel.refresh()
                 }
             }

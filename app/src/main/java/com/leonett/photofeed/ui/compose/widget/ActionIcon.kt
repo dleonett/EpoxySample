@@ -11,7 +11,7 @@ import com.leonett.photofeed.data.mapper.Action
 import com.leonett.photofeed.data.mapper.Icon
 
 @Composable
-fun ActionIcon(icon: Icon? = null, onActionClick: ((action: Action) -> Unit)? = null) {
+fun ActionIcon(icon: Icon? = null, action: Action? = null, onActionClick: ((action: Action) -> Unit)? = null) {
     icon?.iconId.let { iconId ->
         var iconSource: ImageVector? = null
         when (iconId) {
@@ -26,9 +26,7 @@ fun ActionIcon(icon: Icon? = null, onActionClick: ((action: Action) -> Unit)? = 
 
         iconSource?.let { source ->
             IconButton(onClick = {
-                icon?.action?.let {
-                    onActionClick?.invoke(it)
-                }
+                action?.let { onActionClick?.invoke(it) }
             }) {
                 Icon(
                     imageVector = source,

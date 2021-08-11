@@ -1,26 +1,34 @@
 package com.leonett.photofeed.data.mapper
 
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
+
 // region DTOs
 data class ComposableScreen(
-    val topBar: TopBar? = null,
-    val floatingAction: FloatingAction? = null,
-    val sections: List<Section>
+    val id: String? = null,
+    @SerializedName("units")
+    val containers: List<Container>,
 )
 
-data class Icon(val iconId: String, val action: Action? = null)
-
-data class TopBar(
+// region Containers
+open class Container(
+    val id: String? = null,
     val title: String? = null,
-    val navIcon: Icon? = null,
-    val actions: List<Icon>? = null
+    val status: Boolean? = null,
+    val sections: List<Section>? = null
 )
+
+class TopBarContainer() : Container()
+// endregion
+
+data class Icon(val iconId: String)
+
 
 data class FloatingAction(val text: String, val iconId: String? = null, val action: Action? = null)
 
 class Action(
     val type: String, // deeplink | action
-    val uri: String?,
-    val id: String? = null
+    val uri: String?
 ) {
     companion object {
         const val TYPE_ACTION = "action"
@@ -110,11 +118,25 @@ class Contact(
 // endregion
 
 // region Sections
+open class Section {
+    val id: String? = null
+    val title: String? = null
+    var sections: List<Section>? = null
+    val action: Action? = null
+
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
+}
+
+class NavIconSection() : Section()
+
+class ProfileIconSection() : Section()
+
 class RecentContactsSection(
-    val title: Title,
     val viewAllTitle: Title?,
     val contacts: List<Contact>
 ) : Section()
 
-class ActivitiesSection(val title: Title, val items: List<ActivityCard>) : Section()
+class ActivitiesSection(val items: List<ActivityCard>) : Section()
 // endregion
