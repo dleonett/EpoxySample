@@ -105,37 +105,37 @@ class Contact(
                     "none"
                 ),
                 Contact(
-                    2,
+                    4,
                     "https://i.pravatar.cc/150?img=10",
                     "Camila López",
                     "local"
                 ),
                 Contact(
-                    3,
+                    5,
                     "https://i.pravatar.cc/150?img=11",
                     "David Serrano",
                     "none"
                 ),
                 Contact(
-                    3,
+                    6,
                     "https://i.pravatar.cc/150?img=12",
                     "Juan Valdez",
                     "none"
                 ),
                 Contact(
-                    3,
+                    7,
                     "https://i.pravatar.cc/150?img=13",
                     "Cristian Suarez",
                     "bank"
                 ),
                 Contact(
-                    3,
+                    8,
                     "https://i.pravatar.cc/150?img=14",
                     "John Silver",
                     "none"
                 ),
                 Contact(
-                    3,
+                    9,
                     "https://i.pravatar.cc/150?img=15",
                     "Oscar Pérez",
                     "none"
