@@ -44,16 +44,32 @@ class ActivityCard(val title: String, val subtitle: String, val action: Action? 
         fun generateDummyList(): List<ActivityCard> {
             return listOf(
                 ActivityCard(
-                    "Cumpleaños de Fabiola",
-                    "10 junio 2021",
+                    "Cumple Rolo",
+                    "21 agosto 2021",
+                ),
+                ActivityCard(
+                    "Salida viernes",
+                    "20 agosto 2021",
+                ),
+                ActivityCard(
+                    "Vuelta al mundo",
+                    "20 agosto 2021",
+                ),
+                ActivityCard(
+                    "Fútbol con los del trabajo",
+                    "19 agosto 2021",
                 ),
                 ActivityCard(
                     "Cena con los amigos",
                     "11 agosto 2021",
                 ),
                 ActivityCard(
-                    "Fútbol con los del trabajo",
-                    "19 agosto 2021",
+                    "Cumpleaños de Fabiola",
+                    "10 junio 2021",
+                ),
+                ActivityCard(
+                    "Fiesta donde mi hermano",
+                    "1 junio 2021",
                 )
             )
         }
