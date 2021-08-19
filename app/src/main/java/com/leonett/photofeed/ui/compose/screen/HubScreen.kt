@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -21,6 +23,8 @@ import com.leonett.photofeed.ui.compose.constants.Dimens
 import com.leonett.photofeed.ui.compose.extensions.getContainerByType
 import com.leonett.photofeed.ui.compose.extensions.getSectionByType
 import com.leonett.photofeed.ui.compose.widget.ActionIcon
+import com.leonett.photofeed.ui.compose.widget.Activities
+import com.leonett.photofeed.ui.compose.widget.RecentContacts
 import com.leonett.photofeed.ui.feature.hub.ComposableScreenData
 import com.leonett.photofeed.ui.feature.hub.HubScreenState
 import com.leonett.photofeed.ui.feature.hub.HubViewModel
@@ -37,7 +41,6 @@ fun HubScreen(
         is HubScreenState.Idle -> {
         }
         is HubScreenState.Loading -> {
-            val screenData = (state as HubScreenState.Loading).screenData
             HubScreenLoading()
         }
         is HubScreenState.Success -> {
@@ -112,19 +115,34 @@ fun HubScreenContent(
             }
         },
     ) {
-//        LazyColumn(modifier = Modifier.fillMaxSize()) {
-//            items(screenData.sections ?: listOf()) { section ->
-//                when (section) {
-//                    is RecentContactsSection -> RecentContacts(
-//                        contacts = section.contacts,
-//                        recentContactsTitle = section.title,
-//                        viewAllContactsTitle = section.viewAllTitle,
-//                        onActionClick = onActionClick
-//                    )
-//                    is ActivitiesSection -> Activities(section.items, onActionClick)
-//                }
-//            }
-//        }
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            getContainerByType<MainContentContainer>(containers)?.let { content ->
+                items(content.sections ?: listOf()) { section ->
+                    when (section) {
+                        is RecentContactsSection -> {
+                            if (section.sections?.isEmpty() == false) {
+                                RecentContacts(
+                                    contacts = Contact.generateDummyList(),
+                                    recentContactsTitle = Title(
+                                        text = section.title ?: "Recientes"
+                                    ),
+                                    viewAllContactsTitle = section.viewAllTitle
+                                        ?: Title(text = "Ver agenda"),
+                                    onActionClick = onActionClick
+                                )
+                            }
+                        }
+                        is ActivitiesSection -> {
+                            if (section.sections?.isEmpty() == false) {
+                                Activities(
+                                    activities = ActivityCard.generateDummyList(),
+                                    onActionClick = onActionClick)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -160,7 +178,7 @@ fun PreviewHubScreenLoading() {
 @Preview
 @Composable
 fun PreviewHubScreenContent() {
-//    HubScreenContent(ComposableScreenData(TopBar("Amigos")))
+    HubScreenContent(ComposableScreenData(listOf()))
 }
 
 @Preview
@@ -168,7 +186,6 @@ fun PreviewHubScreenContent() {
 fun PreviewHubScreenError() {
     HubScreenError(
         ComposableScreenData(
-//            topBar = TopBar("Amigos"),
             errorMessage = "Something went wrong"
         )
     )

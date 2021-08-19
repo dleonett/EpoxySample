@@ -19,6 +19,7 @@ open class Container(
 )
 
 class TopBarContainer() : Container()
+class MainContentContainer() : Container()
 // endregion
 
 data class Icon(val iconId: String)
@@ -38,7 +39,26 @@ class Action(
 
 class Title(val text: String, val action: Action? = null)
 
-class ActivityCard(val title: String, val subtitle: String, val action: Action? = null)
+class ActivityCard(val title: String, val subtitle: String, val action: Action? = null) {
+    companion object {
+        fun generateDummyList(): List<ActivityCard> {
+            return listOf(
+                ActivityCard(
+                    "Cumpleaños de Fabiola",
+                    "10 junio 2021",
+                ),
+                ActivityCard(
+                    "Cena con los amigos",
+                    "11 agosto 2021",
+                ),
+                ActivityCard(
+                    "Fútbol con los del trabajo",
+                    "19 agosto 2021",
+                )
+            )
+        }
+    }
+}
 
 class Contact(
     val id: Int,
@@ -136,8 +156,13 @@ class RefreshIconSection() : Section()
 
 class RecentContactsSection(
     val viewAllTitle: Title?,
-    val contacts: List<Contact>
+    val contacts: List<ContactSection>
 ) : Section()
 
-class ActivitiesSection(val items: List<ActivityCard>) : Section()
+class ContactSection(
+    val contact: Contact
+) : Section()
+
+class ActivitiesSection(val items: List<ActivitySection>) : Section()
+class ActivitySection(val activity: ActivityCard) : Section()
 // endregion

@@ -8,6 +8,7 @@ object SectionsMapper {
     fun createContainerAdapterFactory(): RuntimeTypeAdapterFactory<Container> =
         RuntimeTypeAdapterFactory.of(Container::class.java, "id", true)
             .registerSubtype(TopBarContainer::class.java, "top_bar")
+            .registerSubtype(MainContentContainer::class.java, "main_content")
 
     fun createSectionAdapterFactory(): RuntimeTypeAdapterFactory<Section> =
         RuntimeTypeAdapterFactory.of(Section::class.java, "id", true)
@@ -16,6 +17,8 @@ object SectionsMapper {
             .registerSubtype(ShareIconSection::class.java, "share_icon")
             .registerSubtype(RefreshIconSection::class.java, "refresh_icon")
             .registerSubtype(RecentContactsSection::class.java, "recent_contacts")
+            .registerSubtype(ContactSection::class.java, "contact")
             .registerSubtype(ActivitiesSection::class.java, "activities")
+            .registerSubtype(ActivitySection::class.java, "activity")
 
 }
