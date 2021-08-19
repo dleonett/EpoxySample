@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Photofeed</string>
+    <string name="app_name">Amigos 2.0 POC</string>
     <string name="header_text">My feed</string>
     <string name="footer_text">You\'re up to date</string>
     <string name="profile_user_not_found_text">User not found</string>

@@ -130,8 +130,9 @@ open class Section {
 }
 
 class NavIconSection() : Section()
-
 class ProfileIconSection() : Section()
+class ShareIconSection() : Section()
+class RefreshIconSection() : Section()
 
 class RecentContactsSection(
     val viewAllTitle: Title?,

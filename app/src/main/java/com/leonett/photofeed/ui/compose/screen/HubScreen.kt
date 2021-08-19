@@ -16,11 +16,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.leonett.photofeed.data.mapper.Action
-import com.leonett.photofeed.data.mapper.Icon
-import com.leonett.photofeed.data.mapper.NavIconSection
-import com.leonett.photofeed.data.mapper.TopBarContainer
+import com.leonett.photofeed.data.mapper.*
 import com.leonett.photofeed.ui.compose.constants.Dimens
+import com.leonett.photofeed.ui.compose.extensions.getContainerByType
+import com.leonett.photofeed.ui.compose.extensions.getSectionByType
 import com.leonett.photofeed.ui.compose.widget.ActionIcon
 import com.leonett.photofeed.ui.feature.hub.ComposableScreenData
 import com.leonett.photofeed.ui.feature.hub.HubScreenState
@@ -57,23 +56,16 @@ fun HubScreen(
 
 @Composable
 fun HubScreenLoading() {
-    Scaffold(topBar = {
-        TopAppBar(
-            title = { Text("Aguanta") },
-            actions = {}
-        )
-    }) {
-        Box(
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        CircularProgressIndicator(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .size(Dimens.LOADER_BASIC_SIZE)
-                    .align(Alignment.Center)
-            )
-        }
+                .size(Dimens.LOADER_BASIC_SIZE)
+                .align(Alignment.Center)
+        )
     }
 }
 
@@ -85,11 +77,36 @@ fun HubScreenContent(
     val containers = screenData.containers
     Scaffold(
         topBar = {
-            (containers?.firstOrNull { it is TopBarContainer } as? TopBarContainer)?.let { topBar ->
+            getContainerByType<TopBarContainer>(containers)?.let { topBar ->
                 TopAppBar(
                     title = { Text(topBar.title.orEmpty()) },
-                    navigationIcon = (topBar.sections?.firstOrNull { it is NavIconSection } as? NavIconSection)?.let {
-                        { ActionIcon(icon = Icon("back"), action = it.action, onActionClick = onActionClick) }
+                    navigationIcon = getSectionByType<NavIconSection>(topBar.sections)?.let {
+                        {
+                            ActionIcon(
+                                icon = Icon("back"),
+                                action = it.action,
+                                onActionClick = onActionClick
+                            )
+                        }
+                    },
+                    actions = {
+                        val topBarActions = topBar.sections?.filterNot { it is NavIconSection }
+                        topBarActions?.forEach { section ->
+                            val icon = when (section) {
+                                is ProfileIconSection -> Icon("user")
+                                is ShareIconSection -> Icon("share")
+                                is RefreshIconSection -> Icon("refresh")
+                                else -> null
+                            }
+
+                            section?.let {
+                                ActionIcon(
+                                    icon = icon,
+                                    action = it.action,
+                                    onActionClick = onActionClick
+                                )
+                            }
+                        }
                     }
                 )
             }
@@ -137,7 +154,7 @@ fun HubScreenError(
 @Preview
 @Composable
 fun PreviewHubScreenLoading() {
-//    HubScreenLoading(ComposableScreenData(TopBar("Amigos")))
+    HubScreenLoading()
 }
 
 @Preview

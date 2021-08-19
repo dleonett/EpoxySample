@@ -13,6 +13,8 @@ object SectionsMapper {
         RuntimeTypeAdapterFactory.of(Section::class.java, "id", true)
             .registerSubtype(NavIconSection::class.java, "nav_icon")
             .registerSubtype(ProfileIconSection::class.java, "profile_icon")
+            .registerSubtype(ShareIconSection::class.java, "share_icon")
+            .registerSubtype(RefreshIconSection::class.java, "refresh_icon")
             .registerSubtype(RecentContactsSection::class.java, "recent_contacts")
             .registerSubtype(ActivitiesSection::class.java, "activities")
 

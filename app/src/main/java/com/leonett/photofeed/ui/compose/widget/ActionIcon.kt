@@ -40,5 +40,5 @@ fun ActionIcon(icon: Icon? = null, action: Action? = null, onActionClick: ((acti
 @Preview
 @Composable
 fun PreviewActionIcon() {
-    ActionIcon(Icon("add"))
+    ActionIcon(Icon("share"))
 }

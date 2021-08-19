@@ -54,6 +54,7 @@ class HubFragment : BaseFragment() {
 
                 when (action.uri) {
                     "refresh" -> hubViewModel.refresh()
+                    "back" -> requireActivity().finish()
                 }
             }
             Action.TYPE_DEEPLINK -> {
