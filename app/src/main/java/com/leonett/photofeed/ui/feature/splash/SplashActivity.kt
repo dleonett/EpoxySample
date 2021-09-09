@@ -8,6 +8,7 @@ import com.leonett.photofeed.R
 import com.leonett.photofeed.ui.base.BaseActivity
 import com.leonett.photofeed.ui.feature.login.LoginActivity
 import com.leonett.photofeed.ui.feature.main.HostActivity
+import com.leonett.photofeed.ui.feature.main.MainActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity() {
@@ -37,7 +38,8 @@ class SplashActivity : BaseActivity() {
     private fun handleResult(it: Boolean?) {
         it?.let { isLoggedIn ->
             if (isLoggedIn) {
-                navigateToHome()
+                //navigateToHome()
+                navigateToMain()
             } else {
                 navigateToLogin()
             }
@@ -54,4 +56,8 @@ class SplashActivity : BaseActivity() {
         finish()
     }
 
+    private fun navigateToMain() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
 }
