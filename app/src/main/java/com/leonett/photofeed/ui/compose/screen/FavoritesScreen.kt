@@ -1,9 +1,6 @@
 package com.leonett.photofeed.ui.compose.screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,7 +11,9 @@ import androidx.navigation.NavController
 
 @Composable
 fun FavoritesScreen(navController: NavController?) {
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier
+        .padding(16.dp)
+        .fillMaxSize()) {
         Text(text = "Favorites")
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navController?.navigate("favorites/detail") }) {
