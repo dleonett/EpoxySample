@@ -1,26 +1,26 @@
 package com.leonett.photofeed.ui.compose.screen
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun MainScreen() {
     val bottomNavigationItems = listOf(
-        BottomNavigationScreens.List,
-        BottomNavigationScreens.Favorites,
-        BottomNavigationScreens.Profile
+        Screen.List,
+        Screen.Favorites,
+        Screen.Profile
     )
 
-    val openDialog = remember { mutableStateOf<BottomNavigationScreens?>(null) }
+    val navController = rememberNavController()
 
     Scaffold(
         topBar = {
@@ -29,49 +29,47 @@ fun MainScreen() {
         bottomBar = {
             BottomAppBar {
                 BottomNavigation {
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    val currentDestination = navBackStackEntry?.destination
+
                     bottomNavigationItems.forEach { screen ->
                         BottomNavigationItem(
                             icon = { Icon(imageVector = screen.icon, contentDescription = null) },
                             label = { Text(stringResource(id = screen.resourceId)) },
-                            selected = false,
-                            onClick = { openDialog.value = screen }
+                            selected = currentDestination?.hierarchy?.any {
+                                it.route == screen.route || (it.route?.contains(
+                                    "${screen.route}/"
+                                ) == true)
+                            } == true,
+                            onClick = {
+                                navController.navigate(screen.route) {
+                                    // Pop up to the start destination of the graph to
+                                    // avoid building up a large stack of destinations
+                                    // on the back stack as users select items
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    // Avoid multiple copies of the same destination when
+                                    // reselecting the same item
+                                    launchSingleTop = true
+                                    // Restore state when reselecting a previously selected item
+                                    restoreState = true
+                                }
+                            }
                         )
                     }
                 }
             }
         }) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
+        NavHost(
+            navController = navController,
+            startDestination = Screen.List.route
         ) {
-            // content
+            composable(Screen.List.route) { ListScreen() }
+            composable(Screen.Favorites.route) { FavoritesScreen(navController) }
+            composable("favorites/detail") { DetailScreen() }
+            composable(Screen.Profile.route) { ProfileScreen() }
         }
-    }
-
-    openDialog.value?.let { screen ->
-        AlertDialog(
-            onDismissRequest = {
-                // Dismiss the dialog when the user clicks outside the dialog or on the back
-                // button. If you want to disable that functionality, simply use an empty
-                // onCloseRequest.
-                openDialog.value = null
-            },
-            title = {
-                Text(text = stringResource(screen.resourceId))
-            },
-            text = { Text("Here is a text ") },
-            confirmButton = {
-                TextButton(onClick = { openDialog.value = null }) {
-                    Text("This is the Confirm Button")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { openDialog.value = null }) {
-                    Text("This is the Dismiss Button")
-                }
-            }
-        )
     }
 }
 
