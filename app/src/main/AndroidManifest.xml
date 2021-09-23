@@ -30,7 +30,18 @@
             android:theme="@style/AppTheme.Login" />
         <activity
             android:name="com.leonett.photofeed.ui.feature.main.MainActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="main"
+                    android:scheme="esapp" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.leonett.photofeed.ui.feature.main.HostActivity"
             android:exported="true">

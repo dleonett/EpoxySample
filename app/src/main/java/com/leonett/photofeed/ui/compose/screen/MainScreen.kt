@@ -9,24 +9,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.*
+import androidx.navigation.navDeepLink
+import com.leonett.photofeed.ui.compose.constants.Navigation
 
 @Composable
 fun MainScreen() {
     val bottomNavigationItems = listOf(
-        Screen.List,
-        Screen.Favorites,
-        Screen.Profile
+        NavigationItem.List,
+        NavigationItem.Favorites,
+        NavigationItem.Profile
     )
 
     val navController = rememberNavController()
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Hello world!") })
+            TopAppBar(title = { Text("Hello!") })
         },
         bottomBar = {
             BottomAppBar(contentPadding = PaddingValues(0.dp)) {
@@ -34,17 +33,17 @@ fun MainScreen() {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
                     val currentDestination = navBackStackEntry?.destination
 
-                    bottomNavigationItems.forEach { screen ->
+                    bottomNavigationItems.forEach { item ->
                         BottomNavigationItem(
-                            icon = { Icon(imageVector = screen.icon, contentDescription = null) },
-                            label = { Text(stringResource(id = screen.resourceId)) },
+                            icon = { Icon(imageVector = item.icon, contentDescription = null) },
+                            label = { Text(stringResource(id = item.resourceId)) },
                             selected = currentDestination?.hierarchy?.any {
-                                it.route == screen.route || (it.route?.contains(
-                                    "${screen.route}/"
+                                it.route == item.route || (it.route?.contains(
+                                    "${item.route}/"
                                 ) == true)
                             } == true,
                             onClick = {
-                                navController.navigate(screen.route) {
+                                navController.navigate(item.route) {
                                     // Pop up to the start destination of the graph to
                                     // avoid building up a large stack of destinations
                                     // on the back stack as users select items
@@ -68,9 +67,15 @@ fun MainScreen() {
             startDestination = Screen.List.route
         ) {
             composable(Screen.List.route) { ListScreen() }
-            composable(Screen.Favorites.route) { FavoritesScreen(navController) }
-            composable("favorites/detail") { DetailScreen() }
             composable(Screen.Profile.route) { ProfileScreen() }
+            navigation(startDestination = Screen.FavoritesList.route, route = Graph.Favorites.route) {
+                composable(Screen.FavoritesList.route, deepLinks = listOf(
+                    navDeepLink { uriPattern = "${Navigation.URI_BASE}${Screen.FavoritesList.deepLink}" }
+                )) { FavoritesScreen(navController) }
+                composable(Screen.FavoritesDetail.route, deepLinks = listOf(
+                    navDeepLink { uriPattern = "${Navigation.URI_BASE}${Screen.FavoritesDetail.deepLink}" }
+                )) { DetailScreen() }
+            }
         }
     }
 }
