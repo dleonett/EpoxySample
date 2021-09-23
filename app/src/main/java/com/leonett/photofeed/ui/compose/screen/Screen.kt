@@ -2,26 +2,44 @@ package com.leonett.photofeed.ui.compose.screen
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.leonett.photofeed.R
 
 sealed class NavigationItem(
     val route: String,
     @StringRes val resourceId: Int,
-    val icon: ImageVector
+    val iconActive: ImageVector,
+    val iconInactive: ImageVector
 ) {
-    object List : NavigationItem("list", R.string.bottom_nav_item_list, Icons.Filled.List)
+    object List :
+        NavigationItem(
+            "list",
+            R.string.bottom_nav_item_list,
+            Icons.Filled.Email,
+            Icons.Outlined.Email
+        )
+
     object Favorites : NavigationItem(
         "favorites",
         R.string.bottom_nav_item_favorites,
-        Icons.Filled.Favorite
+        Icons.Filled.Favorite,
+        Icons.Outlined.FavoriteBorder
     )
 
     object Profile :
-        NavigationItem("profile", R.string.bottom_nav_item_profile, Icons.Filled.Person)
+        NavigationItem(
+            "profile",
+            R.string.bottom_nav_item_profile,
+            Icons.Filled.Person,
+            Icons.Outlined.Person
+        )
 }
 
 sealed class Screen(

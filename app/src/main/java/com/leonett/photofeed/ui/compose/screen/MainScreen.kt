@@ -34,14 +34,21 @@ fun MainScreen() {
                     val currentDestination = navBackStackEntry?.destination
 
                     bottomNavigationItems.forEach { item ->
+                        val isItemSelected = currentDestination?.hierarchy?.any {
+                            it.route == item.route || (it.route?.contains(
+                                "${item.route}/"
+                            ) == true)
+                        } == true
+
                         BottomNavigationItem(
-                            icon = { Icon(imageVector = item.icon, contentDescription = null) },
+                            icon = {
+                                Icon(
+                                    imageVector = if (isItemSelected) item.iconActive else item.iconInactive,
+                                    contentDescription = null
+                                )
+                            },
                             label = { Text(stringResource(id = item.resourceId)) },
-                            selected = currentDestination?.hierarchy?.any {
-                                it.route == item.route || (it.route?.contains(
-                                    "${item.route}/"
-                                ) == true)
-                            } == true,
+                            selected = isItemSelected,
                             onClick = {
                                 navController.navigate(item.route) {
                                     // Pop up to the start destination of the graph to
@@ -68,12 +75,19 @@ fun MainScreen() {
         ) {
             composable(Screen.List.route) { ListScreen() }
             composable(Screen.Profile.route) { ProfileScreen() }
-            navigation(startDestination = Screen.FavoritesList.route, route = Graph.Favorites.route) {
+            navigation(
+                startDestination = Screen.FavoritesList.route,
+                route = Graph.Favorites.route
+            ) {
                 composable(Screen.FavoritesList.route, deepLinks = listOf(
-                    navDeepLink { uriPattern = "${Navigation.URI_BASE}${Screen.FavoritesList.deepLink}" }
+                    navDeepLink {
+                        uriPattern = "${Navigation.URI_BASE}${Screen.FavoritesList.deepLink}"
+                    }
                 )) { FavoritesScreen(navController) }
                 composable(Screen.FavoritesDetail.route, deepLinks = listOf(
-                    navDeepLink { uriPattern = "${Navigation.URI_BASE}${Screen.FavoritesDetail.deepLink}" }
+                    navDeepLink {
+                        uriPattern = "${Navigation.URI_BASE}${Screen.FavoritesDetail.deepLink}"
+                    }
                 )) { DetailScreen() }
             }
         }
